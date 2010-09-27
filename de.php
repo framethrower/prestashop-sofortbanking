@@ -1,0 +1,35 @@
+<?php
+
+global $_MODULE;
+$_MODULE = array();
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_fa2a44a860b6b67f7a7957aa95939e0a'] = 'sofortüberweisung.de';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_093d600e7f1ee849deca5775caf0d0ab'] = 'Akzeptieren der Zahlmöglichkeit sofortüberweisung.de';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_69a1a3ad8dd5da6db3c4da838a0cf9c7'] = 'Sicher das Sie das Modul löschen möchten mit allen Details?';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_f4f70727dc34561dfde1a3c529b6205c'] = 'Einstellungen';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_307ed37ad66884e964488e7997888472'] = 'User ID';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_bc224951e472e3fc4ba97383633431b6'] = 'leer lassen für deaktivieren';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_18f723b9e76d5e6ff2408ea466682475'] = 'Projekt ID';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_b6df276413c17acdbf911ed35479c480'] = 'Projekt Passwort';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_b3008692c5e0576f0d61075de4a48469'] = 'Benachrichtigungs-Passwort';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_c6f496cf3df8ec7f69dcc5bd3289c9b7'] = 'Zahlung bestätigt';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_9529a818d3f6c02c2039b2461d25a54e'] = 'Zahlung in Bearbeitung';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_672bb9ceb260e05a1d77eedf34ba0bc0'] = 'Minimum Betrag';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_99fd39ee40a81e091e133945d8215eda'] = 'Maximum Betrag';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_06933067aafd48425d67bcb01bba5cb6'] = 'Aktualisieren';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_6f0118397671d5cdea6c525a67f4753c'] = 'URLs';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_e722d72b214116587e4e6082588df694'] = 'Bestätigungs-URL (Http-Benachrichtigung):';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_0460817770faafdd4fca012a46a9efe3'] = 'Erfolgs-URL (Weiterleitung zur Bestätigung):';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_429e6f2cf4af25753fe27adbc5def9ec'] = 'Abbruchs-URL (Rückkehr zum Shop):';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_6a26f548831e6a8c26bfbbd9f6ec61e0'] = 'Hilfe';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_43cb884881c0f06da549972ed413c477'] = '@Link';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_7e1795d054242cf7c546c1491a7c467d'] = 'sofortueberweisung.de';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_510db974619d0b8069cf3526f7d09230'] = '@Anbieter';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_fbf3ccc8d02ed2ac6b75b8b47a5dff9b'] = '@Autor';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_d118b26992ca61dad23f60e3aaac8f9d'] = '@Info';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_de0592e70f032889adb289d2f06bf37a'] = '@Beschreibung';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_4173f15aa99c942456ca4d7da583fc8f'] = 'sofortüberweisung.de ist das Direkt-Überweisungsverfahren der Payment Network AG. Mit sofortüberweisung.de stellen Sie noch während Ihrer Bestellung bequem eine Überweisung über den jeweiligen Betrag in Ihr Online-Banking-Konto ein. Der Händler erhält nach Abschluss der sofortüberweisung.de eine Echtzeitbestätigung. So kann er Lagerware und digitale Güter sofort versenden - Sie erhalten dann Ihre Einkäufe schneller. ';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_170149a92b2369179bf59bbd535d2f03'] = 'Warenkorb-ID';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_aaed1d26ad6260905c119e0ad24edcbf'] = 'Bezahlen mit sofortüberweisung.de (Verfügbare Waren werden sofort geliefert)';
+$_MODULE['<{sofortueberweisung}prestashop>validation_430b932b3ed2561e26c45227f74cf77d'] = 'Fatal Error (1)';
+$_MODULE['<{sofortueberweisung}prestashop>validation_963d0dffd2ef75d529e90f4c1e267274'] = 'Fatal Error (2)';
+$_MODULE['<{sofortueberweisung}prestashop>validation_5169097dfd5e55eda26d65a016a1ea37'] = 'Sofortueberweisung Transaction ID:';
