@@ -7,7 +7,7 @@
  * Copyright (c) 2009 touchDesign
  *
  * @category Payment
- * @version 0.6
+ * @version 0.7
  * @copyright 19.08.2009, touchDesign
  * @author Christoph Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -28,7 +28,7 @@ class Sofortueberweisung extends PaymentModule
     {
         $this->name = 'sofortueberweisung';
         $this->tab = 'Payment';
-        $this->version = '0.6';
+        $this->version = '0.7';
         $this->currencies = true;
         $this->currencies_mode = 'radio';
         parent::__construct();
@@ -46,7 +46,12 @@ class Sofortueberweisung extends PaymentModule
           !Configuration::updateValue('SOFORTUEBERWEISUNG_PROJECT_ID', '') ||
           !Configuration::updateValue('SOFORTUEBERWEISUNG_PROJECT_PW', '') ||
           !Configuration::updateValue('SOFORTUEBERWEISUNG_NOTIFY_PW', '') ||
-          !$this->registerHook('payment')
+          !Configuration::updateValue('SOFORTUEBERWEISUNG_BLOCK_LOGO', 'Y') ||
+          !Configuration::updateValue('SOFORTUEBERWEISUNG_OS_ERROR', 8) ||
+          !Configuration::updateValue('SOFORTUEBERWEISUNG_OS_ACCEPTED', 2) ||
+          !$this->registerHook('payment') ||
+          !$this->registerHook('paymentReturn') ||
+          !$this->registerHook('leftColumn')
         ){
             return false;
         }
@@ -60,12 +65,30 @@ class Sofortueberweisung extends PaymentModule
           !Configuration::deleteByName('SOFORTUEBERWEISUNG_PROJECT_ID') ||
           !Configuration::deleteByName('SOFORTUEBERWEISUNG_PROJECT_PW') ||
           !Configuration::deleteByName('SOFORTUEBERWEISUNG_NOTIFY_PW') ||
+          !Configuration::deleteByName('SOFORTUEBERWEISUNG_BLOCK_LOGO') ||
+          !Configuration::deleteByName('SOFORTUEBERWEISUNG_OS_ERROR') ||
+          !Configuration::deleteByName('SOFORTUEBERWEISUNG_OS_ACCEPTED') ||
           !parent::uninstall()
          ){
             return false;
          }
         return true;
     }
+
+	private function _postValidation() {
+
+		if (Tools::getValue('submitUpdate')){
+			if (!Tools::getValue('SOFORTUEBERWEISUNG_USER_ID')){
+				$this->_postErrors[] = $this->l('sofortueberweisung.de "user id" is required.');
+			}
+			if (!Tools::getValue('SOFORTUEBERWEISUNG_PROJECT_ID')){
+				$this->_postErrors[] = $this->l('sofortueberweisung.de "project id" is required.');
+			}
+			if (!Tools::getValue('SOFORTUEBERWEISUNG_PROJECT_PW')){
+				$this->_postErrors[] = $this->l('sofortueberweisung.de "project password" is required.');
+			}		
+		}
+	}
 
     public function getContent()
     {
@@ -75,9 +98,29 @@ class Sofortueberweisung extends PaymentModule
             Configuration::updateValue('SOFORTUEBERWEISUNG_PROJECT_ID', Tools::getValue('SOFORTUEBERWEISUNG_PROJECT_ID'));
             Configuration::updateValue('SOFORTUEBERWEISUNG_PROJECT_PW', Tools::getValue('SOFORTUEBERWEISUNG_PROJECT_PW'));
             Configuration::updateValue('SOFORTUEBERWEISUNG_NOTIFY_PW', Tools::getValue('SOFORTUEBERWEISUNG_NOTIFY_PW'));
+			Configuration::updateValue('SOFORTUEBERWEISUNG_BLOCK_LOGO', Tools::getValue('SOFORTUEBERWEISUNG_BLOCK_LOGO'));
         }
+
+		$this->_postValidation();
+		if (isset($this->_postErrors) && sizeof($this->_postErrors)){
+			foreach ($this->_postErrors AS $err){
+				$this->_html .= '<div class="alert error">'. $err .'</div>';
+			}
+		}elseif(Tools::getValue('submitUpdate') && !isset($this->_postErrors)){
+		  $this->getSuccessMessage();
+		}
+
         return $this->_displayForm();
     }
+
+	public function getSuccessMessage() {
+
+		$this->_html.='
+		<div class="conf confirm">
+			<img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />
+			'.$this->l('Settings updated').'
+		</div>';
+	}
 
     private function _displayForm()
     {
@@ -94,7 +137,7 @@ class Sofortueberweisung extends PaymentModule
 			</style>';
 
         $this->_html .= '
-            <div><a target="_blank" href="https://www.sofortueberweisung.de/payment/users/register/284"><img src="'.$this->_path.'logoBig.gif" alt="logoBig.gif" title="" /></a></div>
+            <div><img src="'.$this->_path.'logoBig.gif" alt="logoBig.gif" title="" /></div>
             <form method="post" action="'.$_SERVER['REQUEST_URI'].'">
             <fieldset>
                 <legend><img src="'.$this->_path.'logo.gif" />'.$this->l('Settings').'</legend>
@@ -122,6 +165,15 @@ class Sofortueberweisung extends PaymentModule
                     <p>'.$this->l('Leave it blank for disabling').'</p>
                 </div>
                 <div class="clear"></div>
+				<label>'.$this->l('sofortueberweisung.de Logo?').'</label>
+				<div class="margin-form">
+					<select name="SOFORTUEBERWEISUNG_BLOCK_LOGO">
+						<option '.(Configuration::get('SOFORTUEBERWEISUNG_BLOCK_LOGO') == "Y" ? "selected" : "").' value="Y">'.$this->l('Yes, display the logo (recommended)').'</option>
+						<option '.(Configuration::get('SOFORTUEBERWEISUNG_BLOCK_LOGO') == "N" ? "selected" : "").' value="N">'.$this->l('No, do not display').'</option>
+					</select>
+					<p>'.$this->l('Display logo and payment info block in left column').'</p>
+				</div>
+				<div class="clear"></div>
                 <div class="margin-form clear pspace"><input type="submit" name="submitUpdate" value="'.$this->l('Update').'" class="button" /></div>
             </fieldset>
             </form><br />
@@ -129,9 +181,9 @@ class Sofortueberweisung extends PaymentModule
                 <legend><img src="'.$this->_path.'logo.gif" />'.$this->l('URLs').'</legend>
                 <b>'.$this->l('Confirmation-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php</textarea>
                 <br /><br />
-                <b>'.$this->l('Success-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'history.php</textarea>
+                <b>'.$this->l('Success-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-</textarea>
                 <br /><br />
-                <b>'.$this->l('Cancel-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'order.php</textarea>
+                <b>'.$this->l('Cancel-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'order.php?step=3</textarea>
             </fieldset>
         ';
 
@@ -170,7 +222,8 @@ class Sofortueberweisung extends PaymentModule
 
         $su = array(
             'user_id' => Configuration::get('SOFORTUEBERWEISUNG_USER_ID'),'project_id' => Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID'),
-            'sender_holder' => '','','','sender_country_id' => $country->iso_code,'amount' => number_format(Tools::convertPrice($params['cart']->getOrderTotal(), $currency), 2, '.', ''),
+            'sender_holder' => '','','','sender_country_id' => $country->iso_code,
+			'amount' => number_format(Tools::convertPrice($params['cart']->getOrderTotal(), $currency), 2, '.', ''),
             'sender_currency_id' => $currency->iso_code,'reason_1' => $this->l('CartId:').' '.time().'-'.intval($params['cart']->id),
             'reason_2' => $customer->firstname.' '.ucfirst(strtolower($customer->lastname)),
             'user_variable_0' => $customer->secure_key,'user_variable_1' => intval($params['cart']->id),
@@ -186,15 +239,43 @@ class Sofortueberweisung extends PaymentModule
         return $this->display(__FILE__, 'sofortueberweisung.tpl');
     }
 
+	public function hookPaymentReturn($params)
+	{
+		global $smarty;
+
+        if (!$this->isPayment())
+            return false;
+
+		$state = $params['objOrder']->getCurrentState();
+		if ($state == Configuration::get('SOFORTUEBERWEISUNG_OS_ACCEPTED'))
+			$smarty->assign(array(
+				'total_to_pay' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false, false),
+				'status' => 'accepted'
+			)
+		);
+
+		return $this->display(__FILE__, 'confirmation.tpl');
+	}
+
+	public function hookLeftColumn($params)
+	{
+		if(Configuration::get('SOFORTUEBERWEISUNG_BLOCK_LOGO') == "N")
+			return false;
+
+		return $this->display(__FILE__, 'blocksofortueberweisunglogo.tpl');
+	}
+
     public function isPayment()
     {
         if (!$this->active)
           return false;
-        if (!Configuration::get('SOFORTUEBERWEISUNG_USER_ID') || !Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID') || !Configuration::get('SOFORTUEBERWEISUNG_PROJECT_PW'))
+        if (!Configuration::get('SOFORTUEBERWEISUNG_USER_ID') 
+			|| !Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID') 
+			|| !Configuration::get('SOFORTUEBERWEISUNG_PROJECT_PW'))
             return false;
         return true;
     }
-  
+
 }
 
 ?>

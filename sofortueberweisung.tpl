@@ -1,4 +1,4 @@
-<!-- touchDesign | directebanking Module | http://www.touchdesign.de -->
+<!-- touchDesign | directebanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
 <p class="payment_module">
 	<a href="javascript:$('#sofortueberweisung_form').submit();" title="{l s='Pay with sofortueberweisung.de' mod='sofortueberweisung'}">
 		<img src="{$module_template_dir}sofortueberweisung.gif" alt="{l s='Pay with sofortueberweisung.de' mod='sofortueberweisung'}" />
@@ -23,4 +23,4 @@
   <input type="hidden" name="hash" value="{$hash}" />
   <input type="hidden" name="interface_version" value="PrestaShop {$version}" />
 </form>
-<!-- touchDesign | directebanking Module | http://www.touchdesign.de -->
+<!-- touchDesign | directebanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
