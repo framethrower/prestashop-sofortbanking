@@ -47,6 +47,7 @@ class Sofortueberweisung extends PaymentModule
           !Configuration::updateValue('SOFORTUEBERWEISUNG_PROJECT_PW', '') ||
           !Configuration::updateValue('SOFORTUEBERWEISUNG_NOTIFY_PW', '') ||
           !Configuration::updateValue('SOFORTUEBERWEISUNG_BLOCK_LOGO', 'Y') ||
+          !Configuration::updateValue('SOFORTUEBERWEISUNG_CPROTECT', 'N') ||
           !Configuration::updateValue('SOFORTUEBERWEISUNG_OS_ERROR', 8) ||
           !Configuration::updateValue('SOFORTUEBERWEISUNG_OS_ACCEPTED', 2) ||
           !$this->registerHook('payment') ||
@@ -68,6 +69,7 @@ class Sofortueberweisung extends PaymentModule
           !Configuration::deleteByName('SOFORTUEBERWEISUNG_BLOCK_LOGO') ||
           !Configuration::deleteByName('SOFORTUEBERWEISUNG_OS_ERROR') ||
           !Configuration::deleteByName('SOFORTUEBERWEISUNG_OS_ACCEPTED') ||
+          !Configuration::deleteByName('SOFORTUEBERWEISUNG_CPROTECT') ||
           !parent::uninstall()
          ){
             return false;
@@ -99,6 +101,7 @@ class Sofortueberweisung extends PaymentModule
             Configuration::updateValue('SOFORTUEBERWEISUNG_PROJECT_PW', Tools::getValue('SOFORTUEBERWEISUNG_PROJECT_PW'));
             Configuration::updateValue('SOFORTUEBERWEISUNG_NOTIFY_PW', Tools::getValue('SOFORTUEBERWEISUNG_NOTIFY_PW'));
 			Configuration::updateValue('SOFORTUEBERWEISUNG_BLOCK_LOGO', Tools::getValue('SOFORTUEBERWEISUNG_BLOCK_LOGO'));
+			Configuration::updateValue('SOFORTUEBERWEISUNG_CPROTECT', Tools::getValue('SOFORTUEBERWEISUNG_CPROTECT'));
         }
 
 		$this->_postValidation();
@@ -113,8 +116,8 @@ class Sofortueberweisung extends PaymentModule
         return $this->_displayForm();
     }
 
-	public function getSuccessMessage() {
-
+	public function getSuccessMessage() 
+	{
 		$this->_html.='
 		<div class="conf confirm">
 			<img src="../img/admin/ok.gif" alt="'.$this->l('Confirmation').'" />
@@ -174,6 +177,23 @@ class Sofortueberweisung extends PaymentModule
 					<p>'.$this->l('Display logo and payment info block in left column').'</p>
 				</div>
 				<div class="clear"></div>
+				<label>'.$this->l('Customer protection active:').'</label>
+				<div class="margin-form">
+					<select name="SOFORTUEBERWEISUNG_CPROTECT">
+						<option '.(Configuration::get('SOFORTUEBERWEISUNG_CPROTECT') == "Y" ? "selected" : "").' value="Y">'.$this->l('Yes').'</option>
+						<option '.(Configuration::get('SOFORTUEBERWEISUNG_CPROTECT') == "N" ? "selected" : "").' value="N">'.$this->l('No').'</option>
+					</select>
+					<p>
+						'.$this->l('You need a bank account with') . 
+						' <a target="_blank" href="http://www.sofort-bank.com" target="_blank">Sofort Bank</a> ' . 
+						$this->l('You need a bank account with and customer protection must be enabled in your project settings. Please check with') . 
+						' <a target="_blank" href="https://kaeuferschutz.sofort-bank.com/consumerProtections/index/'.Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID').'">'. 
+						$this->l('this link') . 
+						'</a> ' . 
+						$this->l('if customer protection is activated and enabled before enabling it here.') . '
+					</p>
+				</div>
+				<div class="clear"></div>
                 <div class="margin-form clear pspace"><input type="submit" name="submitUpdate" value="'.$this->l('Update').'" class="button" /></div>
             </fieldset>
             </form><br />
@@ -212,6 +232,7 @@ class Sofortueberweisung extends PaymentModule
         $customer = new Customer(intval($params['cart']->id_customer));
         $currency = $this->getCurrency();
         $country = new Country(intval($address->id_country));
+		$lang = Language::getIsoById(intval($params['cart']->id_lang));
 
         if (!Configuration::get('SOFORTUEBERWEISUNG_USER_ID'))
             return $this->l($this->displayName.' Error: (invalid or undefined userId)');
@@ -234,6 +255,8 @@ class Sofortueberweisung extends PaymentModule
         $smarty->assign('version',_PS_VERSION_);
         $smarty->assign('hash',sha1(implode('|',$su)));
         $smarty->assign('gateway','https://www.sofortueberweisung.de/payment/start');
+        $smarty->assign('lang',$lang);
+        $smarty->assign('cprotect',Configuration::get('SOFORTUEBERWEISUNG_CPROTECT'));
         $smarty->assign('su',$su);
 
         return $this->display(__FILE__, 'sofortueberweisung.tpl');

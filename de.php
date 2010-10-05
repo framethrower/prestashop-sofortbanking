@@ -25,6 +25,13 @@ $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_5ba29add6bc93308c63
 $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_f983b8bc797e7c35373293580ec761f1'] = 'Ja, zeige das Logo (empfohlen)';
 $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_8250275bc9a53f9352037808e28a557e'] = 'Nein, kein Logo anzeigen';
 $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_0a70e894e9d995c4435d6038734883d3'] = 'Das Logo von sofortüberweisung.de im Paymentblock einblenden';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_ea4cb4e53d08ecb249095ae25f33fabb'] = 'Käuferschutz aktivieren:';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_93cba07454f06a4a960172bbd6e2a435'] = 'Ja';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_bafd7322c6e97d25b6299b5d6fe8920b'] = 'Nein';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_90b4582553f1b33365504d2808652395'] = 'Voraussetzung: Konto bei der';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_eacbe2e55a155c59d79353f551e09b07'] = 'und Aktivierung in Ihren Projekteinstellungen. Bitte unbedingt über';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_c2e2fce3a995f59900d7afbbe58683f5'] = 'diesen Link';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_9ebf6132e7499eb380a52ade5ca9311c'] = 'vorher überprüfen und hier nur aktivieren wenn auch Ihr Projekt dafür freigeschaltet wurde und damit verbunden die Händlerbedingungen zum Käuferschutz akzeptiert wurden.';
 $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_06933067aafd48425d67bcb01bba5cb6'] = 'Aktualisieren';
 $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_6f0118397671d5cdea6c525a67f4753c'] = 'URLs';
 $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_e722d72b214116587e4e6082588df694'] = 'Bestätigungs-URL (Http-Benachrichtigung):';
@@ -39,6 +46,7 @@ $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_de0592e70f032889adb
 $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_4173f15aa99c942456ca4d7da583fc8f'] = 'sofortüberweisung.de ist das Direkt-Überweisungsverfahren der Payment Network AG. Mit sofortüberweisung.de stellen Sie noch während Ihrer Bestellung bequem eine Überweisung über den jeweiligen Betrag in Ihr Online-Banking-Konto ein. Der Händler erhält nach Abschluss der sofortüberweisung.de eine Echtzeitbestätigung. So kann er Lagerware und digitale Güter sofort versenden - Sie erhalten dann Ihre Einkäufe schneller. ';
 $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_170149a92b2369179bf59bbd535d2f03'] = 'Warenkorb-ID';
 $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_aaed1d26ad6260905c119e0ad24edcbf'] = 'Bezahlen mit sofortüberweisung.de (Verfügbare Waren werden sofort geliefert)';
+$_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_ae314dff486a7c87133504312277b6ad'] = 'Sicher zahlen mit Käuferschutz durch Sofort Bank';
 $_MODULE['<{sofortueberweisung}prestashop>validation_430b932b3ed2561e26c45227f74cf77d'] = 'Fatal Error (1)';
 $_MODULE['<{sofortueberweisung}prestashop>validation_963d0dffd2ef75d529e90f4c1e267274'] = 'Fatal Error (2)';
 $_MODULE['<{sofortueberweisung}prestashop>validation_5169097dfd5e55eda26d65a016a1ea37'] = 'Sofortueberweisung Transaction ID:';
