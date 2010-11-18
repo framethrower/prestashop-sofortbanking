@@ -25,13 +25,13 @@ Meldung "Modul wurde erfolgreich installiert".
 
 -- MODUL KONFIGURATION --
 
-Nach erfolgreicher Installation des ClickandBuy Modules wechseln Sie bitte in die Modul-Konfiguration durch Anwahl 
+Nach erfolgreicher Installation des Modules wechseln Sie bitte in die Modul-Konfiguration durch Anwahl 
 des soeben installierten Modules "soforueberweisung.de" in der Modulliste unter der Kategorie "Payment" durch einen Klick 
 auf auf den Link "Einstellungen". Die Paramater "User ID", "Projekt ID", "Projekt Passwort" und "Benachrichtigungs-Passwort" sind 
-durch die von der Payment Network AG zugteilten Kunden- sowie Projektdaten zu befüllen.
+durch die von der Payment Network AG zugeteilten Kunden- sowie Projektdaten zu befüllen.
 
 -- SCHNITTSTELLEN/PROJEKT KONFIGURATION --
 
 Bitte wählen Sie im Kundenlogin auf sofortüberweisung.de bei der Projektkonfiguration unter "Allgemeine Einstellungen" das Shopsystem
-"PrestaShop" aus der Dropdownliste. Nach erfolgreichem anlegen Ihres Projektes finden Sie eine detailierte Beschreibung zur weiteren 
-Konfiguration der Schnittstelle unter dem Kartreiter "Hilfe zum Shopsystem".
+"PrestaShop" aus der Dropdownliste. Nach erfolgreichem anlegen Ihres Projektes finden Sie eine detaillierte Beschreibung zur weiteren 
+Konfiguration der Schnittstelle unter dem Karteireiter "Hilfe zum Shopsystem".
