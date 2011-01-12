@@ -1,37 +1,45 @@
-*
-* $Id$
-*
-* Copyright (c) 2009 touchDesign
-*
-* @author Christoph Gruber <www.touchdesign.de>
-* @copyright 01.12.2009, touchDesign
-* @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
-*
+README
+======
 
--- DOWNLOAD --
+Download
+----------------------
 
 Das Modul wird Open Source unter der Open Software License (OSL 3.0) angeboten und kann unter folgender URL kostenlos heruntergeladen werden:
 
 http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
 
--- INSTALLATION PER MODULINSTALLER --
+Author & Copyright
+------------------
 
-Wechseln Sie in Ihrem Shopsystem über den "Adminbereich" in den Tab "Module" und klicken Sie auf den
-Link "Ein neues Modul hinzufügen". Klicken Sie auf den Button "Durchsuchen" und wählen Sie nun das 
+Copyright by: touchDesign
+Chief developer: Christoph Gruber
+
+Licenses
+--------
+
+Released under Open Software License (OSL 3.0).
+
+Installation
+-------------------------------------
+
+Wechseln Sie in Ihrem Shopsystem Ã¼ber den "Adminbereich" in den Tab "Module" und klicken Sie auf den
+Link "Ein neues Modul hinzufÃ¼gen". Klicken Sie auf den Button "Durchsuchen" und wÃ¤hlen Sie nun das 
 zuvor heruntergeladene Modularchiv "sofortueberweisung-vX.tar" von Ihrer lokalen Festplatte.
-Nach dem Sie das Modularchiv angewählt haben bestätigen Sie bitte die Installation des Modules durch einen 
+Nach dem Sie das Modularchiv angewÃ¤hlt haben bestÃ¤tigen Sie bitte die Installation des Modules durch einen 
 Klick auf den Button "Dieses Modul hochladen". Nach erfolgreicher Installation des Modules erscheint die 
 Meldung "Modul wurde erfolgreich installiert".
 
--- MODUL KONFIGURATION --
+Modul Konfiguration
+--------------------------
 
 Nach erfolgreicher Installation des Modules wechseln Sie bitte in die Modul-Konfiguration durch Anwahl 
 des soeben installierten Modules "soforueberweisung.de" in der Modulliste unter der Kategorie "Payment" durch einen Klick 
 auf auf den Link "Einstellungen". Die Paramater "User ID", "Projekt ID", "Projekt Passwort" und "Benachrichtigungs-Passwort" sind 
-durch die von der Payment Network AG zugeteilten Kunden- sowie Projektdaten zu befüllen.
+durch die von der Payment Network AG zugeteilten Kunden- sowie Projektdaten zu befÃ¼llen.
 
--- SCHNITTSTELLEN/PROJEKT KONFIGURATION --
+Schnittstellen und Projektkonfiguration
+-----------------------------------------
 
-Bitte wählen Sie im Kundenlogin auf sofortüberweisung.de bei der Projektkonfiguration unter "Allgemeine Einstellungen" das Shopsystem
+Bitte wÃ¤hlen Sie im Kundenlogin auf sofortÃ¼berweisung.de bei der Projektkonfiguration unter "Allgemeine Einstellungen" das Shopsystem
 "PrestaShop" aus der Dropdownliste. Nach erfolgreichem anlegen Ihres Projektes finden Sie eine detaillierte Beschreibung zur weiteren 
 Konfiguration der Schnittstelle unter dem Karteireiter "Hilfe zum Shopsystem".
