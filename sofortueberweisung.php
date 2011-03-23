@@ -239,12 +239,13 @@ class Sofortueberweisung extends PaymentModule
 
   public function hookPayment($params)
   {
-    global $smarty;
-
+    global $smarty, $cart;
+    
     $smarty->assign('this_path',$this->_path);
     $smarty->assign('this_path_ssl',Tools::getHttpHost(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/');
     $smarty->assign('cprotect',Configuration::get('SOFORTUEBERWEISUNG_CPROTECT'));
-    $smarty->assign('lang',$lang);
+    $smarty->assign('lang',Language::getIsoById(intval($params['cart']->id_lang)));
+    
     return $this->display(__FILE__, 'sofortueberweisung.tpl');
   }
 
@@ -329,6 +330,8 @@ class Sofortueberweisung extends PaymentModule
     );
 
     $smarty->assign(array(
+      'this_path' => $this->_path,
+      'this_path_ssl' => Tools::getHttpHost(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/',
       'nbProducts' => $cart->nbProducts(),
       'cust_currency' => $cookie->id_currency,
       'currencies' => $this->getCurrency(),
