@@ -1,11 +1,11 @@
 <!-- touchDesign | directebanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
 {capture name=path}{l s='Directebanking payment' mod='sofortueberweisung'}{/capture}
-{include file=$tpl_dir./breadcrumb.tpl}
+{include file="$tpl_dir./breadcrumb.tpl"}
 
 <h2>{l s='Order summary' mod='sofortueberweisung'}</h2>
 
 {assign var='current_step' value='payment'}
-{include file=$tpl_dir./order-steps.tpl}
+{include file="$tpl_dir./order-steps.tpl"}
 
 {if $nbProducts <= 0}
   <p class="warning">{l s='Your shopping cart is empty.'}</p>

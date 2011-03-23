@@ -41,7 +41,7 @@ $order_id = Order::getOrderByCartId(intval($_GET['user_variable_1']));
 
 $order = new Order($order_id);
 
-Tools::redirectLink(__PS_BASE_URI__ . 'order-confirmation.php?id_cart=' . $order->id_cart 
+header('Location:' . __PS_BASE_URI__ . 'order-confirmation.php?id_cart=' . $order->id_cart 
   . '&id_module=' . $touchDirectEBank->id . '&id_order=' . $order_id
   . '&key='.$order->secure_key);
 
