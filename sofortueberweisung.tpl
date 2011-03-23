@@ -10,7 +10,7 @@
  * @copyright 19.08.2009, touchDesign
  * @author Christoph Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
- * @link http://www.homepage-community.de/index.php?topic=569.0
+ * @link http://www.homepage-community.de/index.php?topic=555.0
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  *
  * Description:
