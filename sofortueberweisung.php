@@ -7,7 +7,7 @@
  * Copyright (c) 2009 touchDesign
  *
  * @category Payment
- * @version 0.7
+ * @version 0.8
  * @copyright 19.08.2009, touchDesign
  * @author Christoph Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -40,7 +40,7 @@ class Sofortueberweisung extends PaymentModule
   {
     $this->name = 'sofortueberweisung';
     $this->tab = 'Payment';
-    $this->version = '0.7';
+    $this->version = '0.8';
     $this->currencies = true;
     $this->currencies_mode = 'radio';
     parent::__construct();
@@ -234,44 +234,12 @@ class Sofortueberweisung extends PaymentModule
 
   public function hookPayment($params)
   {
-    if (!$this->isPayment())
-      return false;
-
     global $smarty;
 
-    $address = new Address(intval($params['cart']->id_address_invoice));
-    $customer = new Customer(intval($params['cart']->id_customer));
-    $currency = $this->getCurrency();
-    $country = new Country(intval($address->id_country));
-    $lang = Language::getIsoById(intval($params['cart']->id_lang));
-
-    if (!Configuration::get('SOFORTUEBERWEISUNG_USER_ID'))
-      return $this->l($this->displayName.' Error: (invalid or undefined userId)');
-    if (!Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID'))
-      return $this->l($this->displayName.' Error: (invalid or undefined projectId)');
-    if (!Validate::isLoadedObject($address) 
-      || !Validate::isLoadedObject($customer) 
-      || !Validate::isLoadedObject($currency))
-      return $this->l($this->displayName.' Error: (invalid address or customer)');
-
-    $su = array(
-      'user_id' => Configuration::get('SOFORTUEBERWEISUNG_USER_ID'),'project_id' => Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID'),
-      'sender_holder' => '','','','sender_country_id' => $country->iso_code,
-      'amount' => number_format(Tools::convertPrice($params['cart']->getOrderTotal(), $currency), 2, '.', ''),
-      'sender_currency_id' => $currency->iso_code,'reason_1' => $this->l('CartId:').' '.time().'-'.intval($params['cart']->id),
-      'reason_2' => $customer->firstname.' '.ucfirst(strtolower($customer->lastname)),
-      'user_variable_0' => $customer->secure_key,'user_variable_1' => intval($params['cart']->id),
-      'user_variable_2' => '','user_variable_3' => '','user_variable_4' => '','user_variable_5' => '',
-      'project_password' => Configuration::get('SOFORTUEBERWEISUNG_PROJECT_PW'),
-    );
-
-    $smarty->assign('version',_PS_VERSION_);
-    $smarty->assign('hash',sha1(implode('|',$su)));
-    $smarty->assign('gateway','https://www.sofortueberweisung.de/payment/start');
-    $smarty->assign('lang',$lang);
+    $smarty->assign('this_path',$this->_path);
+    $smarty->assign('this_path_ssl',Tools::getHttpHost(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/');
     $smarty->assign('cprotect',Configuration::get('SOFORTUEBERWEISUNG_CPROTECT'));
-    $smarty->assign('su',$su);
-
+    $smarty->assign('lang',$lang);
     return $this->display(__FILE__, 'sofortueberweisung.tpl');
   }
 
@@ -279,9 +247,10 @@ class Sofortueberweisung extends PaymentModule
   {
     global $smarty;
 
-    if (!$this->isPayment())
+    if (!$this->isPayment()){
       return false;
-
+    }
+    
     $state = $params['objOrder']->getCurrentState();
     if ($state == Configuration::get('SOFORTUEBERWEISUNG_OS_ACCEPTED'))
       $smarty->assign(array(
@@ -295,23 +264,80 @@ class Sofortueberweisung extends PaymentModule
 
   public function hookLeftColumn($params)
   {
-    if(Configuration::get('SOFORTUEBERWEISUNG_BLOCK_LOGO') == "N")
+    if(Configuration::get('SOFORTUEBERWEISUNG_BLOCK_LOGO') == "N"){
       return false;
-
+    }
+    
     return $this->display(__FILE__, 'blocksofortueberweisunglogo.tpl');
   }
 
   public function isPayment()
   {
-    if (!$this->active)
+    if (!$this->active){
       return false;
-
+    }
+    
     if (!Configuration::get('SOFORTUEBERWEISUNG_USER_ID') 
       || !Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID') 
-      || !Configuration::get('SOFORTUEBERWEISUNG_PROJECT_PW'))
+      || !Configuration::get('SOFORTUEBERWEISUNG_PROJECT_PW')){
       return false;
-
+    }
+    
     return true;
+  }
+
+  public function execPayment($cart)
+  {
+    global $cookie, $smarty;
+
+    if (!$this->isPayment()){
+      return false;
+    }
+
+    $address = new Address(intval($cart->id_address_invoice));
+    $customer = new Customer(intval($cart->id_customer));
+    $currency = $this->getCurrency();
+    $country = new Country(intval($address->id_country));
+    $lang = Language::getIsoById(intval($cart->id_lang));
+
+    if (!Configuration::get('SOFORTUEBERWEISUNG_USER_ID')){
+      return $this->l($this->displayName.' Error: (invalid or undefined userId)');
+    }
+    if (!Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID')){
+      return $this->l($this->displayName.' Error: (invalid or undefined projectId)');
+    }
+    if (!Validate::isLoadedObject($address) 
+      || !Validate::isLoadedObject($customer) 
+      || !Validate::isLoadedObject($currency)){
+      return $this->l($this->displayName.' Error: (invalid address or customer)');
+    }
+
+    $parameters = array(
+      'user_id' => Configuration::get('SOFORTUEBERWEISUNG_USER_ID'),'project_id' => Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID'),
+      'sender_holder' => '','','','sender_country_id' => $country->iso_code,
+      'amount' => number_format(Tools::convertPrice($cart->getOrderTotal(), $currency), 2, '.', ''),
+      'sender_currency_id' => $currency->iso_code,'reason_1' => $this->l('CartId:').' '.time().'-'.intval($cart->id),
+      'reason_2' => $customer->firstname.' '.ucfirst(strtolower($customer->lastname)),
+      'user_variable_0' => $customer->secure_key,'user_variable_1' => intval($cart->id),
+      'user_variable_2' => '','user_variable_3' => '','user_variable_4' => '','user_variable_5' => '',
+      'project_password' => Configuration::get('SOFORTUEBERWEISUNG_PROJECT_PW'),
+    );
+
+    $smarty->assign(array(
+      'nbProducts' => $cart->nbProducts(),
+      'cust_currency' => $cookie->id_currency,
+      'currencies' => $this->getCurrency(),
+      'total' => $cart->getOrderTotal(true, 3),
+      'isoCode' => Language::getIsoById(intval($cookie->id_lang)),
+      'version' => _PS_VERSION_,
+      'hash' => sha1(implode('|',$parameters)),
+      'gateway' => 'https://www.sofortueberweisung.de/payment/start',
+      'lang' => $lang,
+      'cprotect' => Configuration::get('SOFORTUEBERWEISUNG_CPROTECT'),
+      'parameters' => $parameters
+    ));
+
+    return $this->display(__FILE__, 'payment_execution.tpl');
   }
 
 }

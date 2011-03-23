@@ -32,17 +32,20 @@
  *
  */
 
-include(dirname(__FILE__).'/../../config/config.inc.php');
-include(dirname(__FILE__).'/sofortueberweisung.php');
+$useSSL = true;
 
-$touchDirectEBank = new Sofortueberweisung();
+require_once dirname(__FILE__).'/../../config/config.inc.php';
+require_once dirname(__FILE__).'/sofortueberweisung.php';
+include_once dirname(__FILE__).'/../../header.php';
 
-$order_id = Order::getOrderByCartId(intval($_GET['user_variable_1']));
+if (!$cookie->isLogged()){
+  Tools::redirect('authentication.php?back=order.php');
+}
 
-$order = new Order($order_id);
+$sofortueberweisung = new sofortueberweisung();
 
-Tools::redirectLink(__PS_BASE_URI__ . 'order-confirmation.php?id_cart=' . $order->id_cart 
-  . '&id_module=' . $touchDirectEBank->id . '&id_order=' . $order_id
-  . '&key='.$order->secure_key);
+echo $sofortueberweisung->execPayment($cart);
+
+include_once dirname(__FILE__).'/../../footer.php';
 
 ?>

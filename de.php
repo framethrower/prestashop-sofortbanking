@@ -7,6 +7,15 @@ $_MODULE['<{sofortueberweisung}prestashop>confirmation_75fbf512d744977d62599cc3f
 $_MODULE['<{sofortueberweisung}prestashop>confirmation_cfa0f5d192620d230ccbf3664d9d0610'] = 'Der Totalbetrag Ihrer Bestellung beträgt';
 $_MODULE['<{sofortueberweisung}prestashop>confirmation_8de637e24570c1edb0357826a2ad5aea'] = 'Bei Ihrer Bestellung ist ein Fehler aufgetreten, bitte wenden Sie sich an unseren';
 $_MODULE['<{sofortueberweisung}prestashop>confirmation_64430ad2835be8ad60c59e7d44e4b0b1'] = 'Kundensupport';
+$_MODULE['<{sofortueberweisung}prestashop>payment_execution_3f22e266aa245d78e8a50e9c51dc4961'] = 'Zahlen mit sofortüberweisung.de';
+$_MODULE['<{sofortueberweisung}prestashop>payment_execution_f1d3b424cd68795ecaa552883759aceb'] = 'Bestellbestätigung';
+$_MODULE['<{sofortueberweisung}prestashop>payment_execution_879f6b8877752685a966564d072f498f'] = 'Ihr Warenkorb ist leer.';
+$_MODULE['<{sofortueberweisung}prestashop>payment_execution_4d6406e4a495e2b2cde9acb283ddfb3b'] = 'Sie haben als Zahlart sofortüberweisung.de gewählt und werden im Anschluss an sofortüberweosung weitergeleitet um Ihre Zahlung sofort auszuführen.';
+$_MODULE['<{sofortueberweisung}prestashop>payment_execution_167add1e8662b28f92fd0ab08e3c5ff5'] = 'Der Gesamtbetrag Ihrer Bestellung beträgt';
+$_MODULE['<{sofortueberweisung}prestashop>payment_execution_1f87346a16cf80c372065de3c54c86d9'] = '(inkl MwSt.)';
+$_MODULE['<{sofortueberweisung}prestashop>payment_execution_52f64bc0164b0e79deaeaaaa7e93f98f'] = 'Bitte bestätigen Sie Ihre Bestellung indem Sie den \"Bestellung bestätigen\" Button absenden.';
+$_MODULE['<{sofortueberweisung}prestashop>payment_execution_569fd05bdafa1712c4f6be5b153b8418'] = 'Andere Zahlart wählen';
+$_MODULE['<{sofortueberweisung}prestashop>payment_execution_46b9e3665f187c739c55983f757ccda0'] = 'Bestellung bestätigen';
 $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_fa2a44a860b6b67f7a7957aa95939e0a'] = 'sofortüberweisung.de';
 $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_093d600e7f1ee849deca5775caf0d0ab'] = 'Akzeptieren der Zahlmöglichkeit sofortüberweisung.de';
 $_MODULE['<{sofortueberweisung}prestashop>sofortueberweisung_69a1a3ad8dd5da6db3c4da838a0cf9c7'] = 'Sicher das Sie das Modul löschen möchten mit allen Details?';
