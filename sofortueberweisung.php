@@ -39,7 +39,7 @@ class Sofortueberweisung extends PaymentModule
   public function __construct()
   {
     $this->name = 'sofortueberweisung';
-    if (version_compare(_PS_VERSION_, '1.3.0', '<')){
+    if (version_compare(_PS_VERSION_, '1.4.0', '<')){
       $this->tab = 'Payment';
     }else{
       $this->tab = 'payments_gateways';
