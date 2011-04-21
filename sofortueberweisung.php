@@ -7,11 +7,10 @@
  * Copyright (c) 2009 touchDesign
  *
  * @category Payment
- * @version 0.8
+ * @version 0.9
  * @copyright 19.08.2009, touchDesign
  * @author Christoph Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
- * @link http://www.homepage-community.de/index.php?topic=555.0
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  *
  * Description:
@@ -44,7 +43,7 @@ class Sofortueberweisung extends PaymentModule
     }else{
       $this->tab = 'payments_gateways';
     }
-    $this->version = '0.8';
+    $this->version = '0.9';
     $this->author = 'touchDesign';
     $this->currencies = true;
     $this->currencies_mode = 'radio';

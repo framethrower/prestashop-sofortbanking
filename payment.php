@@ -7,11 +7,10 @@
  * Copyright (c) 2009 touchDesign
  *
  * @category Payment
- * @version 0.8
+ * @version 0.9
  * @copyright 19.08.2009, touchDesign
  * @author Christoph Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
- * @link http://www.homepage-community.de/index.php?topic=555.0
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  *
  * Description:
@@ -36,10 +35,11 @@ $useSSL = true;
 
 require_once dirname(__FILE__).'/../../config/config.inc.php';
 require_once dirname(__FILE__).'/sofortueberweisung.php';
-include_once dirname(__FILE__).'/../../header.php';
+require_once dirname(__FILE__).'/../../header.php';
+require_once dirname(__FILE__).'/lib/touchdesign.php';
 
-if (!$cookie->isLogged()){
-  Tools::redirect('authentication.php?back=order.php');
+if (!$cookie->isLogged(true)){
+  touchdesign::redirect(__PS_BASE_URI__.'order.php','order=back.php');
 }
 
 $sofortueberweisung = new sofortueberweisung();

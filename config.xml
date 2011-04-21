@@ -2,7 +2,7 @@
 <module>
 	<name>sofortueberweisung</name>
 	<displayName>sofortüberweisung.de</displayName>
-	<version>0.8</version>
+	<version>0.9</version>
 	<description>Accepts payments by sofortüberweisung.de.</description>
 	<author>touchDesign</author>
 	<tab>payments_gateways</tab>
