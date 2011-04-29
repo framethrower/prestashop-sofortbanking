@@ -226,7 +226,7 @@ class Sofortueberweisung extends PaymentModule
     $this->_html .= '
       <fieldset class="space">
         <legend><img src="../img/admin/unknown.gif" alt="" class="middle" />'.$this->l('Help').'</legend>
-        <b>'.$this->l('@Link:').'</b> <a target="_blank" href="https://www.sofortueberweisung.de/payment/users/register/284">'.$this->l('DIRECTebanking.com').'</a><br />
+        <b>'.$this->l('@Link:').'</b> <a target="_blank" href="http://www.touchdesign.de/ico/paymentnetwork.htm">'.$this->l('DIRECTebanking.com').'</a><br />
         '.$this->l('@Vendor:').' Payment Network AG<br />
         '.$this->l('@Author:').' <a target="_blank" href="http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm">touchDesign</a><br />
         <b>'.$this->l('@Description:').'</b><br /><br />
