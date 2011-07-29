@@ -1,20 +1,20 @@
 {**
  * $Id$
  *
- * sofortueberweisung Module
+ * sofortbanking Module
  *
- * Copyright (c) 2009 touchDesign
+ * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 0.9
- * @copyright 19.08.2009, touchDesign
+ * @version 1.0
+ * @copyright 19.08.2009, touchdesign
  * @author Christoph Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  *
  * Description:
  *
- * Payment module directebanking
+ * Payment module sofortbanking
  *
  * --
  *
@@ -30,10 +30,10 @@
  *
  *}
 
-<!-- touchDesign | directebanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
-<div id="sofortueberweisung_logo_block_left" class="paiement_logo_block">
+<!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
+<div id="sofortbanking_logo_block_left" class="paiement_logo_block">
   <a href="{$link->getCMSLink(5)}">
-    <img src="{$module_template_dir}sofortueberweisung.gif" alt="sofortueberweisung.gif" title="sofortueberweisung.de" width="86" height="49" />
+    <img src="{$module_template_dir}img/banner_150x200.png" alt="banner_150x200.png" title="sofortueberweisung.de" width="150" height="200" />
   </a>
 </div>
-<!-- touchDesign | directebanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
+<!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->

@@ -2,20 +2,20 @@
 /**
  * $Id$
  *
- * sofortueberweisung Module
+ * sofortbanking Module
  *
- * Copyright (c) 2009 touchDesign
+ * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 0.9
- * @copyright 19.08.2009, touchDesign
+ * @version 1.0
+ * @copyright 19.08.2009, touchdesign
  * @author Christoph Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  *
  * Description:
  *
- * Payment module directebanking
+ * Payment module sofortbanking
  *
  * --
  *
@@ -31,60 +31,64 @@
  *
  */
 
-class Sofortueberweisung extends PaymentModule
+class Sofortbanking extends PaymentModule
 {
   private $_html = '';
 
   public function __construct()
   {
-    $this->name = 'sofortueberweisung';
+    $this->name = 'sofortbanking';
     if (version_compare(_PS_VERSION_, '1.4.0', '<')){
       $this->tab = 'Payment';
     }else{
       $this->tab = 'payments_gateways';
     }
-    $this->version = '0.9';
-    $this->author = 'touchDesign';
+    $this->version = '1.0';
+    $this->author = 'touchdesign';
     $this->currencies = true;
     $this->currencies_mode = 'radio';
     parent::__construct();
     $this->page = basename(__FILE__, '.php');
-    $this->displayName = $this->l('sofortueberweisung.de');
-    $this->description = $this->l('Accepts payments by sofortueberweisung.de');
+    $this->displayName = $this->l('sofortbanking');
+    $this->description = $this->l('Accepts payments by sofortbanking');
     $this->confirmUninstall = $this->l('Are you sure you want to delete your details?');
+		if (file_exists(_PS_ROOT_DIR_.'/modules/sofortueberweisung/sofortueberweisung.php') && $this->active){
+			$this->warning = $this->l('Note: You have to update the notify urls in the sofortbanking customer login and remove the old module version.');
+    }
   }
 
   public function install()
   {
     if (!parent::install() ||
-      !Configuration::updateValue('SOFORTUEBERWEISUNG_USER_ID', '') ||
-      !Configuration::updateValue('SOFORTUEBERWEISUNG_PROJECT_ID', '') ||
-      !Configuration::updateValue('SOFORTUEBERWEISUNG_PROJECT_PW', '') ||
-      !Configuration::updateValue('SOFORTUEBERWEISUNG_NOTIFY_PW', '') ||
-      !Configuration::updateValue('SOFORTUEBERWEISUNG_BLOCK_LOGO', 'Y') ||
-      !Configuration::updateValue('SOFORTUEBERWEISUNG_CPROTECT', 'N') ||
-      !Configuration::updateValue('SOFORTUEBERWEISUNG_OS_ERROR', 8) ||
-      !Configuration::updateValue('SOFORTUEBERWEISUNG_OS_ACCEPTED', 2) ||
+      !Configuration::updateValue('SOFORTBANKING_USER_ID', '') ||
+      !Configuration::updateValue('SOFORTBANKING_PROJECT_ID', '') ||
+      !Configuration::updateValue('SOFORTBANKING_PROJECT_PW', '') ||
+      !Configuration::updateValue('SOFORTBANKING_NOTIFY_PW', '') ||
+      !Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', 'Y') ||
+      !Configuration::updateValue('SOFORTBANKING_CPROTECT', 'N') ||
+      !Configuration::updateValue('SOFORTBANKING_OS_ERROR', 8) ||
+      !Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', 2) ||
       !$this->registerHook('payment') ||
       !$this->registerHook('paymentReturn') ||
       !$this->registerHook('leftColumn')
     ){
       return false;
     }
-
+    $this->updateModule();
+    
     return true;
   }
 
   public function uninstall()
   {
-    if (!Configuration::deleteByName('SOFORTUEBERWEISUNG_USER_ID') ||
-      !Configuration::deleteByName('SOFORTUEBERWEISUNG_PROJECT_ID') ||
-      !Configuration::deleteByName('SOFORTUEBERWEISUNG_PROJECT_PW') ||
-      !Configuration::deleteByName('SOFORTUEBERWEISUNG_NOTIFY_PW') ||
-      !Configuration::deleteByName('SOFORTUEBERWEISUNG_BLOCK_LOGO') ||
-      !Configuration::deleteByName('SOFORTUEBERWEISUNG_OS_ERROR') ||
-      !Configuration::deleteByName('SOFORTUEBERWEISUNG_OS_ACCEPTED') ||
-      !Configuration::deleteByName('SOFORTUEBERWEISUNG_CPROTECT') ||
+    if (!Configuration::deleteByName('SOFORTBANKING_USER_ID') ||
+      !Configuration::deleteByName('SOFORTBANKING_PROJECT_ID') ||
+      !Configuration::deleteByName('SOFORTBANKING_PROJECT_PW') ||
+      !Configuration::deleteByName('SOFORTBANKING_NOTIFY_PW') ||
+      !Configuration::deleteByName('SOFORTBANKING_BLOCK_LOGO') ||
+      !Configuration::deleteByName('SOFORTBANKING_OS_ERROR') ||
+      !Configuration::deleteByName('SOFORTBANKING_OS_ACCEPTED') ||
+      !Configuration::deleteByName('SOFORTBANKING_CPROTECT') ||
       !parent::uninstall()
     ){
       return false;
@@ -93,17 +97,34 @@ class Sofortueberweisung extends PaymentModule
     return true;
   }
 
+  private function updateModule()
+  {
+    if (file_exists(_PS_ROOT_DIR_.'/modules/sofortueberweisung/sofortueberweisung.php'))
+    {
+      $configuration = Configuration::getMultiple(array('SOFORTBANKING_USER_ID','SOFORTBANKING_PROJECT_ID','SOFORTBANKING_PROJECT_PW',
+        'SOFORTBANKING_NOTIFY_PW','SOFORTBANKING_BLOCK_LOGO','SOFORTBANKING_OS_ERROR','SOFORTBANKING_OS_ACCEPTED','SOFORTBANKING_CPROTECT'));
+      foreach($configuration as $key => $value){
+        Configuration::updateValue($key,Configuration::get(str_replace('SOFORTBANKING_','SOFORTUEBERWEISUNG_',$key)));
+      }
+      include_once _PS_ROOT_DIR_.'/modules/sofortueberweisung/sofortueberweisung.php';
+      if($old = new Sofortueberweisung()){
+        $old->uninstall();
+      }
+      Configuration::loadConfiguration();
+    }
+  }
+  
   private function _postValidation()
   {
     if (Tools::getValue('submitUpdate')){
-      if (!Tools::getValue('SOFORTUEBERWEISUNG_USER_ID')){
-        $this->_postErrors[] = $this->l('sofortueberweisung.de "user id" is required.');
+      if (!Tools::getValue('SOFORTBANKING_USER_ID')){
+        $this->_postErrors[] = $this->l('sofortueberweisung "user id" is required.');
       }
-      if (!Tools::getValue('SOFORTUEBERWEISUNG_PROJECT_ID')){
-        $this->_postErrors[] = $this->l('sofortueberweisung.de "project id" is required.');
+      if (!Tools::getValue('SOFORTBANKING_PROJECT_ID')){
+        $this->_postErrors[] = $this->l('sofortueberweisung "project id" is required.');
       }
-      if (!Tools::getValue('SOFORTUEBERWEISUNG_PROJECT_PW')){
-        $this->_postErrors[] = $this->l('sofortueberweisung.de "project password" is required.');
+      if (!Tools::getValue('SOFORTBANKING_PROJECT_PW')){
+        $this->_postErrors[] = $this->l('sofortueberweisung "project password" is required.');
       }
     }
   }
@@ -112,14 +133,20 @@ class Sofortueberweisung extends PaymentModule
   {
     $this->_html = '<h2>'.$this->displayName.'</h2>';
     if (Tools::isSubmit('submitUpdate')){
-      Configuration::updateValue('SOFORTUEBERWEISUNG_USER_ID', Tools::getValue('SOFORTUEBERWEISUNG_USER_ID'));
-      Configuration::updateValue('SOFORTUEBERWEISUNG_PROJECT_ID', Tools::getValue('SOFORTUEBERWEISUNG_PROJECT_ID'));
-      Configuration::updateValue('SOFORTUEBERWEISUNG_PROJECT_PW', Tools::getValue('SOFORTUEBERWEISUNG_PROJECT_PW'));
-      Configuration::updateValue('SOFORTUEBERWEISUNG_NOTIFY_PW', Tools::getValue('SOFORTUEBERWEISUNG_NOTIFY_PW'));
-      Configuration::updateValue('SOFORTUEBERWEISUNG_BLOCK_LOGO', Tools::getValue('SOFORTUEBERWEISUNG_BLOCK_LOGO'));
-      Configuration::updateValue('SOFORTUEBERWEISUNG_CPROTECT', Tools::getValue('SOFORTUEBERWEISUNG_CPROTECT'));
+      Configuration::updateValue('SOFORTBANKING_USER_ID', Tools::getValue('SOFORTBANKING_USER_ID'));
+      Configuration::updateValue('SOFORTBANKING_PROJECT_ID', Tools::getValue('SOFORTBANKING_PROJECT_ID'));
+      Configuration::updateValue('SOFORTBANKING_PROJECT_PW', Tools::getValue('SOFORTBANKING_PROJECT_PW'));
+      Configuration::updateValue('SOFORTBANKING_NOTIFY_PW', Tools::getValue('SOFORTBANKING_NOTIFY_PW'));
+      Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', Tools::getValue('SOFORTBANKING_BLOCK_LOGO'));
+      Configuration::updateValue('SOFORTBANKING_CPROTECT', Tools::getValue('SOFORTBANKING_CPROTECT'));
     }
-
+    
+    // Update note
+    if (file_exists(_PS_ROOT_DIR_.'/modules/sofortueberweisung/sofortueberweisung.php'))
+    {
+      $this->_html = '<div class="warning">'.$this->l('Note: You have to update the notify urls in the sofortbanking customer login and remove the old module version.').'</div>';
+    }
+    
     $this->_postValidation();
     if (isset($this->_postErrors) && sizeof($this->_postErrors)){
       foreach ($this->_postErrors AS $err){
@@ -156,54 +183,54 @@ class Sofortueberweisung extends PaymentModule
       </style>';
 
     $this->_html .= '
-      <div><img src="'.$this->_path.'logoBig.gif" alt="logoBig.gif" title="" /></div>
+      <div><img src="'.$this->_path.'img/sofortbanking.png" alt="sofortbanking.png" title="" /></div>
       <form method="post" action="'.$_SERVER['REQUEST_URI'].'">
       <fieldset>
         <legend><img src="'.$this->_path.'logo.gif" />'.$this->l('Settings').'</legend>
-        <label>'.$this->l('Sofortueberweisung user ID?').'</label>
+        <label>'.$this->l('sofortbanking user ID?').'</label>
         <div class="margin-form">
-          <input type="text" name="SOFORTUEBERWEISUNG_USER_ID" value="'.Configuration::get('SOFORTUEBERWEISUNG_USER_ID').'" />
+          <input type="text" name="SOFORTBANKING_USER_ID" value="'.Configuration::get('SOFORTBANKING_USER_ID').'" />
           <p>'.$this->l('Leave it blank for disabling').'</p>
         </div>
         <div class="clear"></div>
-        <label>'.$this->l('Sofortueberweisung project ID?').'</label>
+        <label>'.$this->l('sofortbanking project ID?').'</label>
         <div class="margin-form">
-          <input type="text" name="SOFORTUEBERWEISUNG_PROJECT_ID" value="'.Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID').'" />
+          <input type="text" name="SOFORTBANKING_PROJECT_ID" value="'.Configuration::get('SOFORTBANKING_PROJECT_ID').'" />
           <p>'.$this->l('Leave it blank for disabling').'</p>
         </div>
         <div class="clear"></div>
-        <label>'.$this->l('Sofortueberweisung project password?').'</label>
+        <label>'.$this->l('sofortbanking project password?').'</label>
         <div class="margin-form">
-          <input type="password" name="SOFORTUEBERWEISUNG_PROJECT_PW" value="'.Configuration::get('SOFORTUEBERWEISUNG_PROJECT_PW').'" />
+          <input type="password" name="SOFORTBANKING_PROJECT_PW" value="'.Configuration::get('SOFORTBANKING_PROJECT_PW').'" />
           <p>'.$this->l('Leave it blank for disabling').'</p>
         </div>
         <div class="clear"></div>
-        <label>'.$this->l('Sofortueberweisung notify password?').'</label>
+        <label>'.$this->l('sofortbanking notify password?').'</label>
         <div class="margin-form">
-          <input type="password" name="SOFORTUEBERWEISUNG_NOTIFY_PW" value="'.Configuration::get('SOFORTUEBERWEISUNG_NOTIFY_PW').'" />
+          <input type="password" name="SOFORTBANKING_NOTIFY_PW" value="'.Configuration::get('SOFORTBANKING_NOTIFY_PW').'" />
           <p>'.$this->l('Leave it blank for disabling').'</p>
         </div>
         <div class="clear"></div>
-        <label>'.$this->l('sofortueberweisung.de Logo?').'</label>
+        <label>'.$this->l('sofortbanking Logo?').'</label>
         <div class="margin-form">
-          <select name="SOFORTUEBERWEISUNG_BLOCK_LOGO">
-            <option '.(Configuration::get('SOFORTUEBERWEISUNG_BLOCK_LOGO') == "Y" ? "selected" : "").' value="Y">'.$this->l('Yes, display the logo (recommended)').'</option>
-            <option '.(Configuration::get('SOFORTUEBERWEISUNG_BLOCK_LOGO') == "N" ? "selected" : "").' value="N">'.$this->l('No, do not display').'</option>
+          <select name="SOFORTBANKING_BLOCK_LOGO">
+            <option '.(Configuration::get('SOFORTBANKING_BLOCK_LOGO') == "Y" ? "selected" : "").' value="Y">'.$this->l('Yes, display the logo (recommended)').'</option>
+            <option '.(Configuration::get('SOFORTBANKING_BLOCK_LOGO') == "N" ? "selected" : "").' value="N">'.$this->l('No, do not display').'</option>
           </select>
           <p>'.$this->l('Display logo and payment info block in left column').'</p>
         </div>
         <div class="clear"></div>
         <label>'.$this->l('Customer protection active:').'</label>
         <div class="margin-form">
-          <select name="SOFORTUEBERWEISUNG_CPROTECT">
-            <option '.(Configuration::get('SOFORTUEBERWEISUNG_CPROTECT') == "Y" ? "selected" : "").' value="Y">'.$this->l('Yes').'</option>
-            <option '.(Configuration::get('SOFORTUEBERWEISUNG_CPROTECT') == "N" ? "selected" : "").' value="N">'.$this->l('No').'</option>
+          <select name="SOFORTBANKING_CPROTECT">
+            <option '.(Configuration::get('SOFORTBANKING_CPROTECT') == "Y" ? "selected" : "").' value="Y">'.$this->l('Yes').'</option>
+            <option '.(Configuration::get('SOFORTBANKING_CPROTECT') == "N" ? "selected" : "").' value="N">'.$this->l('No').'</option>
           </select>
           <p>
             '.$this->l('You need a bank account with') . 
             ' <a target="_blank" href="http://www.sofort-bank.com" target="_blank">Sofort Bank</a> ' . 
             $this->l('You need a bank account with and customer protection must be enabled in your project settings. Please check with') . 
-            ' <a target="_blank" href="https://kaeuferschutz.sofort-bank.com/consumerProtections/index/'.Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID').'">'. 
+            ' <a target="_blank" href="https://kaeuferschutz.sofort-bank.com/consumerProtections/index/'.Configuration::get('SOFORTBANKING_PROJECT_ID').'">'. 
             $this->l('this link') . 
             '</a> ' . 
             $this->l('if customer protection is activated and enabled before enabling it here.') . '
@@ -226,11 +253,11 @@ class Sofortueberweisung extends PaymentModule
     $this->_html .= '
       <fieldset class="space">
         <legend><img src="../img/admin/unknown.gif" alt="" class="middle" />'.$this->l('Help').'</legend>
-        <b>'.$this->l('@Link:').'</b> <a target="_blank" href="http://www.touchdesign.de/ico/paymentnetwork.htm">'.$this->l('DIRECTebanking.com').'</a><br />
+        <b>'.$this->l('@Link:').'</b> <a target="_blank" href="http://www.touchdesign.de/ico/paymentnetwork.htm">'.$this->l('sofortbanking.com').'</a><br />
         '.$this->l('@Vendor:').' Payment Network AG<br />
-        '.$this->l('@Author:').' <a target="_blank" href="http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm">touchDesign</a><br />
+        '.$this->l('@Author:').' <a target="_blank" href="http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm">touchdesign</a><br />
         <b>'.$this->l('@Description:').'</b><br /><br />
-        '.$this->l('DIRECTebanking.com is the direct payment method of Payment Network AG. DIRECTebanking.com allows you to directly and automatically trigger a credit transfer during your online purchase with your online banking information. A transfer order is instantly confirmed to merchant allowing an instant delivery of goods and services.').'
+        '.$this->l('sofortbanking is the direct payment method of Payment Network AG. sofortbanking allows you to directly and automatically trigger a credit transfer during your online purchase with your online banking information. A transfer order is instantly confirmed to merchant allowing an instant delivery of goods and services.').'
       </fieldset><br />';
 
     return $this->_html;
@@ -242,10 +269,10 @@ class Sofortueberweisung extends PaymentModule
     
     $smarty->assign('this_path',$this->_path);
     $smarty->assign('this_path_ssl',Tools::getHttpHost(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/');
-    $smarty->assign('cprotect',Configuration::get('SOFORTUEBERWEISUNG_CPROTECT'));
+    $smarty->assign('cprotect',Configuration::get('SOFORTBANKING_CPROTECT'));
     $smarty->assign('lang',Language::getIsoById(intval($params['cart']->id_lang)));
     
-    return $this->display(__FILE__, 'sofortueberweisung.tpl');
+    return $this->display(__FILE__, 'sofortbanking.tpl');
   }
 
   public function hookPaymentReturn($params)
@@ -257,7 +284,7 @@ class Sofortueberweisung extends PaymentModule
     }
     
     $state = $params['objOrder']->getCurrentState();
-    if ($state == Configuration::get('SOFORTUEBERWEISUNG_OS_ACCEPTED'))
+    if ($state == Configuration::get('SOFORTBANKING_OS_ACCEPTED'))
       $smarty->assign(array(
         'total_to_pay' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false, false),
         'status' => 'accepted'
@@ -269,11 +296,11 @@ class Sofortueberweisung extends PaymentModule
 
   public function hookLeftColumn($params)
   {
-    if(Configuration::get('SOFORTUEBERWEISUNG_BLOCK_LOGO') == "N"){
+    if(Configuration::get('SOFORTBANKING_BLOCK_LOGO') == "N"){
       return false;
     }
     
-    return $this->display(__FILE__, 'blocksofortueberweisunglogo.tpl');
+    return $this->display(__FILE__, 'block_sofortbanking_logo.tpl');
   }
 
   public function isPayment()
@@ -282,9 +309,9 @@ class Sofortueberweisung extends PaymentModule
       return false;
     }
     
-    if (!Configuration::get('SOFORTUEBERWEISUNG_USER_ID') 
-      || !Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID') 
-      || !Configuration::get('SOFORTUEBERWEISUNG_PROJECT_PW')){
+    if (!Configuration::get('SOFORTBANKING_USER_ID') 
+      || !Configuration::get('SOFORTBANKING_PROJECT_ID') 
+      || !Configuration::get('SOFORTBANKING_PROJECT_PW')){
       return false;
     }
     
@@ -305,10 +332,10 @@ class Sofortueberweisung extends PaymentModule
     $country = new Country(intval($address->id_country));
     $lang = Language::getIsoById(intval($cart->id_lang));
 
-    if (!Configuration::get('SOFORTUEBERWEISUNG_USER_ID')){
+    if (!Configuration::get('SOFORTBANKING_USER_ID')){
       return $this->l($this->displayName.' Error: (invalid or undefined userId)');
     }
-    if (!Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID')){
+    if (!Configuration::get('SOFORTBANKING_PROJECT_ID')){
       return $this->l($this->displayName.' Error: (invalid or undefined projectId)');
     }
     if (!Validate::isLoadedObject($address) 
@@ -318,14 +345,14 @@ class Sofortueberweisung extends PaymentModule
     }
 
     $parameters = array(
-      'user_id' => Configuration::get('SOFORTUEBERWEISUNG_USER_ID'),'project_id' => Configuration::get('SOFORTUEBERWEISUNG_PROJECT_ID'),
+      'user_id' => Configuration::get('SOFORTBANKING_USER_ID'),'project_id' => Configuration::get('SOFORTBANKING_PROJECT_ID'),
       'sender_holder' => '','','','sender_country_id' => $country->iso_code,
       'amount' => number_format(Tools::convertPrice($cart->getOrderTotal(), $currency), 2, '.', ''),
       'sender_currency_id' => $currency->iso_code,'reason_1' => $this->l('CartId:').' '.time().'-'.intval($cart->id),
       'reason_2' => $customer->firstname.' '.ucfirst(strtolower($customer->lastname)),
       'user_variable_0' => $customer->secure_key,'user_variable_1' => intval($cart->id),
       'user_variable_2' => '','user_variable_3' => '','user_variable_4' => '','user_variable_5' => '',
-      'project_password' => Configuration::get('SOFORTUEBERWEISUNG_PROJECT_PW'),
+      'project_password' => Configuration::get('SOFORTBANKING_PROJECT_PW'),
     );
 
     $smarty->assign(array(
@@ -340,7 +367,7 @@ class Sofortueberweisung extends PaymentModule
       'hash' => sha1(implode('|',$parameters)),
       'gateway' => 'https://www.sofortueberweisung.de/payment/start',
       'lang' => $lang,
-      'cprotect' => Configuration::get('SOFORTUEBERWEISUNG_CPROTECT'),
+      'cprotect' => Configuration::get('SOFORTBANKING_CPROTECT'),
       'parameters' => $parameters
     ));
 

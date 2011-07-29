@@ -1,20 +1,20 @@
 {**
  * $Id$
  *
- * sofortueberweisung Module
+ * sofortbanking Module
  *
- * Copyright (c) 2009 touchDesign
+ * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 0.9
- * @copyright 19.08.2009, touchDesign
+ * @version 1.0
+ * @copyright 19.08.2009, touchdesign
  * @author Christoph Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  *
  * Description:
  *
- * Payment module directebanking
+ * Payment module sofortbanking
  *
  * --
  *
@@ -30,11 +30,11 @@
  *
  *}
 
-<!-- touchDesign | directebanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
-{capture name=path}{l s='Directebanking payment' mod='sofortueberweisung'}{/capture}
+<!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
+{capture name=path}{l s='sofortbanking payment' mod='sofortbanking'}{/capture}
 {include file="$tpl_dir./breadcrumb.tpl"}
 
-<h2>{l s='Order summary' mod='sofortueberweisung'}</h2>
+<h2>{l s='Order summary' mod='sofortbanking'}</h2>
 
 {assign var='current_step' value='payment'}
 {include file="$tpl_dir./order-steps.tpl"}
@@ -43,7 +43,7 @@
   <p class="warning">{l s='Your shopping cart is empty.'}</p>
 {else}
 
-<h3>{l s='Directebanking payment' mod='sofortueberweisung'}</h3>
+<h3>{l s='sofortbanking payment' mod='sofortbanking'}</h3>
 
 <form action="{$gateway}" method="post">
 
@@ -64,15 +64,15 @@
   <input type="hidden" name="hash" value="{$hash}" />
   <input type="hidden" name="interface_version" value="PrestaShop {$version}" />
 
-  <p><img src="{$this_path}sofortueberweisung.gif" alt="sofortueberweisung.gif" title="sofortueberweisung.de" width="86" height="49" mod='sofortueberweisung'}" /></p>
-  <p>{l s='You have chosen to pay by directebanking.' mod='sofortueberweisung'} {l s='the total amount of your order is' mod='sofortueberweisung'} <span id="amount" class="price">{displayPrice price=$total}</span> {l s='(tax incl.)' mod='sofortueberweisung'}</p>
-  <p style="margin-top:20px;"><b>{l s='Please confirm your order by clicking \'I confirm my order\'.' mod='sofortueberweisung'}</b></p>
+  <p><img src="{$this_path}img/sofortbanking_small.png" alt="sofortbanking.png" title="" width="125" height="39" mod='sofortbanking'}" /></p>
+  <p>{l s='You have chosen to pay by sofortbanking.' mod='sofortbanking'} {l s='the total amount of your order is' mod='sofortbanking'} <span id="amount" class="price">{displayPrice price=$total}</span> {l s='(tax incl.)' mod='sofortbanking'}</p>
+  <p style="margin-top:20px;"><b>{l s='Please confirm your order by clicking \'I confirm my order\'.' mod='sofortbanking'}</b></p>
 
   <p class="cart_navigation">
-    <a href="{$base_dir_ssl}order.php?step=3" class="button_large">{l s='Other payment methods' mod='sofortueberweisung'}</a>
-    <input type="submit" name="submit" value="{l s='I confirm my order' mod='sofortueberweisung'}" class="exclusive_large" />
+    <a href="{$base_dir_ssl}order.php?step=3" class="button_large">{l s='Other payment methods' mod='sofortbanking'}</a>
+    <input type="submit" name="submit" value="{l s='I confirm my order' mod='sofortbanking'}" class="exclusive_large" />
   </p>
 
 </form>
 {/if}
-<!-- touchDesign | directebanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
+<!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->

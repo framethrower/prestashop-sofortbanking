@@ -1,3 +1,11 @@
+// Version 10
+
+Update README
+Update Translations
+Update logos
+Rename sofortueberweisung -> sofortbanking
+Add secure_key
+
 // Version 09
 
 Fix guest checkout

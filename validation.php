@@ -2,20 +2,20 @@
 /**
  * $Id$
  *
- * sofortueberweisung Module
+ * sofortbanking Module
  *
- * Copyright (c) 2009 touchDesign
+ * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 0.9
- * @copyright 19.08.2009, touchDesign
+ * @version 1.0
+ * @copyright 19.08.2009, touchdesign
  * @author Christoph Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  *
  * Description:
  *
- * Payment module directebanking
+ * Payment module sofortbanking
  *
  * --
  *
@@ -32,14 +32,14 @@
  */
 
 require dirname(__FILE__).'/../../config/config.inc.php';
-require dirname(__FILE__).'/sofortueberweisung.php';
+require dirname(__FILE__).'/sofortbanking.php';
 
-$sofortueberweisung = new Sofortueberweisung();
+$sofortbanking = new Sofortbanking();
 
-$orderState = Configuration::get('SOFORTUEBERWEISUNG_OS_ERROR');
-$password = Configuration::get('SOFORTUEBERWEISUNG_NOTIFY_PW') 
-  ? Configuration::get('SOFORTUEBERWEISUNG_NOTIFY_PW') 
-  : Configuration::get('SOFORTUEBERWEISUNG_PROJECT_PW');
+$orderState = Configuration::get('SOFORTBANKING_OS_ERROR');
+$password = Configuration::get('SOFORTBANKING_NOTIFY_PW') 
+  ? Configuration::get('SOFORTBANKING_NOTIFY_PW') 
+  : Configuration::get('SOFORTBANKING_PROJECT_PW');
 
 $requestData = array('transaction' => $_POST['transaction'] , 'user_id' => $_POST['user_id'] , 
   'project_id' => $_POST['project_id'] , 'sender_holder' => $_POST['sender_holder'] , 
@@ -59,14 +59,23 @@ $requestData = array('transaction' => $_POST['transaction'] , 'user_id' => $_POS
 
 $cart = new Cart(intval($_POST['user_variable_1']));
 if($_POST['hash'] != sha1(implode('|', $requestData))){
-  echo($sofortueberweisung->l('Fatal Error (1)'));
+  echo($sofortbanking->l('Fatal Error (1)'));
 }elseif(!is_object($cart) || !$cart){
-  echo($sofortueberweisung->l('Fatal Error (2)'));
+  echo($sofortbanking->l('Fatal Error (2)'));
 }else{
-  $orderState = Configuration::get('SOFORTUEBERWEISUNG_OS_ACCEPTED');
+  $orderState = Configuration::get('SOFORTBANKING_OS_ACCEPTED');
 }
 
-$sofortueberweisung->validateOrder($cart->id, $orderState, floatval(number_format($cart->getOrderTotal(true, 3), 2, '.', '')), 
-  $sofortueberweisung->displayName, $sofortueberweisung->l('Sofortueberweisung Transaction ID: ').$_POST['transaction']);
+$customer = new Customer((int)$cart->id_customer);
+
+if (version_compare(_PS_VERSION_, '1.4.0', '<')){
+  $sofortbanking->validateOrder($cart->id, $orderState, floatval(number_format($cart->getOrderTotal(true, 3), 2, '.', '')), 
+    $sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').$_POST['transaction'], 
+    null, null, false);
+}else{
+  $sofortbanking->validateOrder($cart->id, $orderState, floatval(number_format($cart->getOrderTotal(true, 3), 2, '.', '')), 
+    $sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').$_POST['transaction'], 
+    null, null, false, $customer->secure_key);
+}
 
 ?>

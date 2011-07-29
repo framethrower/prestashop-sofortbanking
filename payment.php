@@ -2,20 +2,20 @@
 /**
  * $Id$
  *
- * sofortueberweisung Module
+ * sofortbanking Module
  *
- * Copyright (c) 2009 touchDesign
+ * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 0.9
- * @copyright 19.08.2009, touchDesign
+ * @version 1.0
+ * @copyright 19.08.2009, touchdesign
  * @author Christoph Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  *
  * Description:
  *
- * Payment module directebanking
+ * Payment module sofortbanking
  *
  * --
  *
@@ -34,7 +34,7 @@
 $useSSL = true;
 
 require_once dirname(__FILE__).'/../../config/config.inc.php';
-require_once dirname(__FILE__).'/sofortueberweisung.php';
+require_once dirname(__FILE__).'/sofortbanking.php';
 require_once dirname(__FILE__).'/../../header.php';
 require_once dirname(__FILE__).'/lib/touchdesign.php';
 
@@ -42,9 +42,9 @@ if (!$cookie->isLogged(true)){
   touchdesign::redirect(__PS_BASE_URI__.'order.php','order=back.php');
 }
 
-$sofortueberweisung = new sofortueberweisung();
+$sofortbanking = new sofortbanking();
 
-echo $sofortueberweisung->execPayment($cart);
+echo $sofortbanking->execPayment($cart);
 
 include_once dirname(__FILE__).'/../../footer.php';
 

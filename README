@@ -26,7 +26,7 @@ A) Upload
 
 Wechseln Sie in Ihrem Shopsystem über den "Adminbereich" in den Tab "Module" und klicken Sie auf den
 Link "Ein neues Modul hinzufügen". Klicken Sie auf den Button "Durchsuchen" und wählen Sie nun das 
-zuvor heruntergeladene Modularchiv "sofortueberweisung-vX.tar" von Ihrer lokalen Festplatte.
+zuvor heruntergeladene Modularchiv "sofortbanking-vX.tar" von Ihrer lokalen Festplatte.
 Nach dem Sie das Modularchiv angewählt haben bestätigen Sie bitte die Installation des Modules durch einen 
 Klick auf den Button "Dieses Modul hochladen". Nach erfolgreicher Installation des Modules erscheint die 
 Meldung "Modul wurde erfolgreich installiert".
@@ -62,4 +62,3 @@ Ressourcen
 -------------------------------------
 
 [1]: http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
-[2]: http://www.homepage-community.de/index.php?topic=555.0

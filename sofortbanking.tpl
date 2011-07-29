@@ -30,17 +30,15 @@
  *
  *}
 
-<!-- sofortbanking module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
-{if $status == 'accepted' || $status == 'pending'}
-  <p>
-    {l s='Your order on' mod='sofortbanking'} <span class="bold">{$shop_name}</span> {l s='is complete.' mod='sofortbanking'}
-    <br /><br />
-    {l s='The total amount of this order is' mod='sofortbanking'} <span class="price">{$total_to_pay}</span>
-  </p>
-{else}
-  <p class="warning">
-    {l s='We noticed a problem with your order. If you think this is an error, you can contact our' mod='sofortbanking'} 
-    <a href="{$base_dir_ssl}contact-form.php">{l s='customer support' mod='sofortbanking'}</a>.
-  </p>
-{/if}
-<!-- sofortbanking module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
+<!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
+<p class="payment_module">
+  <a href="{$this_path_ssl}payment.php" title="{l s='Pay with sofortbanking' mod='sofortbanking'}">
+  {if $cprotect == "Y"}
+    <img style="float:left" src="{$module_template_dir}img/banner_400x100_ks.png" alt="sofortbanking.png" title="{l s='Buy secure with customer protection by sofortbanking' mod='sofortbanking'}" width="400" height="100" />
+  {else}
+    <img style="float:left" src="{$module_template_dir}img/banner_300x100.png" alt="sofortbanking.png" title="{l s='Pay with sofortbanking' mod='sofortbanking'}"  width="300" height="100" />
+  {/if}
+  <br class="clear" />
+  </a>
+</p>
+<!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
