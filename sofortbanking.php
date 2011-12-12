@@ -52,8 +52,8 @@ class Sofortbanking extends PaymentModule
     $this->displayName = $this->l('sofortbanking');
     $this->description = $this->l('Accepts payments by sofortbanking');
     $this->confirmUninstall = $this->l('Are you sure you want to delete your details?');
-		if (file_exists(_PS_ROOT_DIR_.'/modules/sofortueberweisung/sofortueberweisung.php') && $this->active){
-			$this->warning = $this->l('Note: You have to update the notify urls in the sofortbanking customer login and remove the old module version.');
+    if (file_exists(_PS_ROOT_DIR_.'/modules/sofortueberweisung/sofortueberweisung.php') && $this->active){
+      $this->warning = $this->l('Note: You have to update the notify urls in the sofortbanking customer login and remove the old module version.');
     }
   }
 
