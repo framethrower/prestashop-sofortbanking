@@ -9,7 +9,7 @@
  * @category Payment
  * @version 1.0
  * @copyright 19.08.2009, touchdesign
- * @author Christoph Gruber, <www.touchdesign.de>
+ * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  *

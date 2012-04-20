@@ -9,7 +9,7 @@
  * @category Library
  * @version 0.1
  * @copyright 12.04.2010, touchDesign
- * @author Christoph Gruber, <www.touchdesign.de>
+ * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
  *
