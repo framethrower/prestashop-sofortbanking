@@ -7,7 +7,7 @@
  * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 1.1
+ * @version 1.2
  * @copyright 19.08.2009, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -43,9 +43,9 @@ class Sofortbanking extends PaymentModule
     }else{
       $this->tab = 'payments_gateways';
     }
-    $this->version = '1.1';
+    $this->version = '1.2';
     $this->author = 'touchdesign';
-	$this->module_key = '65af9f83d2ae6fbe6dbdaa91d21f952a';
+    $this->module_key = '65af9f83d2ae6fbe6dbdaa91d21f952a';
     $this->currencies = true;
     $this->currencies_mode = 'radio';
     parent::__construct();
@@ -69,6 +69,7 @@ class Sofortbanking extends PaymentModule
       !Configuration::updateValue('SOFORTBANKING_CPROTECT', 'N') ||
       !Configuration::updateValue('SOFORTBANKING_OS_ERROR', 8) ||
       !Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', 2) ||
+      !Configuration::updateValue('SOFORTBANKING_REDIRECT', 'N') ||
       !$this->registerHook('payment') ||
       !$this->registerHook('paymentReturn') ||
       !$this->registerHook('leftColumn')
@@ -90,6 +91,7 @@ class Sofortbanking extends PaymentModule
       !Configuration::deleteByName('SOFORTBANKING_OS_ERROR') ||
       !Configuration::deleteByName('SOFORTBANKING_OS_ACCEPTED') ||
       !Configuration::deleteByName('SOFORTBANKING_CPROTECT') ||
+      !Configuration::deleteByName('SOFORTBANKING_REDIRECT') ||
       !parent::uninstall()
     ){
       return false;
@@ -140,6 +142,7 @@ class Sofortbanking extends PaymentModule
       Configuration::updateValue('SOFORTBANKING_NOTIFY_PW', Tools::getValue('SOFORTBANKING_NOTIFY_PW'));
       Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', Tools::getValue('SOFORTBANKING_BLOCK_LOGO'));
       Configuration::updateValue('SOFORTBANKING_CPROTECT', Tools::getValue('SOFORTBANKING_CPROTECT'));
+      Configuration::updateValue('SOFORTBANKING_REDIRECT', Tools::getValue('SOFORTBANKING_REDIRECT'));
     }
     
     // Update note
@@ -236,6 +239,15 @@ class Sofortbanking extends PaymentModule
             '</a> ' . 
             $this->l('if customer protection is activated and enabled before enabling it here.') . '
           </p>
+        </div>
+        <div class="clear"></div>
+        <label>'.$this->l('Force redirect?').'</label>
+        <div class="margin-form">
+          <select name="SOFORTBANKING_REDIRECT">
+            <option '.(Configuration::get('SOFORTBANKING_REDIRECT') == "Y" ? "selected" : "").' value="Y">'.$this->l('Yes, force redirect.').'</option>
+            <option '.(Configuration::get('SOFORTBANKING_REDIRECT') == "N" ? "selected" : "").' value="N">'.$this->l('No, let the customer confirm the order first.').'</option>
+          </select>
+          <p>'.$this->l('Force redirect to soforbanking payment page (skip confirm page).').'</p>
         </div>
         <div class="clear"></div>
         <div class="margin-form clear pspace"><input type="submit" name="submitUpdate" value="'.$this->l('Update').'" class="button" /></div>
@@ -371,8 +383,9 @@ class Sofortbanking extends PaymentModule
       'cprotect' => Configuration::get('SOFORTBANKING_CPROTECT'),
       'parameters' => $parameters
     ));
-
-    return $this->display(__FILE__, 'payment_execution.tpl');
+    
+    return $this->display(__FILE__, (Configuration::get('SOFORTBANKING_REDIRECT') == 'Y'
+      ? 'payment_redirect.tpl' : 'payment_execution.tpl'));
   }
 
 }

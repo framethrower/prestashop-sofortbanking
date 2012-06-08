@@ -6,7 +6,7 @@
  * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 1.1
+ * @version 1.2
  * @copyright 19.08.2009, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -31,6 +31,7 @@
  *}
 
 <!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
+
 {capture name=path}{l s='sofortbanking payment' mod='sofortbanking'}{/capture}
 {include file="$tpl_dir./breadcrumb.tpl"}
 
@@ -40,7 +41,7 @@
 {include file="$tpl_dir./order-steps.tpl"}
 
 {if $nbProducts <= 0}
-  <p class="warning">{l s='Your shopping cart is empty.'}</p>
+  <p class="warning">{l s='Your shopping cart is empty.' mod='sofortbanking'}</p>
 {else}
 
 <h3>{l s='sofortbanking payment' mod='sofortbanking'}</h3>
@@ -75,4 +76,5 @@
 
 </form>
 {/if}
+
 <!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
