@@ -13,9 +13,9 @@ $_MODULE['<{sofortbanking}prestashop>payment_execution_879f6b8877752685a966564d0
 $_MODULE['<{sofortbanking}prestashop>payment_execution_6af381041f6fb0734eac4b0964d827e8'] = 'Sie haben als Zahlart sofortüberweisung gewählt und werden im Anschluss an sofortüberweisung weitergeleitet um Ihre Zahlung sofort auszuführen.';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_167add1e8662b28f92fd0ab08e3c5ff5'] = 'Der Gesamtbetrag Ihrer Bestellung beträgt';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_1f87346a16cf80c372065de3c54c86d9'] = '(inkl MwSt.)';
-$_MODULE['<{sofortbanking}prestashop>payment_execution_52f64bc0164b0e79deaeaaaa7e93f98f'] = 'Bitte bestätigen Sie Ihre Bestellung indem Sie den \"Bestellung bestätigen\" Button absenden.';
+$_MODULE['<{sofortbanking}prestashop>payment_execution_52f64bc0164b0e79deaeaaaa7e93f98f'] = 'Bitte bestätigen Sie Ihre Bestellung indem Sie den \"Zahlungspflichtig bestellen\" Button absenden.';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_569fd05bdafa1712c4f6be5b153b8418'] = 'Andere Zahlart wählen';
-$_MODULE['<{sofortbanking}prestashop>payment_execution_46b9e3665f187c739c55983f757ccda0'] = 'Bestellung bestätigen';
+$_MODULE['<{sofortbanking}prestashop>payment_execution_46b9e3665f187c739c55983f757ccda0'] = 'Zahlungspflichtig bestellen';
 $_MODULE['<{sofortbanking}prestashop>payment_redirect_8160b19e00d84831a18547ae1320d2a7'] = 'Zahlen mit sofortüberweisung';
 $_MODULE['<{sofortbanking}prestashop>payment_redirect_f1d3b424cd68795ecaa552883759aceb'] = 'Bestellbestätigung';
 $_MODULE['<{sofortbanking}prestashop>payment_redirect_879f6b8877752685a966564d072f498f'] = 'Ihr Warenkorb ist leer.';
@@ -64,6 +64,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_de0592e70f032889adb289d2f06bf
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_4dfc2b4e129cf7b06de864eea2c5dba2'] = 'sofortüberweisung ist das Direkt-Überweisungsverfahren der Payment Network AG. Mit sofortüberweisung stellen Sie noch während Ihrer Bestellung bequem eine Überweisung über den jeweiligen Betrag in Ihr Online-Banking-Konto ein. Der Händler erhält nach Abschluss der sofortüberweisung eine Echtzeitbestätigung. So kann er Lagerware und digitale Güter sofort versenden - Sie erhalten dann Ihre Einkäufe schneller. ';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = 'Warenkorb-ID';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_9cf51f6755e5294b00e246667b59261d'] = 'Zahlen mit sofortüberweisung.de (Verfügbare Waren werden sofort geliefert)';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149a18'] = 'Kaufen mit dem Käuferschutz der sofortbank';
 $_MODULE['<{sofortbanking}prestashop>validation_430b932b3ed2561e26c45227f74cf77d'] = 'Fatal Error (1)';
 $_MODULE['<{sofortbanking}prestashop>validation_963d0dffd2ef75d529e90f4c1e267274'] = 'Fatal Error (2)';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'Sofortüberweisung.de Transaktions ID';
