@@ -58,6 +58,10 @@ Konfiguration der Schnittstelle zu vervollständigen:
 Nach erfolgreichem Anlegen Ihres Projektes finden Sie weitere detaillierte Informationen zur Konfiguration 
 der Schnittstelle unter dem Karteireiter "Hilfe zum Shopsystem" in Ihrem Kundenlogin auf sofortueberweisung.de.
 
+D) Shopkonfiguration
+
+Bitte geben Sie die Zahlschnittstelle für die gewünschten Währungen in Ihrem Shopbackend unter "Module > Zahlung" frei um die Zahlung im Bestellvorgang zu aktivieren.
+
 Ressourcen
 -------------------------------------
 
