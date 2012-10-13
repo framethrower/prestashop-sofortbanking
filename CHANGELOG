@@ -1,3 +1,7 @@
+// Version 13
+
+Add compatibility for PS 1.5
+
 // Version 12
 
 Add optional force redirect (usefull for non EU and modified stores)

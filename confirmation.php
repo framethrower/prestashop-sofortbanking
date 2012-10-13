@@ -7,7 +7,7 @@
  * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 1.2
+ * @version 1.3
  * @copyright 19.08.2009, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -41,7 +41,7 @@ $order_id = Order::getOrderByCartId(intval($_GET['user_variable_1']));
 
 $order = new Order($order_id);
 
-touchdesign::redirect(__PS_BASE_URI__ . 'order-confirmation.php','id_cart=' . $order->id_cart 
+touchdesign::redirect(__PS_BASE_URI__ . 'order-confirmation.php','id_cart=' . $order->id_cart
   . '&id_module=' . $sofortbanking->id . '&id_order=' . $order_id
   . '&key='.$order->secure_key);
 

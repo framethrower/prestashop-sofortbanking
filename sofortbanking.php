@@ -7,7 +7,7 @@
  * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 1.2
+ * @version 1.3
  * @copyright 19.08.2009, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -43,7 +43,7 @@ class Sofortbanking extends PaymentModule
     }else{
       $this->tab = 'payments_gateways';
     }
-    $this->version = '1.2';
+    $this->version = '1.3';
     $this->author = 'touchdesign';
     $this->module_key = '65af9f83d2ae6fbe6dbdaa91d21f952a';
     $this->currencies = true;
@@ -77,7 +77,7 @@ class Sofortbanking extends PaymentModule
       return false;
     }
     $this->updateModule();
-    
+
     return true;
   }
 
@@ -116,7 +116,7 @@ class Sofortbanking extends PaymentModule
       Configuration::loadConfiguration();
     }
   }
-  
+
   private function _postValidation()
   {
     if (Tools::getValue('submitUpdate')){
@@ -144,13 +144,13 @@ class Sofortbanking extends PaymentModule
       Configuration::updateValue('SOFORTBANKING_CPROTECT', Tools::getValue('SOFORTBANKING_CPROTECT'));
       Configuration::updateValue('SOFORTBANKING_REDIRECT', Tools::getValue('SOFORTBANKING_REDIRECT'));
     }
-    
+
     // Update note
     if (file_exists(_PS_ROOT_DIR_.'/modules/sofortueberweisung/sofortueberweisung.php'))
     {
       $this->_html = '<div class="warning">'.$this->l('Note: You have to update the notify urls in the sofortbanking customer login and remove the old module version.').'</div>';
     }
-    
+
     $this->_postValidation();
     if (isset($this->_postErrors) && sizeof($this->_postErrors)){
       foreach ($this->_postErrors AS $err){
@@ -163,7 +163,7 @@ class Sofortbanking extends PaymentModule
     return $this->_displayForm();
   }
 
-  public function getSuccessMessage() 
+  public function getSuccessMessage()
   {
     $this->_html.='
     <div class="conf confirm">
@@ -231,12 +231,12 @@ class Sofortbanking extends PaymentModule
             <option '.(Configuration::get('SOFORTBANKING_CPROTECT') == "N" ? "selected" : "").' value="N">'.$this->l('No').'</option>
           </select>
           <p>
-            '.$this->l('You need a bank account with') . 
-            ' <a target="_blank" href="http://www.sofort-bank.com" target="_blank">Sofort Bank</a> ' . 
-            $this->l('You need a bank account with and customer protection must be enabled in your project settings. Please check with') . 
-            ' <a target="_blank" href="https://kaeuferschutz.sofort-bank.com/consumerProtections/index/'.Configuration::get('SOFORTBANKING_PROJECT_ID').'">'. 
-            $this->l('this link') . 
-            '</a> ' . 
+            '.$this->l('You need a bank account with') .
+            ' <a target="_blank" href="http://www.sofort-bank.com" target="_blank">Sofort Bank</a> ' .
+            $this->l('You need a bank account with and customer protection must be enabled in your project settings. Please check with') .
+            ' <a target="_blank" href="https://kaeuferschutz.sofort-bank.com/consumerProtections/index/'.Configuration::get('SOFORTBANKING_PROJECT_ID').'">'.
+            $this->l('this link') .
+            '</a> ' .
             $this->l('if customer protection is activated and enabled before enabling it here.') . '
           </p>
         </div>
@@ -267,8 +267,7 @@ class Sofortbanking extends PaymentModule
       <fieldset class="space">
         <legend><img src="../img/admin/unknown.gif" alt="" class="middle" />'.$this->l('Help').'</legend>
         <b>'.$this->l('@Link:').'</b> <a target="_blank" href="http://www.touchdesign.de/ico/paymentnetwork.htm">'.$this->l('sofortbanking.com').'</a><br />
-        '.$this->l('@Vendor:').' Payment Network AG<br />
-        '.$this->l('@Author:').' <a target="_blank" href="http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm">touchdesign</a><br />
+        '.$this->l('@Author and Copyright:').' <a target="_blank" href="http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm">touchdesign</a><br />
         <b>'.$this->l('@Description:').'</b><br /><br />
         '.$this->l('sofortbanking is the direct payment method of Payment Network AG. sofortbanking allows you to directly and automatically trigger a credit transfer during your online purchase with your online banking information. A transfer order is instantly confirmed to merchant allowing an instant delivery of goods and services.').'
       </fieldset><br />';
@@ -279,12 +278,12 @@ class Sofortbanking extends PaymentModule
   public function hookPayment($params)
   {
     global $smarty, $cart;
-    
+
     $smarty->assign('this_path',$this->_path);
     $smarty->assign('this_path_ssl',Tools::getHttpHost(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/');
     $smarty->assign('cprotect',Configuration::get('SOFORTBANKING_CPROTECT'));
     $smarty->assign('lang',Language::getIsoById(intval($params['cart']->id_lang)));
-    
+
     return $this->display(__FILE__, 'sofortbanking.tpl');
   }
 
@@ -295,11 +294,11 @@ class Sofortbanking extends PaymentModule
     if (!$this->isPayment()){
       return false;
     }
-    
+
     $state = $params['objOrder']->getCurrentState();
     if ($state == Configuration::get('SOFORTBANKING_OS_ACCEPTED'))
       $smarty->assign(array(
-        'total_to_pay' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false, false),
+        'total_to_pay' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false),
         'status' => 'accepted'
       )
     );
@@ -312,7 +311,7 @@ class Sofortbanking extends PaymentModule
     if(Configuration::get('SOFORTBANKING_BLOCK_LOGO') == "N"){
       return false;
     }
-    
+
     return $this->display(__FILE__, 'block_sofortbanking_logo.tpl');
   }
 
@@ -321,13 +320,13 @@ class Sofortbanking extends PaymentModule
     if (!$this->active){
       return false;
     }
-    
-    if (!Configuration::get('SOFORTBANKING_USER_ID') 
-      || !Configuration::get('SOFORTBANKING_PROJECT_ID') 
+
+    if (!Configuration::get('SOFORTBANKING_USER_ID')
+      || !Configuration::get('SOFORTBANKING_PROJECT_ID')
       || !Configuration::get('SOFORTBANKING_PROJECT_PW')){
       return false;
     }
-    
+
     return true;
   }
 
@@ -351,8 +350,8 @@ class Sofortbanking extends PaymentModule
     if (!Configuration::get('SOFORTBANKING_PROJECT_ID')){
       return $this->l($this->displayName.' Error: (invalid or undefined projectId)');
     }
-    if (!Validate::isLoadedObject($address) 
-      || !Validate::isLoadedObject($customer) 
+    if (!Validate::isLoadedObject($address)
+      || !Validate::isLoadedObject($customer)
       || !Validate::isLoadedObject($currency)){
       return $this->l($this->displayName.' Error: (invalid address or customer)');
     }
@@ -383,7 +382,7 @@ class Sofortbanking extends PaymentModule
       'cprotect' => Configuration::get('SOFORTBANKING_CPROTECT'),
       'parameters' => $parameters
     ));
-    
+
     return $this->display(__FILE__, (Configuration::get('SOFORTBANKING_REDIRECT') == 'Y'
       ? 'payment_redirect.tpl' : 'payment_execution.tpl'));
   }
