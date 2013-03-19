@@ -56,6 +56,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_d0e1dfd51beaf6428aae014beadb4
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_06933067aafd48425d67bcb01bba5cb6'] = 'Aktualisieren';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_6f0118397671d5cdea6c525a67f4753c'] = 'URLs';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_e722d72b214116587e4e6082588df694'] = 'Bestätigungs-URL (Http-Benachrichtigung):';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_f99e79a7210477b35ca277a786b1ffff'] = '(Methode POST)';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_0460817770faafdd4fca012a46a9efe3'] = 'Erfolgs-URL (Weiterleitung zur Bestätigung):';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_429e6f2cf4af25753fe27adbc5def9ec'] = 'Abbruchs-URL (Rückkehr zum Shop):';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_6a26f548831e6a8c26bfbbd9f6ec61e0'] = 'Hilfe';

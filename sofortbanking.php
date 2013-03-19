@@ -7,7 +7,7 @@
  * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 1.4
+ * @version 1.5
  * @copyright 19.08.2009, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -43,7 +43,7 @@ class Sofortbanking extends PaymentModule
     }else{
       $this->tab = 'payments_gateways';
     }
-    $this->version = '1.4';
+    $this->version = '1.5';
     $this->author = 'touchdesign';
     $this->module_key = '65af9f83d2ae6fbe6dbdaa91d21f952a';
     $this->currencies = true;
@@ -255,7 +255,7 @@ class Sofortbanking extends PaymentModule
       </form><br />
       <fieldset>
         <legend><img src="'.$this->_path.'logo.png" />'.$this->l('URLs').'</legend>
-        <b>'.$this->l('Confirmation-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php</textarea>
+        <b>'.$this->l('Confirmation-Url:').' '.$this->l('(Method POST)').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php</textarea>
         <br /><br />
         <b>'.$this->l('Success-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-</textarea>
         <br /><br />
