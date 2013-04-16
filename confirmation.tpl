@@ -6,7 +6,7 @@
  * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 1.5
+ * @version 1.6
  * @copyright 19.08.2009, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm

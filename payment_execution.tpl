@@ -6,7 +6,7 @@
  * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 1.5
+ * @version 1.6
  * @copyright 19.08.2009, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -65,7 +65,7 @@
   <input type="hidden" name="hash" value="{$hash}" />
   <input type="hidden" name="interface_version" value="PrestaShop {$version}" />
 
-  <p><img src="{$this_path}img/sofortbanking_small.png" alt="sofortbanking.png" title="" width="100" height="38" /></p>
+  <p><img src="{$this_path}img/{$lang_iso}/sofortbanking_small.png" alt="sofortbanking.png" title="" width="100" height="38" /></p>
   
   <p>{l s='SOFORT Ueberweisung – Einfach sicher zahlen.' mod='sofortbanking'}</p>
   <p>{l s='Mit dem TUEV-zertifiziertem Bezahlsystem SOFORT Ueberweisung koennen Sie dank PIN&TAN, ohne Registrierung, einfach und sicher mit Ihren gewohnten Online-Banking-Daten zahlen.' mod='sofortbanking'} <a target="_blank" href="https://documents.sofort.com/de/sue/kundeninformationen">{l s='Read more.' mod='sofortbanking'}</a>

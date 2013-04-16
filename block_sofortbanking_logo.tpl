@@ -6,7 +6,7 @@
  * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 1.5
+ * @version 1.6
  * @copyright 19.08.2009, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -33,7 +33,7 @@
 <!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
 <div id="sofortbanking_logo_block_left" class="paiement_logo_block">
   <a href="{$link->getCMSLink(5)}">
-    <img src="{$module_template_dir}img/banner_150x200.png" alt="banner_150x200.png" title="sofortueberweisung.de" width="150" height="200" />
+    <img src="{$module_template_dir}img/{$lang_iso}/banner_120x180.png" alt="banner_120x180.png" title="" width="120" height="180" />
   </a>
 </div>
 <!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->

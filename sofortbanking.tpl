@@ -6,7 +6,7 @@
  * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 1.5
+ * @version 1.6
  * @copyright 19.08.2009, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -33,10 +33,10 @@
 <!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
 <p class="payment_module">
   <a href="{$this_path_ssl}payment.php" title="{l s='Pay with sofortbanking' mod='sofortbanking'}">
-  {if $cprotect == "Y"}
-    <img style="float:left" src="{$module_template_dir}img/banner_400x100_ks.png" alt="sofortbanking.png" title="{l s='Buy secure with customer protection by sofortbanking' mod='sofortbanking'}" width="400" height="100" />
+  {if $cprotect == "Y" && $lang_iso == "de"}
+    <img style="float:left" src="{$module_template_dir}img/{$lang_iso}/banner_400x100_ks.png" alt="banner_400x100_ks.png" title="{l s='Buy secure with customer protection by sofortbanking' mod='sofortbanking'}" width="400" height="100" />
   {else}
-    <img style="float:left" src="{$module_template_dir}img/banner_300x100.png" alt="sofortbanking.png" title="{l s='Pay with sofortbanking' mod='sofortbanking'}"  width="300" height="100" />
+    <img style="float:left" src="{$module_template_dir}img/{$lang_iso}/banner_300x100.png" alt="banner_300x100.png" title="{l s='Pay with sofortbanking' mod='sofortbanking'}"  width="300" height="100" />
   {/if}
   <br class="clear" />
   </a>

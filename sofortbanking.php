@@ -7,7 +7,7 @@
  * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 1.5
+ * @version 1.6
  * @copyright 19.08.2009, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -43,7 +43,7 @@ class Sofortbanking extends PaymentModule
     }else{
       $this->tab = 'payments_gateways';
     }
-    $this->version = '1.5';
+    $this->version = '1.6';
     $this->author = 'touchdesign';
     $this->module_key = '65af9f83d2ae6fbe6dbdaa91d21f952a';
     $this->currencies = true;
@@ -187,10 +187,10 @@ class Sofortbanking extends PaymentModule
       </style>';
 
     $this->_html .= '
-      <div><img src="'.$this->_path.'img/sofortbanking.png" alt="sofortbanking.png" title="" /></div>
+      <div><img src="'.$this->_path.'img/en/sofortbanking.png" alt="sofortbanking.png" title="" /></div>
       <form method="post" action="'.$_SERVER['REQUEST_URI'].'">
       <fieldset>
-        <legend><img src="'.$this->_path.'logo.png" />'.$this->l('Settings').'</legend>
+        <legend><img src="'.$this->_path.'logo.gif" />'.$this->l('Settings').'</legend>
         <label>'.$this->l('sofortbanking user ID?').'</label>
         <div class="margin-form">
           <input type="text" name="SOFORTBANKING_USER_ID" value="'.Configuration::get('SOFORTBANKING_USER_ID').'" />
@@ -254,7 +254,7 @@ class Sofortbanking extends PaymentModule
       </fieldset>
       </form><br />
       <fieldset>
-        <legend><img src="'.$this->_path.'logo.png" />'.$this->l('URLs').'</legend>
+        <legend><img src="'.$this->_path.'logo.gif" />'.$this->l('URLs').'</legend>
         <b>'.$this->l('Confirmation-Url:').' '.$this->l('(Method POST)').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php</textarea>
         <br /><br />
         <b>'.$this->l('Success-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-</textarea>
