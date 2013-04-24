@@ -4,6 +4,7 @@ Add compatibility for PS 1.5.4
 Fix payment tpl {l ...} tag
 Add multi language support for images
 Add new translations for es, fr, it, nl and pl
+Fix module name translation
 
 // Version 15
 

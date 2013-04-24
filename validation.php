@@ -34,11 +34,6 @@
 require dirname(__FILE__).'/../../config/config.inc.php';
 require dirname(__FILE__).'/sofortbanking.php';
 
-if (empty(Context::getContext()->link))
-  Context::getContext()->link = new Link();
-
-$sofortbanking = new Sofortbanking();
-
 $orderState = Configuration::get('SOFORTBANKING_OS_ERROR');
 $password = Configuration::get('SOFORTBANKING_NOTIFY_PW')
   ? Configuration::get('SOFORTBANKING_NOTIFY_PW')
@@ -61,6 +56,14 @@ $requestData = array('transaction' => $_POST['transaction'] , 'user_id' => $_POS
   'created' => $_POST['created'] , 'project_password' => $password);
 
 $cart = new Cart(intval($_POST['user_variable_1']));
+
+if(class_exists('Context')){
+  if (empty(Context::getContext()->link))
+    Context::getContext()->link = new Link();
+  Context::getContext()->language = new Language($cart->id_lang);
+}
+$sofortbanking = new Sofortbanking();
+
 if($_POST['hash'] != sha1(implode('|', $requestData))){
   echo($sofortbanking->l('Fatal Error (1)'));
 }elseif(!is_object($cart) || !$cart){
