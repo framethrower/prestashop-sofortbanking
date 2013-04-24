@@ -16,7 +16,7 @@ $_MODULE['<{sofortbanking}prestashop>payment_execution_b459d7e1103a33f6790ca26c0
 $_MODULE['<{sofortbanking}prestashop>payment_execution_6af381041f6fb0734eac4b0964d827e8']  = 'Wybrałeś SOFORT Banking jako metodę płatności, zostaniesz więc za chwilę skierowany do SOFORT Banking w celu zrealizowania płatności.';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_167add1e8662b28f92fd0ab08e3c5ff5']  = 'Całkowita wartość Twojego zamówienia wynosi';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_1f87346a16cf80c372065de3c54c86d9']  = '(z VAT)';
-$_MODULE['<{sofortbanking}prestashop>payment_execution_52f64bc0164b0e79deaeaaaa7e93f98f']  = '\'Potwierdź swoje zamówienie, klikając na przycisk \""Potwierdzenie zamówienia\""';
+$_MODULE['<{sofortbanking}prestashop>payment_execution_52f64bc0164b0e79deaeaaaa7e93f98f']  = 'Potwierdź swoje zamówienie, klikając na przycisk \"Potwierdzenie zamówienia\"';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_46b9e3665f187c739c55983f757ccda0']  = 'Ostateczne potwierdzenie zamówienia';
 $_MODULE['<{sofortbanking}prestashop>payment_redirect_8160b19e00d84831a18547ae1320d2a7']  = 'Zapłata przy pomocy SOFORT Banking';
 $_MODULE['<{sofortbanking}prestashop>payment_redirect_f1d3b424cd68795ecaa552883759aceb']  = 'Potwierdzenie zamówienia';
@@ -26,7 +26,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_509a4658ba4b9a50ee9ae034572fd
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_3fa75fce2edd80bef3de79f145274290']  = 'Zaakceptuj metodę płatności: przelew w SOFORT Banking';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_69a1a3ad8dd5da6db3c4da838a0cf9c7']  = 'Jesteś pewien, ze chcesz wykasować cały moduł ze wszystkimi szczegółami?';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_aaea7719b29a4425800cf27baa948909']  = 'Uwaga: Musisz zaktualizować swój adres URL wykorzystywany do weryfikacji podczas logowania dla klientów SOFORT Banking i usunąć stary moduł ze swojej instalacji.';
-$_MODULE['<{sofortbanking}prestashop>sofortbanking_75e74dadd42d76ea206adda30801f542']  = '\'Konieczne jest podanie ID użytkownika \""user id\"" w SOFORT Banking';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_75e74dadd42d76ea206adda30801f542']  = '\'Konieczne jest podanie ID użytkownika \"user id\" w SOFORT Banking';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c888438d14855d7d96a2724ee9c306bd']  = 'Ustawienia zostały zapisane';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_f4f70727dc34561dfde1a3c529b6205c']  = 'Ustawienia';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_1bf92b10b260e3f1828f683c0c1c529d']  = 'ID użytkownika w SOFORT Banking:';
