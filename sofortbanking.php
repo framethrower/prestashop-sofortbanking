@@ -56,6 +56,7 @@ class Sofortbanking extends PaymentModule
     if (file_exists(_PS_ROOT_DIR_.'/modules/sofortueberweisung/sofortueberweisung.php') && $this->active){
       $this->warning = $this->l('Note: You have to update the notify urls in the sofortbanking customer login and remove the old module version.');
     }
+    $this->context = Context::getContext();
   }
 
   public function install()
@@ -187,7 +188,7 @@ class Sofortbanking extends PaymentModule
       </style>';
 
     $this->_html .= '
-      <div><img src="'.$this->_path.'img/en/sofortbanking.png" alt="sofortbanking.png" title="" /></div>
+      <div><img src="'.$this->_path.'img/'.$this->context->language->iso_code.'/sofortbanking.png" alt="sofortbanking.png" title="" /></div>
       <form method="post" action="'.$_SERVER['REQUEST_URI'].'">
       <fieldset>
         <legend><img src="'.$this->_path.'logo.gif" />'.$this->l('Settings').'</legend>
