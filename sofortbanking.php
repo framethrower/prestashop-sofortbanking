@@ -43,7 +43,7 @@ class Sofortbanking extends PaymentModule
     }else{
       $this->tab = 'payments_gateways';
     }
-    $this->version = '1.6';
+    $this->version = '1.7';
     $this->author = 'touchdesign';
     $this->module_key = '65af9f83d2ae6fbe6dbdaa91d21f952a';
     $this->currencies = true;
