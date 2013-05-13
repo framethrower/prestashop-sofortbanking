@@ -41,7 +41,7 @@ require_once dirname(__FILE__).'/../../config/config.inc.php';
 require_once dirname(__FILE__).'/sofortbanking.php';
 require_once dirname(__FILE__).'/lib/touchdesign.php';
 
-if (isset(Context::getContext()->controller))
+if (class_exists('Context') && isset(Context::getContext()->controller))
   $controller = Context::getContext()->controller;
 else
 {
