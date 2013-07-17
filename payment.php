@@ -41,19 +41,18 @@ require_once dirname(__FILE__).'/../../config/config.inc.php';
 require_once dirname(__FILE__).'/sofortbanking.php';
 require_once dirname(__FILE__).'/lib/touchdesign.php';
 
-if (class_exists('Context') && isset(Context::getContext()->controller))
-	$controller = Context::getContext()->controller;
-else
-{
-	$controller = new FrontController();
-	$controller->display_column_left = false;
-	$controller->init();
-	$controller->setMedia();
-}
+// If PS 1.5 redirect to controller
+if (class_exists('Context'))
+	touchdesign::redirect(Context::getContext()->link->getModuleLink('sofortbanking', 'payment'),null,false,false);
 
-@$controller->displayHeader();
+$controller = new FrontController();
+$controller->display_column_left = false;
+$controller->init();
+$controller->setMedia();
 
-if (!@$cookie->isLogged(true)){
+$controller->displayHeader();
+
+if (!$cookie->isLogged(true)){
 	touchdesign::redirect(__PS_BASE_URI__.'order.php','order=back.php');
 }
 
@@ -62,6 +61,6 @@ $sofortbanking = new sofortbanking();
 // Build and display payment page 
 echo $sofortbanking->execPayment($cart);
 
-@$controller->displayFooter();
+$controller->displayFooter();
 
 ?>
