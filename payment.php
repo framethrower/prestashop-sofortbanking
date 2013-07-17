@@ -59,6 +59,7 @@ if (!@$cookie->isLogged(true)){
 
 $sofortbanking = new sofortbanking();
 
+// Build and display payment page 
 echo $sofortbanking->execPayment($cart);
 
 @$controller->displayFooter();

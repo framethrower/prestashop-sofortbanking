@@ -64,6 +64,7 @@ if(class_exists('Context')){
 }
 $sofortbanking = new Sofortbanking();
 
+// Validate submited post vars
 if($_POST['hash'] != sha1(implode('|', $requestData))){
 	echo($sofortbanking->l('Fatal Error (1)'));
 }elseif(!is_object($cart) || !$cart){
@@ -74,6 +75,7 @@ if($_POST['hash'] != sha1(implode('|', $requestData))){
 
 $customer = new Customer((int)$cart->id_customer);
 
+// Validate this card in store
 if (version_compare(_PS_VERSION_, '1.4.0', '<')){
 	$sofortbanking->validateOrder($cart->id, $orderState, floatval(number_format($cart->getOrderTotal(true, 3), 2, '.', '')),
 		$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').$_POST['transaction'],

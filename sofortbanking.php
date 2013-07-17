@@ -33,8 +33,14 @@
 
 class Sofortbanking extends PaymentModule
 {
+	/** @var string HTML */
 	private $_html = '';
 
+	/**
+	 * Build module
+	 *
+	 * @see PaymentModule::__construct()
+	 */
 	public function __construct()
 	{
 		$this->name = 'sofortbanking';
@@ -53,17 +59,19 @@ class Sofortbanking extends PaymentModule
 		$this->displayName = $this->l('sofortbanking');
 		$this->description = $this->l('Accepts payments by sofortbanking');
 		$this->confirmUninstall = $this->l('Are you sure you want to delete your details?');
-		if (file_exists(_PS_ROOT_DIR_.'/modules/sofortueberweisung/sofortueberweisung.php') && $this->active){
-			$this->warning = $this->l('Note: You have to update the notify urls in the sofortbanking customer login and remove the old module version.');
-		}
 		if(isset($this->context)){
-		    $this->language = $this->context->language;
+			$this->language = $this->context->language;
 		}else{
 			global $cookie;
 			$this->language = new Language($cookie->id_lang);
 		}
 	}
 
+	/**
+	 * Install module
+	 *
+	 * @see PaymentModule::install()
+	 */
 	public function install()
 	{
 		if (!parent::install() ||
@@ -82,11 +90,15 @@ class Sofortbanking extends PaymentModule
 		){
 			return false;
 		}
-		$this->updateModule();
 
 		return true;
 	}
 
+	/**
+	 * Uninstall module
+	 *
+	 * @see PaymentModule::uninstall()
+	 */
 	public function uninstall()
 	{
 		if (!Configuration::deleteByName('SOFORTBANKING_USER_ID') ||
@@ -106,23 +118,9 @@ class Sofortbanking extends PaymentModule
 		return true;
 	}
 
-	private function updateModule()
-	{
-		if (file_exists(_PS_ROOT_DIR_.'/modules/sofortueberweisung/sofortueberweisung.php'))
-		{
-			$configuration = Configuration::getMultiple(array('SOFORTBANKING_USER_ID','SOFORTBANKING_PROJECT_ID','SOFORTBANKING_PROJECT_PW',
-				'SOFORTBANKING_NOTIFY_PW','SOFORTBANKING_BLOCK_LOGO','SOFORTBANKING_OS_ERROR','SOFORTBANKING_OS_ACCEPTED','SOFORTBANKING_CPROTECT'));
-			foreach($configuration as $key => $value){
-				Configuration::updateValue($key,Configuration::get(str_replace('SOFORTBANKING_','SOFORTUEBERWEISUNG_',$key)));
-			}
-			include_once _PS_ROOT_DIR_.'/modules/sofortueberweisung/sofortueberweisung.php';
-			if($old = new Sofortueberweisung()){
-				$old->uninstall();
-			}
-			Configuration::loadConfiguration();
-		}
-	}
-
+	/**
+	 * Validate submited data
+	 */
 	private function _postValidation()
 	{
 		if (Tools::getValue('submitUpdate')){
@@ -138,6 +136,9 @@ class Sofortbanking extends PaymentModule
 		}
 	}
 
+	/**
+	 * Update submited configurations
+	 */
 	public function getContent()
 	{
 		$this->_html = '<h2>'.$this->displayName.'</h2>';
@@ -149,12 +150,6 @@ class Sofortbanking extends PaymentModule
 			Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', Tools::getValue('SOFORTBANKING_BLOCK_LOGO'));
 			Configuration::updateValue('SOFORTBANKING_CPROTECT', Tools::getValue('SOFORTBANKING_CPROTECT'));
 			Configuration::updateValue('SOFORTBANKING_REDIRECT', Tools::getValue('SOFORTBANKING_REDIRECT'));
-		}
-
-		// Update note
-		if (file_exists(_PS_ROOT_DIR_.'/modules/sofortueberweisung/sofortueberweisung.php'))
-		{
-			$this->_html = '<div class="warning">'.$this->l('Note: You have to update the notify urls in the sofortbanking customer login and remove the old module version.').'</div>';
 		}
 
 		$this->_postValidation();
@@ -169,6 +164,9 @@ class Sofortbanking extends PaymentModule
 		return $this->_displayForm();
 	}
 
+	/**
+	 * Get success message for submited and updated datas
+	 */
 	public function getSuccessMessage()
 	{
 		$this->_html.='
@@ -178,6 +176,9 @@ class Sofortbanking extends PaymentModule
 		</div>';
 	}
 
+	/**
+	 * Build and display admin form for configurations
+	 */
 	private function _displayForm()
 	{
 		$this->_html.= '
@@ -281,6 +282,12 @@ class Sofortbanking extends PaymentModule
 		return $this->_html;
 	}
 
+	/**
+	 * Build and display payment button
+	 * 
+	 * @param array $params
+	 * @return string Templatepart
+	 */
 	public function hookPayment($params)
 	{
 		global $smarty, $cart;
@@ -293,6 +300,12 @@ class Sofortbanking extends PaymentModule
 		return $this->display(__FILE__, 'sofortbanking.tpl');
 	}
 
+	/**
+	 * Build and display confirmation
+	 *
+	 * @param array $params
+	 * @return string Templatepart
+	 */
 	public function hookPaymentReturn($params)
 	{
 		global $smarty;
@@ -312,6 +325,12 @@ class Sofortbanking extends PaymentModule
 		return $this->display(__FILE__, 'confirmation.tpl');
 	}
 
+	/**
+	 * Build and display left column banner
+	 *
+	 * @param array $params
+	 * @return string Templatepart
+	 */
 	public function hookLeftColumn($params)
 	{
 		if(Configuration::get('SOFORTBANKING_BLOCK_LOGO') == "N"){
@@ -321,6 +340,11 @@ class Sofortbanking extends PaymentModule
 		return $this->display(__FILE__, 'block_sofortbanking_logo.tpl');
 	}
 
+	/**
+	 * Check if payment is active
+	 *
+	 * @return boolean
+	 */
 	public function isPayment()
 	{
 		if (!$this->active){
@@ -336,6 +360,12 @@ class Sofortbanking extends PaymentModule
 		return true;
 	}
 
+	/**
+	 * Build and display payment page
+	 *
+	 * @param object $cart
+	 * @return string Templatepart
+	 */
 	public function execPayment($cart)
 	{
 		global $cookie, $smarty;
