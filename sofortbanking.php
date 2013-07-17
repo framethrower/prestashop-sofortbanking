@@ -44,11 +44,10 @@ class Sofortbanking extends PaymentModule
 	public function __construct()
 	{
 		$this->name = 'sofortbanking';
-		if (version_compare(_PS_VERSION_, '1.4.0', '<')){
+		if (version_compare(_PS_VERSION_, '1.4.0', '<'))
 			$this->tab = 'Payment';
-		}else{
+		else
 			$this->tab = 'payments_gateways';
-		}
 		$this->version = '1.8';
 		$this->author = 'touchdesign';
 		$this->module_key = '65af9f83d2ae6fbe6dbdaa91d21f952a';
@@ -59,9 +58,9 @@ class Sofortbanking extends PaymentModule
 		$this->displayName = $this->l('sofortbanking');
 		$this->description = $this->l('Accepts payments by sofortbanking');
 		$this->confirmUninstall = $this->l('Are you sure you want to delete your details?');
-		if(isset($this->context)){
+		if(isset($this->context))
 			$this->language = $this->context->language;
-		}else{
+		else{
 			global $cookie;
 			$this->language = new Language($cookie->id_lang);
 		}
@@ -74,23 +73,19 @@ class Sofortbanking extends PaymentModule
 	 */
 	public function install()
 	{
-		if (!parent::install() ||
-			!Configuration::updateValue('SOFORTBANKING_USER_ID', '') ||
-			!Configuration::updateValue('SOFORTBANKING_PROJECT_ID', '') ||
-			!Configuration::updateValue('SOFORTBANKING_PROJECT_PW', '') ||
-			!Configuration::updateValue('SOFORTBANKING_NOTIFY_PW', '') ||
-			!Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', 'Y') ||
-			!Configuration::updateValue('SOFORTBANKING_CPROTECT', 'N') ||
-			!Configuration::updateValue('SOFORTBANKING_OS_ERROR', 8) ||
-			!Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', 2) ||
-			!Configuration::updateValue('SOFORTBANKING_REDIRECT', 'N') ||
-			!$this->registerHook('payment') ||
-			!$this->registerHook('paymentReturn') ||
-			!$this->registerHook('leftColumn')
-		){
+		if (!parent::install() || !Configuration::updateValue('SOFORTBANKING_USER_ID', '') ||
+				!Configuration::updateValue('SOFORTBANKING_PROJECT_ID', '') ||
+				!Configuration::updateValue('SOFORTBANKING_PROJECT_PW', '') ||
+				!Configuration::updateValue('SOFORTBANKING_NOTIFY_PW', '') ||
+				!Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', 'Y') ||
+				!Configuration::updateValue('SOFORTBANKING_CPROTECT', 'N') ||
+				!Configuration::updateValue('SOFORTBANKING_OS_ERROR', 8) ||
+				!Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', 2) ||
+				!Configuration::updateValue('SOFORTBANKING_REDIRECT', 'N') ||
+				!$this->registerHook('payment') ||
+				!$this->registerHook('paymentReturn') ||
+				!$this->registerHook('leftColumn'))
 			return false;
-		}
-
 		return true;
 	}
 
@@ -102,19 +97,16 @@ class Sofortbanking extends PaymentModule
 	public function uninstall()
 	{
 		if (!Configuration::deleteByName('SOFORTBANKING_USER_ID') ||
-			!Configuration::deleteByName('SOFORTBANKING_PROJECT_ID') ||
-			!Configuration::deleteByName('SOFORTBANKING_PROJECT_PW') ||
-			!Configuration::deleteByName('SOFORTBANKING_NOTIFY_PW') ||
-			!Configuration::deleteByName('SOFORTBANKING_BLOCK_LOGO') ||
-			!Configuration::deleteByName('SOFORTBANKING_OS_ERROR') ||
-			!Configuration::deleteByName('SOFORTBANKING_OS_ACCEPTED') ||
-			!Configuration::deleteByName('SOFORTBANKING_CPROTECT') ||
-			!Configuration::deleteByName('SOFORTBANKING_REDIRECT') ||
-			!parent::uninstall()
-		){
+				!Configuration::deleteByName('SOFORTBANKING_PROJECT_ID') ||
+				!Configuration::deleteByName('SOFORTBANKING_PROJECT_PW') ||
+				!Configuration::deleteByName('SOFORTBANKING_NOTIFY_PW') ||
+				!Configuration::deleteByName('SOFORTBANKING_BLOCK_LOGO') ||
+				!Configuration::deleteByName('SOFORTBANKING_OS_ERROR') ||
+				!Configuration::deleteByName('SOFORTBANKING_OS_ACCEPTED') ||
+				!Configuration::deleteByName('SOFORTBANKING_CPROTECT') ||
+				!Configuration::deleteByName('SOFORTBANKING_REDIRECT') ||
+				!parent::uninstall())
 			return false;
-		}
-
 		return true;
 	}
 
@@ -124,15 +116,12 @@ class Sofortbanking extends PaymentModule
 	private function _postValidation()
 	{
 		if (Tools::getValue('submitUpdate')){
-			if (!Tools::getValue('SOFORTBANKING_USER_ID')){
+			if (!Tools::getValue('SOFORTBANKING_USER_ID'))
 				$this->_postErrors[] = $this->l('sofortueberweisung "user id" is required.');
-			}
-			if (!Tools::getValue('SOFORTBANKING_PROJECT_ID')){
+			if (!Tools::getValue('SOFORTBANKING_PROJECT_ID'))
 				$this->_postErrors[] = $this->l('sofortueberweisung "project id" is required.');
-			}
-			if (!Tools::getValue('SOFORTBANKING_PROJECT_PW')){
+			if (!Tools::getValue('SOFORTBANKING_PROJECT_PW'))
 				$this->_postErrors[] = $this->l('sofortueberweisung "project password" is required.');
-			}
 		}
 	}
 
@@ -153,13 +142,11 @@ class Sofortbanking extends PaymentModule
 		}
 
 		$this->_postValidation();
-		if (isset($this->_postErrors) && sizeof($this->_postErrors)){
-			foreach ($this->_postErrors AS $err){
+		if (isset($this->_postErrors) && sizeof($this->_postErrors))
+			foreach ($this->_postErrors AS $err)
 				$this->_html .= '<div class="alert error">'. $err .'</div>';
-			}
-		}elseif(Tools::getValue('submitUpdate') && !isset($this->_postErrors)){
+		elseif(Tools::getValue('submitUpdate') && !isset($this->_postErrors))
 			$this->getSuccessMessage();
-		}
 
 		return $this->_displayForm();
 	}
@@ -265,10 +252,13 @@ class Sofortbanking extends PaymentModule
 				<b>'.$this->l('Confirmation-Url:').' '.$this->l('(Method POST)').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php</textarea>
 				<br /><br />
 				<b>'.$this->l('Success-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-</textarea>
-				<br /><br />
-				<b>'.$this->l('Cancel-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'order.php?step=3</textarea>
-			</fieldset>
-		';
+				<br /><br />';
+		if(version_compare(_PS_VERSION_, '1.4.0', '<'))
+			$this->_html .= '<b>'.$this->l('Cancel-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'order.php?step=3</textarea>';
+		else
+			$this->_html .= '<b>'.$this->l('Cancel-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'index.php?controller=order&step=3</textarea>';
+		$this->_html .= '
+			</fieldset>';
 
 		$this->_html .= '
 			<fieldset class="space">
@@ -310,9 +300,8 @@ class Sofortbanking extends PaymentModule
 	{
 		global $smarty;
 
-		if (!$this->isPayment()){
+		if (!$this->isPayment())
 			return false;
-		}
 
 		$state = $params['objOrder']->getCurrentState();
 		if ($state == Configuration::get('SOFORTBANKING_OS_ACCEPTED'))
@@ -333,10 +322,8 @@ class Sofortbanking extends PaymentModule
 	 */
 	public function hookLeftColumn($params)
 	{
-		if(Configuration::get('SOFORTBANKING_BLOCK_LOGO') == "N"){
+		if(Configuration::get('SOFORTBANKING_BLOCK_LOGO') == "N")
 			return false;
-		}
-
 		return $this->display(__FILE__, 'block_sofortbanking_logo.tpl');
 	}
 
@@ -347,16 +334,13 @@ class Sofortbanking extends PaymentModule
 	 */
 	public function isPayment()
 	{
-		if (!$this->active){
+		if (!$this->active)
 			return false;
-		}
-
+		
 		if (!Configuration::get('SOFORTBANKING_USER_ID')
-			|| !Configuration::get('SOFORTBANKING_PROJECT_ID')
-			|| !Configuration::get('SOFORTBANKING_PROJECT_PW')){
+				|| !Configuration::get('SOFORTBANKING_PROJECT_ID')
+				|| !Configuration::get('SOFORTBANKING_PROJECT_PW'))
 			return false;
-		}
-
 		return true;
 	}
 
@@ -370,9 +354,8 @@ class Sofortbanking extends PaymentModule
 	{
 		global $cookie, $smarty;
 
-		if (!$this->isPayment()){
+		if (!$this->isPayment())
 			return false;
-		}
 
 		$address = new Address(intval($cart->id_address_invoice));
 		$customer = new Customer(intval($cart->id_customer));
@@ -380,17 +363,14 @@ class Sofortbanking extends PaymentModule
 		$country = new Country(intval($address->id_country));
 		$lang = Language::getIsoById(intval($cart->id_lang));
 
-		if (!Configuration::get('SOFORTBANKING_USER_ID')){
+		if (!Configuration::get('SOFORTBANKING_USER_ID'))
 			return $this->l($this->displayName.' Error: (invalid or undefined userId)');
-		}
-		if (!Configuration::get('SOFORTBANKING_PROJECT_ID')){
+		if (!Configuration::get('SOFORTBANKING_PROJECT_ID'))
 			return $this->l($this->displayName.' Error: (invalid or undefined projectId)');
-		}
 		if (!Validate::isLoadedObject($address)
-			|| !Validate::isLoadedObject($customer)
-			|| !Validate::isLoadedObject($currency)){
+				|| !Validate::isLoadedObject($customer)
+				|| !Validate::isLoadedObject($currency))
 			return $this->l($this->displayName.' Error: (invalid address or customer)');
-		}
 
 		$parameters = array(
 			'user_id' => Configuration::get('SOFORTBANKING_USER_ID'),'project_id' => Configuration::get('SOFORTBANKING_PROJECT_ID'),
