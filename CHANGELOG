@@ -1,6 +1,9 @@
 // Version 18
 
 Small fix to grep backend language with or without context
+Add index.php protection for sub-directories
+Add some compats in dev_mode for PS 1.5
+Replace spaces by tabs
 
 // Version 17
 
