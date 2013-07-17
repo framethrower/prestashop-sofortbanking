@@ -6,10 +6,7 @@ Add some compats in dev_mode for PS 1.5
 Add controllers and views for PS 1.5
 Replace spaces by tabs
 Code cleanup
-<<<<<<< HEAD:CHANGELOG
 Fix cancellation link for PS 1.5
-=======
->>>>>>> 5b560f2... Revert "Code cleanup":CHANGELOG
 
 // Version 17
 
