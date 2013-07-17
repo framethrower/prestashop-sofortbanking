@@ -52,9 +52,8 @@ $controller->setMedia();
 
 $controller->displayHeader();
 
-if (!$cookie->isLogged(true)){
+if (!$cookie->isLogged(true))
 	touchdesign::redirect(__PS_BASE_URI__.'order.php','order=back.php');
-}
 
 $sofortbanking = new sofortbanking();
 

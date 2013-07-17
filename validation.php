@@ -61,17 +61,17 @@ if(class_exists('Context')){
 	if (empty(Context::getContext()->link))
 		Context::getContext()->link = new Link();
 	Context::getContext()->language = new Language($cart->id_lang);
+	Context::getContext()->currency = new Currency($cart->id_currency);
 }
 $sofortbanking = new Sofortbanking();
 
 // Validate submited post vars
-if($_POST['hash'] != sha1(implode('|', $requestData))){
+if($_POST['hash'] != sha1(implode('|', $requestData)))
 	echo($sofortbanking->l('Fatal Error (1)'));
-}elseif(!is_object($cart) || !$cart){
+elseif(!is_object($cart) || !$cart)
 	echo($sofortbanking->l('Fatal Error (2)'));
-}else{
+else
 	$orderState = Configuration::get('SOFORTBANKING_OS_ACCEPTED');
-}
 
 $customer = new Customer((int)$cart->id_customer);
 
