@@ -41,8 +41,14 @@ $order_id = Order::getOrderByCartId(intval($_GET['user_variable_1']));
 
 $order = new Order($order_id);
 
-touchdesign::redirect(__PS_BASE_URI__ . 'order-confirmation.php','id_cart=' . $order->id_cart
-  . '&id_module=' . $sofortbanking->id . '&id_order=' . $order_id
-  . '&key='.$order->secure_key);
+if (version_compare(_PS_VERSION_, '1.4.0', '<')){
+		touchdesign::redirect(__PS_BASE_URI__ . 'order-confirmation.php','id_cart=' . $order->id_cart 
+			. '&id_module=' . $sofortbanking->id . '&id_order=' . $order_id 
+			. '&key='.$order->secure_key);
+}else{
+		touchdesign::redirect(__PS_BASE_URI__ . 'index.php','controller=order-confirmation&id_cart=' . $order->id_cart 
+			. '&id_module=' . $sofortbanking->id . '&id_order=' . $order_id 
+			. '&key='.$order->secure_key);
+}
 
 ?>
