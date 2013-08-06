@@ -7,7 +7,7 @@
  * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 1.8
+ * @version 1.9
  * @copyright 19.08.2009, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -51,7 +51,7 @@ class Sofortbanking extends PaymentModule
 			$this->tab = 'Payment';
 		else
 			$this->tab = 'payments_gateways';
-		$this->version = '1.8';
+		$this->version = '1.9';
 		$this->author = 'touchdesign';
 		$this->module_key = '65af9f83d2ae6fbe6dbdaa91d21f952a';
 		$this->currencies = true;
