@@ -35,6 +35,9 @@ class Sofortbanking extends PaymentModule
 {
 	/** @var string HTML */
 	private $_html = '';
+	
+	/** @var string Supported languages */
+	private $_languages = array('en','de','es','fr','it','nl','pl');
 
 	/**
 	 * Build module
@@ -181,7 +184,7 @@ class Sofortbanking extends PaymentModule
 			</style>';
 
 		$this->_html .= '
-			<div><img src="'.$this->_path.'img/'.$this->language->iso_code.'/sofortbanking.png" alt="sofortbanking.png" title="" /></div>
+			<div><img src="'.$this->_path.'img/'.$this->isSupportedLang($this->language->iso_code).'/sofortbanking.png" alt="sofortbanking.png" title="" /></div>
 			<form method="post" action="'.$_SERVER['REQUEST_URI'].'">
 			<fieldset>
 				<legend><img src="'.$this->_path.'logo.gif" />'.$this->l('Settings').'</legend>
@@ -271,7 +274,25 @@ class Sofortbanking extends PaymentModule
 
 		return $this->_html;
 	}
-
+	
+	/**
+	 * Check supported languages
+	 *
+	 * @param string $iso
+	 * @return string iso
+	 */
+	private function isSupportedLang($iso=null)
+	{
+		global $cart;
+	
+		if($iso === null)
+			$iso = Language::getIsoById(intval($cart->id_lang));
+		if(in_array($iso,$this->_languages))
+			return $iso;
+		else
+			return 'en';
+	}
+	
 	/**
 	 * Build and display payment button
 	 * 
@@ -286,10 +307,11 @@ class Sofortbanking extends PaymentModule
 		$smarty->assign('this_path_ssl',Tools::getHttpHost(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/');
 		$smarty->assign('cprotect',Configuration::get('SOFORTBANKING_CPROTECT'));
 		$smarty->assign('lang',Language::getIsoById(intval($params['cart']->id_lang)));
+		$smarty->assign('mod_lang',$this->isSupportedLang());
 
 		return $this->display(__FILE__, 'sofortbanking.tpl');
 	}
-
+	
 	/**
 	 * Build and display confirmation
 	 *
@@ -322,8 +344,10 @@ class Sofortbanking extends PaymentModule
 	 */
 	public function hookLeftColumn($params)
 	{
+		global $smarty;
 		if(Configuration::get('SOFORTBANKING_BLOCK_LOGO') == "N")
 			return false;
+		$smarty->assign('mod_lang',$this->isSupportedLang());
 		return $this->display(__FILE__, 'block_sofortbanking_logo.tpl');
 	}
 
@@ -396,7 +420,8 @@ class Sofortbanking extends PaymentModule
 			'gateway' => 'https://www.sofortueberweisung.de/payment/start',
 			'lang' => $lang,
 			'cprotect' => Configuration::get('SOFORTBANKING_CPROTECT'),
-			'parameters' => $parameters
+			'parameters' => $parameters,
+			'mod_lang',$this->isSupportedLang()
 		));
 
 		return $this->display(__FILE__, (Configuration::get('SOFORTBANKING_REDIRECT') == 'Y'

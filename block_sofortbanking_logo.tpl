@@ -33,7 +33,7 @@
 <!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
 <div id="sofortbanking_logo_block_left" class="paiement_logo_block">
 	<a href="{$link->getCMSLink(5)}">
-		<img src="{$module_template_dir}img/{$lang_iso}/banner_120x180.png" alt="banner_120x180.png" title="" width="120" height="180" />
+		<img src="{$module_template_dir}img/{$mod_lang}/banner_120x180.png" alt="banner_120x180.png" title="" width="120" height="180" />
 	</a>
 </div>
 <!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->

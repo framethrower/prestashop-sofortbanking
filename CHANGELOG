@@ -1,6 +1,7 @@
 // Version 19
 
 Add currency paramater for CHF,GBP and Euro currencies
+Add module lang fallback
 
 // Version 18
 

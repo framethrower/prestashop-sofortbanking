@@ -34,7 +34,26 @@
 class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 {
 	public $ssl = true;
-
+	
+	/** @var string Supported languages */
+	private $_languages = array('en','de','es','fr','it','nl','pl');
+	
+	/**
+	 * Check supported languages
+	 *
+	 * @param string $iso
+	 * @return string iso
+	 */
+	private function isSupportedLang($iso=null)
+	{
+		if($iso === null)
+			$iso = Language::getIsoById(intval($this->context->cart->id_lang));
+		if(in_array($iso,$this->_languages))
+			return $iso;
+		else
+			return 'en';
+	}
+	
 	/**
 	 * @see FrontController::initContent()
 	 */
@@ -85,7 +104,8 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 			'gateway' => 'https://www.sofortueberweisung.de/payment/start',
 			'lang' => $lang,
 			'cprotect' => Configuration::get('SOFORTBANKING_CPROTECT'),
-			'parameters' => $parameters
+			'parameters' => $parameters,
+			'mod_lang' => $this->isSupportedLang()
 		));
 		
 		$this->setTemplate((Configuration::get('SOFORTBANKING_REDIRECT') == 'Y'
