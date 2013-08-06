@@ -36,7 +36,7 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 	public $ssl = true;
 	
 	/** @var string Supported languages */
-	private $_languages = array('en','de','es','fr','it','nl','pl');
+	private $_languages = array('en','de','es','fr','it','nl','pl','gb');
 	
 	/**
 	 * Check supported languages

@@ -37,7 +37,7 @@ class Sofortbanking extends PaymentModule
 	private $_html = '';
 	
 	/** @var string Supported languages */
-	private $_languages = array('en','de','es','fr','it','nl','pl');
+	private $_languages = array('en','de','es','fr','it','nl','pl','gb');
 
 	/**
 	 * Build module
