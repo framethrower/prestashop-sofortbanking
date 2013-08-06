@@ -55,7 +55,7 @@
 	<input type="hidden" name="sender_holder" value="{$parameters.sender_holder}" />
 	<input type="hidden" name="sender_country_id" value="{$parameters.sender_country_id}" />
 	<input type="hidden" name="amount" value="{$parameters.amount}" />
-	<input type="hidden" name="sender_currency_id" value="{$parameters.sender_currency_id}" />
+	<input type="hidden" name="currency_id" value="{$parameters.currency_id}" />
 	<input type="hidden" name="reason_1" value="{$parameters.reason_1}" />
 	<input type="hidden" name="reason_2" value="{$parameters.reason_2}" />
 	<input type="hidden" name="user_variable_0" value="{$parameters.user_variable_0}" />

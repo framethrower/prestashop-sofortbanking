@@ -1,3 +1,7 @@
+// Version 19
+
+Add currency paramater for CHF,GBP and Euro currencies
+
 // Version 18
 
 Small fix to grep backend language with or without context
