@@ -3,6 +3,7 @@
 Add currency paramater for CHF,GBP and Euro currencies
 Add module lang fallback
 Add new translation for gb
+Fix translation strings
 
 // Version 18
 

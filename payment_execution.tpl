@@ -67,8 +67,8 @@
 
 	<p><img src="{$this_path}img/{$mod_lang}/sofortbanking_small.png" alt="sofortbanking.png" title="" width="100" height="38" /></p>
 	
-	<p>{l s='SOFORT Ueberweisung – Einfach sicher zahlen.' mod='sofortbanking'}</p>
-	<p>{l s='Mit dem TUEV-zertifiziertem Bezahlsystem SOFORT Ueberweisung koennen Sie dank PIN&TAN, ohne Registrierung, einfach und sicher mit Ihren gewohnten Online-Banking-Daten zahlen.' mod='sofortbanking'} <a target="_blank" href="https://documents.sofort.com/de/sue/kundeninformationen">{l s='Read more.' mod='sofortbanking'}</a>
+	<p>{l s='SOFORT Banking - Online payments made easy.' mod='sofortbanking'}</p>
+	<p>{l s='With the TÜV-certified, international direct payment system SOFORT Banking.' mod='sofortbanking'} <a target="_blank" href="https://documents.sofort.com/de/sue/kundeninformationen">{l s='Read more.' mod='sofortbanking'}</a>
 	
 	<p>{l s='You have chosen to pay by sofortbanking.' mod='sofortbanking'} {l s='the total amount of your order is' mod='sofortbanking'} <span id="amount" class="price">{displayPrice price=$total}</span> {l s='(tax incl.)' mod='sofortbanking'}</p>
 	<p style="margin-top:20px;"><b>{l s='Please confirm your order by clicking \'I confirm my order\'.' mod='sofortbanking'}</b></p>

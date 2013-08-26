@@ -83,7 +83,7 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 		$parameters = array(
 			'user_id' => Configuration::get('SOFORTBANKING_USER_ID'),'project_id' => Configuration::get('SOFORTBANKING_PROJECT_ID'),
 			'sender_holder' => '','','','sender_country_id' => $country->iso_code,
-			'amount' => number_format(Tools::convertPrice($cart->getOrderTotal(), $currency), 2, '.', ''),
+			'amount' => number_format($cart->getOrderTotal(), 2, '.', ''),
 			'currency_id' => $currency->iso_code,'reason_1' => time().'-'.intval($cart->id),
 			'reason_2' => $customer->firstname.' '.ucfirst(strtolower($customer->lastname)),
 			'user_variable_0' => $customer->secure_key,'user_variable_1' => intval($cart->id),
@@ -97,7 +97,7 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 			'nbProducts' => $cart->nbProducts(),
 			'cust_currency' => $this->context->currency,
 			'currencies' => $this->context->currency,
-			'total' => $cart->getOrderTotal(true, 3),
+			'total' => $cart->getOrderTotal(),
 			'isoCode' =>  $this->context->language->iso_code,
 			'version' => _PS_VERSION_,
 			'hash' => sha1(implode('|',$parameters)),
