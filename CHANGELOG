@@ -4,6 +4,8 @@ Remove old Payment tab
 Replace globals by Tools::getValue()
 Remove unused code from touchdesign lib
 Move template files to views
+Rewrite admin display form for views
+Cast some user values for "better performances"...
 
 // Version 19
 

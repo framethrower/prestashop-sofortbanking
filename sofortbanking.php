@@ -148,7 +148,7 @@ class Sofortbanking extends PaymentModule
 		elseif(Tools::getValue('submitUpdate') && !isset($this->_postErrors))
 			$this->getSuccessMessage();
 
-		return $this->_displayForm();
+		return $this->_html.$this->_displayForm();
 	}
 
 	/**
@@ -168,108 +168,29 @@ class Sofortbanking extends PaymentModule
 	 */
 	private function _displayForm()
 	{
-		$this->_html.= '
-			<style type="text/css">
-			fieldset a {
-				color:#0099ff;
-				text-decoration:underline;"
-			}
-			fieldset a:hover {
-				color:#000000;
-				text-decoration:underline;"
-			}
-			</style>';
+	    global $smarty;
+	    
+	    $tplVars = array(
+	            'action' => $_SERVER['REQUEST_URI'],
+	            'img_path' => $this->_path.'img/'.$this->isSupportedLang($this->language->iso_code),
+	            'path' => $this->_path);
+	    
+	    $config = Configuration::getMultiple(array('SOFORTBANKING_USER_ID','SOFORTBANKING_PROJECT_ID','SOFORTBANKING_PROJECT_PW',
+	            'SOFORTBANKING_NOTIFY_PW','SOFORTBANKING_BLOCK_LOGO','SOFORTBANKING_CPROTECT','SOFORTBANKING_REDIRECT'));
+	    
+	    if(version_compare(_PS_VERSION_, '1.5.0', '>'))
+	        $link_cancellation = (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'index.php?controller=order&step=3';
+	    else
+	        $link_cancellation = (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'order.php?step=3';
+	        
+	    $link = array(
+	            'validation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php',
+	            'success' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-',
+	            'cancellation' => $link_cancellation);
+	    
+	    $smarty->assign(array('sofort' => array('dfl' => $tplVars,'link' => $link,'config' => $config)));
 
-		$this->_html .= '
-			<div><img src="'.$this->_path.'img/'.$this->isSupportedLang($this->language->iso_code).'/sofortbanking.png" alt="sofortbanking.png" title="" /></div>
-			<form method="post" action="'.$_SERVER['REQUEST_URI'].'">
-			<fieldset>
-				<legend><img src="'.$this->_path.'logo.gif" />'.$this->l('Settings').'</legend>
-				<label>'.$this->l('sofortbanking user ID?').'</label>
-				<div class="margin-form">
-					<input type="text" name="SOFORTBANKING_USER_ID" value="'.Configuration::get('SOFORTBANKING_USER_ID').'" />
-					<p>'.$this->l('Leave it blank for disabling').'</p>
-				</div>
-				<div class="clear"></div>
-				<label>'.$this->l('sofortbanking project ID?').'</label>
-				<div class="margin-form">
-					<input type="text" name="SOFORTBANKING_PROJECT_ID" value="'.Configuration::get('SOFORTBANKING_PROJECT_ID').'" />
-					<p>'.$this->l('Leave it blank for disabling').'</p>
-				</div>
-				<div class="clear"></div>
-				<label>'.$this->l('sofortbanking project password?').'</label>
-				<div class="margin-form">
-					<input type="password" name="SOFORTBANKING_PROJECT_PW" value="'.Configuration::get('SOFORTBANKING_PROJECT_PW').'" />
-					<p>'.$this->l('Leave it blank for disabling').'</p>
-				</div>
-				<div class="clear"></div>
-				<label>'.$this->l('sofortbanking notify password?').'</label>
-				<div class="margin-form">
-					<input type="password" name="SOFORTBANKING_NOTIFY_PW" value="'.Configuration::get('SOFORTBANKING_NOTIFY_PW').'" />
-					<p>'.$this->l('Leave it blank for disabling').'</p>
-				</div>
-				<div class="clear"></div>
-				<label>'.$this->l('sofortbanking Logo?').'</label>
-				<div class="margin-form">
-					<select name="SOFORTBANKING_BLOCK_LOGO">
-						<option '.(Configuration::get('SOFORTBANKING_BLOCK_LOGO') == "Y" ? "selected" : "").' value="Y">'.$this->l('Yes, display the logo (recommended)').'</option>
-						<option '.(Configuration::get('SOFORTBANKING_BLOCK_LOGO') == "N" ? "selected" : "").' value="N">'.$this->l('No, do not display').'</option>
-					</select>
-					<p>'.$this->l('Display logo and payment info block in left column').'</p>
-				</div>
-				<div class="clear"></div>
-				<label>'.$this->l('Customer protection active:').'</label>
-				<div class="margin-form">
-					<select name="SOFORTBANKING_CPROTECT">
-						<option '.(Configuration::get('SOFORTBANKING_CPROTECT') == "Y" ? "selected" : "").' value="Y">'.$this->l('Yes').'</option>
-						<option '.(Configuration::get('SOFORTBANKING_CPROTECT') == "N" ? "selected" : "").' value="N">'.$this->l('No').'</option>
-					</select>
-					<p>
-						'.$this->l('You need a bank account with') .
-						' <a target="_blank" href="http://www.sofort-bank.com" target="_blank">Sofort Bank</a> ' .
-						$this->l('You need a bank account with and customer protection must be enabled in your project settings. Please check with') .
-						' <a target="_blank" href="https://kaeuferschutz.sofort-bank.com/consumerProtections/index/'.Configuration::get('SOFORTBANKING_PROJECT_ID').'">'.
-						$this->l('this link') .
-						'</a> ' .
-						$this->l('if customer protection is activated and enabled before enabling it here.') . '
-					</p>
-				</div>
-				<div class="clear"></div>
-				<label>'.$this->l('Force redirect?').'</label>
-				<div class="margin-form">
-					<select name="SOFORTBANKING_REDIRECT">
-						<option '.(Configuration::get('SOFORTBANKING_REDIRECT') == "Y" ? "selected" : "").' value="Y">'.$this->l('Yes, force redirect.').'</option>
-						<option '.(Configuration::get('SOFORTBANKING_REDIRECT') == "N" ? "selected" : "").' value="N">'.$this->l('No, let the customer confirm the order first.').'</option>
-					</select>
-					<p>'.$this->l('Force redirect to soforbanking payment page (skip confirm page).').'</p>
-				</div>
-				<div class="clear"></div>
-				<div class="margin-form clear pspace"><input type="submit" name="submitUpdate" value="'.$this->l('Update').'" class="button" /></div>
-			</fieldset>
-			</form><br />
-			<fieldset>
-				<legend><img src="'.$this->_path.'logo.gif" />'.$this->l('URLs').'</legend>
-				<b>'.$this->l('Confirmation-Url:').' '.$this->l('(Method POST)').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php</textarea>
-				<br /><br />
-				<b>'.$this->l('Success-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-</textarea>
-				<br /><br />';
-		if(version_compare(_PS_VERSION_, '1.5.0', '<'))
-			$this->_html .= '<b>'.$this->l('Cancel-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'order.php?step=3</textarea>';
-		else
-			$this->_html .= '<b>'.$this->l('Cancel-Url:').'</b><br /><textarea rows=1 style="width:98%;">'.(Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'index.php?controller=order&step=3</textarea>';
-		$this->_html .= '
-			</fieldset>';
-
-		$this->_html .= '
-			<fieldset class="space">
-				<legend><img src="../img/admin/unknown.gif" alt="" class="middle" />'.$this->l('Help').'</legend>
-				<b>'.$this->l('@Link:').'</b> <a target="_blank" href="http://www.touchdesign.de/ico/paymentnetwork.htm">'.$this->l('sofortbanking.com').'</a><br />
-				'.$this->l('@Author and Copyright:').' <a target="_blank" href="http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm">touchdesign</a><br />
-				<b>'.$this->l('@Description:').'</b><br /><br />
-				'.$this->l('sofortbanking is the direct payment method of Payment Network AG. sofortbanking allows you to directly and automatically trigger a credit transfer during your online purchase with your online banking information. A transfer order is instantly confirmed to merchant allowing an instant delivery of goods and services.').'
-			</fieldset><br />';
-
-		return $this->_html;
+	    return $this->display(__FILE__, 'views/templates/admin/display_form.tpl');
 	}
 	
 	/**
@@ -283,7 +204,7 @@ class Sofortbanking extends PaymentModule
 		global $cart;
 	
 		if($iso === null)
-			$iso = Language::getIsoById(intval($cart->id_lang));
+			$iso = Language::getIsoById((int)$cart->id_lang);
 		if(in_array($iso,$this->_languages))
 			return $iso;
 		else
@@ -303,7 +224,7 @@ class Sofortbanking extends PaymentModule
 		$smarty->assign('this_path',$this->_path);
 		$smarty->assign('this_path_ssl',Tools::getHttpHost(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/');
 		$smarty->assign('cprotect',Configuration::get('SOFORTBANKING_CPROTECT'));
-		$smarty->assign('lang',Language::getIsoById(intval($params['cart']->id_lang)));
+		$smarty->assign('lang',Language::getIsoById((int)$params['cart']->id_lang));
 		$smarty->assign('mod_lang',$this->isSupportedLang());
 
 		return $this->display(__FILE__, 'payment.tpl');
@@ -378,11 +299,11 @@ class Sofortbanking extends PaymentModule
 		if (!$this->isPayment())
 			return false;
 
-		$address = new Address(intval($cart->id_address_invoice));
-		$customer = new Customer(intval($cart->id_customer));
+		$address = new Address((int)$cart->id_address_invoice);
+		$customer = new Customer((int)$cart->id_customer);
 		$currency = $this->getCurrency();
-		$country = new Country(intval($address->id_country));
-		$lang = Language::getIsoById(intval($cart->id_lang));
+		$country = new Country((int)$address->id_country);
+		$lang = Language::getIsoById((int)$cart->id_lang);
 
 		if (!Configuration::get('SOFORTBANKING_USER_ID'))
 			return $this->l($this->displayName.' Error: (invalid or undefined userId)');
@@ -397,9 +318,9 @@ class Sofortbanking extends PaymentModule
 			'user_id' => Configuration::get('SOFORTBANKING_USER_ID'),'project_id' => Configuration::get('SOFORTBANKING_PROJECT_ID'),
 			'sender_holder' => '','','','sender_country_id' => $country->iso_code,
 			'amount' => number_format($cart->getOrderTotal(), 2, '.', ''),
-			'currency_id' => $currency->iso_code,'reason_1' => $this->l('CartId:').' '.time().'-'.intval($cart->id),
+			'currency_id' => $currency->iso_code,'reason_1' => $this->l('CartId:').' '.time().'-'.(int)$cart->id,
 			'reason_2' => $customer->firstname.' '.ucfirst(strtolower($customer->lastname)),
-			'user_variable_0' => $customer->secure_key,'user_variable_1' => intval($cart->id),
+			'user_variable_0' => $customer->secure_key,'user_variable_1' => (int)$cart->id,
 			'user_variable_2' => '','user_variable_3' => '','user_variable_4' => '','user_variable_5' => '',
 			'project_password' => Configuration::get('SOFORTBANKING_PROJECT_PW'),
 		);
@@ -411,7 +332,7 @@ class Sofortbanking extends PaymentModule
 			'cust_currency' => $cookie->id_currency,
 			'currencies' => $this->getCurrency(),
 			'total' => $cart->getOrderTotal(),
-			'isoCode' => Language::getIsoById(intval($cookie->id_lang)),
+			'isoCode' => Language::getIsoById((int)$cookie->id_lang),
 			'version' => _PS_VERSION_,
 			'hash' => sha1(implode('|',$parameters)),
 			'gateway' => 'https://www.sofortueberweisung.de/payment/start',

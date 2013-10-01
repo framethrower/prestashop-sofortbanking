@@ -55,7 +55,7 @@ $requestData = array('transaction' => Tools::getValue('transaction') , 'user_id'
 	'user_variable_4' => Tools::getValue('user_variable_4') , 'user_variable_5' => Tools::getValue('user_variable_5') ,
 	'created' => Tools::getValue('created') , 'project_password' => $password);
 
-$cart = new Cart(intval(Tools::getValue('user_variable_1')));
+$cart = new Cart((int)Tools::getValue('user_variable_1'));
 
 if(class_exists('Context')){
 	if (empty(Context::getContext()->link))
@@ -77,11 +77,11 @@ $customer = new Customer((int)$cart->id_customer);
 
 // Validate this card in store
 if (version_compare(_PS_VERSION_, '1.4.0', '<')){
-	$sofortbanking->validateOrder($cart->id, $orderState, floatval(number_format($cart->getOrderTotal(true, 3), 2, '.', '')),
+	$sofortbanking->validateOrder($cart->id, $orderState, (float)number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
 		$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
 		null, null, false);
 }else{
-	$sofortbanking->validateOrder($cart->id, $orderState, floatval(number_format($cart->getOrderTotal(true, 3), 2, '.', '')),
+	$sofortbanking->validateOrder($cart->id, $orderState, (float)number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
 		$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
 		null, null, false, $customer->secure_key);
 }
