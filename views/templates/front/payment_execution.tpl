@@ -36,8 +36,6 @@
 }
 </style>
 
-{assign var="step_back_link" value=$link->getPageLink('order', true, NULL, "step=3")}
-
 {capture name=path}{l s='sofortbanking payment' mod='sofortbanking'}{/capture}
 {include file="$tpl_dir./breadcrumb.tpl"}
 
@@ -80,7 +78,7 @@
 	<p style="margin-top:20px;"><b>{l s='Please confirm your order by clicking \'I confirm my order\'.' mod='sofortbanking'}</b></p>
 
 	<p class="cart_navigation">
-		<a href="{if isset($step_back_link)}{$step_back_link}{else}{$base_dir_ssl}order.php?step=3{/if}" class="button_large">{l s='Other payment methods' mod='sofortbanking'}</a>
+		<a href="{$link->getPageLink('order', true, NULL, "step=3")}" class="button_large">{l s='Other payment methods' mod='sofortbanking'}</a>
 		<input type="submit" name="submit" value="{l s='I confirm my order' mod='sofortbanking'}" class="exclusive_large" />
 	</p>
 

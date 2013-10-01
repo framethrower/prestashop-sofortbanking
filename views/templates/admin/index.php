@@ -7,7 +7,7 @@
  * Copyright (c) 2009 touchdesign
  *
  * @category Payment
- * @version 1.9
+ * @version 1.8
  * @copyright 19.08.2009, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
@@ -31,35 +31,6 @@
  *
  */
 
-/**
- * This file will be removed in new module version for PS 1.6
- */
-
-$useSSL = true;
-
-require_once dirname(__FILE__).'/../../config/config.inc.php';
-require_once dirname(__FILE__).'/sofortbanking.php';
-require_once dirname(__FILE__).'/lib/touchdesign.php';
-
-// If PS 1.5 redirect to controller
-if (class_exists('Context'))
-	touchdesign::redirect(Context::getContext()->link->getModuleLink('sofortbanking', 'payment'),null,false,false);
-
-$controller = new FrontController();
-$controller->display_column_left = false;
-$controller->init();
-$controller->setMedia();
-
-$controller->displayHeader();
-
-if (!$cookie->isLogged(true))
-	touchdesign::redirect(__PS_BASE_URI__.'order.php','order=back.php');
-
-$sofortbanking = new sofortbanking();
-
-// Build and display payment page 
-echo $sofortbanking->execPayment($cart);
-
-$controller->displayFooter();
+die(header('Location:../'));
 
 ?>
