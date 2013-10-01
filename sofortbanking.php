@@ -306,7 +306,7 @@ class Sofortbanking extends PaymentModule
 		$smarty->assign('lang',Language::getIsoById(intval($params['cart']->id_lang)));
 		$smarty->assign('mod_lang',$this->isSupportedLang());
 
-		return $this->display(__FILE__, 'sofortbanking.tpl');
+		return $this->display(__FILE__, 'payment.tpl');
 	}
 	
 	/**
@@ -330,7 +330,7 @@ class Sofortbanking extends PaymentModule
 			)
 		);
 
-		return $this->display(__FILE__, 'confirmation.tpl');
+		return $this->display(__FILE__, 'payment_return.tpl');
 	}
 
 	/**
@@ -345,7 +345,7 @@ class Sofortbanking extends PaymentModule
 		if(Configuration::get('SOFORTBANKING_BLOCK_LOGO') == "N")
 			return false;
 		$smarty->assign('mod_lang',$this->isSupportedLang());
-		return $this->display(__FILE__, 'block_sofortbanking_logo.tpl');
+		return $this->display(__FILE__, 'left_column.tpl');
 	}
 
 	/**

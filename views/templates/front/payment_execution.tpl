@@ -38,4 +38,51 @@
 
 {assign var="step_back_link" value=$link->getPageLink('order', true, NULL, "step=3")}
 
-{include file='../../../payment_execution.tpl'}
+{capture name=path}{l s='sofortbanking payment' mod='sofortbanking'}{/capture}
+{include file="$tpl_dir./breadcrumb.tpl"}
+
+<h2>{l s='Order summary' mod='sofortbanking'}</h2>
+
+{assign var='current_step' value='payment'}
+{include file="$tpl_dir./order-steps.tpl"}
+
+{if $nbProducts <= 0}
+	<p class="warning">{l s='Your shopping cart is empty.' mod='sofortbanking'}</p>
+{else}
+
+<h3>{l s='sofortbanking payment' mod='sofortbanking'}</h3>
+
+<form action="{$gateway}" method="post">
+
+	<input type="hidden" name="user_id" value="{$parameters.user_id}" />
+	<input type="hidden" name="project_id" value="{$parameters.project_id}" />
+	<input type="hidden" name="sender_holder" value="{$parameters.sender_holder}" />
+	<input type="hidden" name="sender_country_id" value="{$parameters.sender_country_id}" />
+	<input type="hidden" name="amount" value="{$parameters.amount}" />
+	<input type="hidden" name="currency_id" value="{$parameters.currency_id}" />
+	<input type="hidden" name="reason_1" value="{$parameters.reason_1}" />
+	<input type="hidden" name="reason_2" value="{$parameters.reason_2}" />
+	<input type="hidden" name="user_variable_0" value="{$parameters.user_variable_0}" />
+	<input type="hidden" name="user_variable_1" value="{$parameters.user_variable_1}" />
+	<input type="hidden" name="user_variable_2" value="{$parameters.user_variable_2}" />
+	<input type="hidden" name="user_variable_3" value="{$parameters.user_variable_3}" />
+	<input type="hidden" name="user_variable_4" value="{$parameters.user_variable_4}" />
+	<input type="hidden" name="user_variable_5" value="{$parameters.user_variable_5}" />
+	<input type="hidden" name="hash" value="{$hash}" />
+	<input type="hidden" name="interface_version" value="PrestaShop {$version}" />
+
+	<p><img src="{$this_path}img/{$mod_lang}/sofortbanking_small.png" alt="sofortbanking.png" title="" width="100" height="38" /></p>
+	
+	<p>{l s='SOFORT Banking - Online payments made easy.' mod='sofortbanking'}</p>
+	<p>{l s='With the TÜV-certified, international direct payment system SOFORT Banking.' mod='sofortbanking'} <a target="_blank" href="https://documents.sofort.com/de/sue/kundeninformationen">{l s='Read more.' mod='sofortbanking'}</a>
+	
+	<p>{l s='You have chosen to pay by sofortbanking.' mod='sofortbanking'} {l s='the total amount of your order is' mod='sofortbanking'} <span id="amount" class="price">{displayPrice price=$total}</span> {l s='(tax incl.)' mod='sofortbanking'}</p>
+	<p style="margin-top:20px;"><b>{l s='Please confirm your order by clicking \'I confirm my order\'.' mod='sofortbanking'}</b></p>
+
+	<p class="cart_navigation">
+		<a href="{if isset($step_back_link)}{$step_back_link}{else}{$base_dir_ssl}order.php?step=3{/if}" class="button_large">{l s='Other payment methods' mod='sofortbanking'}</a>
+		<input type="submit" name="submit" value="{l s='I confirm my order' mod='sofortbanking'}" class="exclusive_large" />
+	</p>
+
+</form>
+{/if}

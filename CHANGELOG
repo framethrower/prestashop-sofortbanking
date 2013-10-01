@@ -3,6 +3,7 @@
 Remove old Payment tab
 Replace globals by Tools::getValue()
 Remove unused code from touchdesign lib
+Move template files to views
 
 // Version 19
 
