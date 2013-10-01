@@ -4,11 +4,11 @@
  *
  * touchdesign module
  *
- * Copyright (c) 2011 touchDesign
+ * Copyright (c) 2011 touchdesign
  *
  * @category Library
  * @version 0.1
- * @copyright 12.04.2010, touchDesign
+ * @copyright 12.04.2010, touchdesign
  * @author Christin Gruber, <www.touchdesign.de>
  * @link http://www.touchdesign.de
  * @license http://opensource.org/licenses/osl-3.0.php Open Software License (OSL 3.0)
@@ -51,27 +51,6 @@ class touchdesign
     }
     
     die(header('Location: ' . $scheme . $host . $path . ($query !== null ? '?'.$query : '')));
-  }
-
-  static function isUTF8($string)
-  {
-    if (is_array($string)) {
-      $enc = implode('', $string);
-      return @!((ord($enc[0]) != 239) && (ord($enc[1]) != 187) && (ord($enc[2]) != 191));
-    } else {
-      return (utf8_encode(utf8_decode($string)) == $string);
-    }
-  }
-
-  static function convertObjUTF8($obj)
-  {
-    foreach($obj AS $k => $r){
-      if(self::isUTF8($r)){
-        $obj->$k = utf8_encode($r);
-      }
-    }
-  
-    return $obj;
   }
   
 }

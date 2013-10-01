@@ -1,6 +1,8 @@
 // Version 20
 
 Remove old Payment tab
+Replace globals by Tools::getValue()
+Remove unused code from touchdesign lib
 
 // Version 19
 
