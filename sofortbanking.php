@@ -47,10 +47,7 @@ class Sofortbanking extends PaymentModule
 	public function __construct()
 	{
 		$this->name = 'sofortbanking';
-		if (version_compare(_PS_VERSION_, '1.4.0', '<'))
-			$this->tab = 'Payment';
-		else
-			$this->tab = 'payments_gateways';
+		$this->tab = 'payments_gateways';
 		$this->version = '1.9';
 		$this->author = 'touchdesign';
 		$this->module_key = '65af9f83d2ae6fbe6dbdaa91d21f952a';
