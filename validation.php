@@ -39,23 +39,23 @@ $password = Configuration::get('SOFORTBANKING_NOTIFY_PW')
 	? Configuration::get('SOFORTBANKING_NOTIFY_PW')
 	: Configuration::get('SOFORTBANKING_PROJECT_PW');
 
-$requestData = array('transaction' => $_POST['transaction'] , 'user_id' => $_POST['user_id'] ,
-	'project_id' => $_POST['project_id'] , 'sender_holder' => $_POST['sender_holder'] ,
-	'sender_account_number' => $_POST['sender_account_number'] , 'sender_bank_code' => $_POST['sender_bank_code'] ,
-	'sender_bank_name' => $_POST['sender_bank_name'] , 'sender_bank_bic' => $_POST['sender_bank_bic'] ,
-	'sender_iban' => $_POST['sender_iban'] , 'sender_country_id' => $_POST['sender_country_id'] ,
-	'recipient_holder' => $_POST['recipient_holder'] , 'recipient_account_number' => $_POST['recipient_account_number'] ,
-	'recipient_bank_code' => $_POST['recipient_bank_code'] , 'recipient_bank_name' => $_POST['recipient_bank_name'] ,
-	'recipient_bank_bic' => $_POST['recipient_bank_bic'] , 'recipient_iban' => $_POST['recipient_iban'] ,
-	'recipient_country_id' => $_POST['recipient_country_id'] , 'international_transaction' => $_POST['international_transaction'] ,
-	'amount' => $_POST['amount'] , 'currency_id' => $_POST['currency_id'] , 'reason_1' => $_POST['reason_1'] ,
-	'reason_2' => $_POST['reason_2'] , 'security_criteria' => $_POST['security_criteria'] ,
-	'user_variable_0' => $_POST['user_variable_0'] , 'user_variable_1' => $_POST['user_variable_1'] ,
-	'user_variable_2' => $_POST['user_variable_2'] , 'user_variable_3' => $_POST['user_variable_3'] ,
-	'user_variable_4' => $_POST['user_variable_4'] , 'user_variable_5' => $_POST['user_variable_5'] ,
-	'created' => $_POST['created'] , 'project_password' => $password);
+$requestData = array('transaction' => Tools::getValue('transaction') , 'user_id' => Tools::getValue('user_id') ,
+	'project_id' => Tools::getValue('project_id') , 'sender_holder' => Tools::getValue('sender_holder') ,
+	'sender_account_number' => Tools::getValue('sender_account_number') , 'sender_bank_code' => Tools::getValue('sender_bank_code') ,
+	'sender_bank_name' => Tools::getValue('sender_bank_name') , 'sender_bank_bic' => Tools::getValue('sender_bank_bic') ,
+	'sender_iban' => Tools::getValue('sender_iban') , 'sender_country_id' => Tools::getValue('sender_country_id') ,
+	'recipient_holder' => Tools::getValue('recipient_holder') , 'recipient_account_number' => Tools::getValue('recipient_account_number') ,
+	'recipient_bank_code' => Tools::getValue('recipient_bank_code') , 'recipient_bank_name' => Tools::getValue('recipient_bank_name') ,
+	'recipient_bank_bic' => Tools::getValue('recipient_bank_bic') , 'recipient_iban' => Tools::getValue('recipient_iban') ,
+	'recipient_country_id' => Tools::getValue('recipient_country_id') , 'international_transaction' => Tools::getValue('international_transaction') ,
+	'amount' => Tools::getValue('amount') , 'currency_id' => Tools::getValue('currency_id') , 'reason_1' => Tools::getValue('reason_1') ,
+	'reason_2' => Tools::getValue('reason_2') , 'security_criteria' => Tools::getValue('security_criteria') ,
+	'user_variable_0' => Tools::getValue('user_variable_0') , 'user_variable_1' => Tools::getValue('user_variable_1') ,
+	'user_variable_2' => Tools::getValue('user_variable_2') , 'user_variable_3' => Tools::getValue('user_variable_3') ,
+	'user_variable_4' => Tools::getValue('user_variable_4') , 'user_variable_5' => Tools::getValue('user_variable_5') ,
+	'created' => Tools::getValue('created') , 'project_password' => $password);
 
-$cart = new Cart(intval($_POST['user_variable_1']));
+$cart = new Cart(intval(Tools::getValue('user_variable_1')));
 
 if(class_exists('Context')){
 	if (empty(Context::getContext()->link))
@@ -66,7 +66,7 @@ if(class_exists('Context')){
 $sofortbanking = new Sofortbanking();
 
 // Validate submited post vars
-if($_POST['hash'] != sha1(implode('|', $requestData)))
+if(Tools::getValue('hash') != sha1(implode('|', $requestData)))
 	echo($sofortbanking->l('Fatal Error (1)'));
 elseif(!is_object($cart) || !$cart)
 	echo($sofortbanking->l('Fatal Error (2)'));
@@ -78,11 +78,11 @@ $customer = new Customer((int)$cart->id_customer);
 // Validate this card in store
 if (version_compare(_PS_VERSION_, '1.4.0', '<')){
 	$sofortbanking->validateOrder($cart->id, $orderState, floatval(number_format($cart->getOrderTotal(true, 3), 2, '.', '')),
-		$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').$_POST['transaction'],
+		$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
 		null, null, false);
 }else{
 	$sofortbanking->validateOrder($cart->id, $orderState, floatval(number_format($cart->getOrderTotal(true, 3), 2, '.', '')),
-		$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').$_POST['transaction'],
+		$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
 		null, null, false, $customer->secure_key);
 }
 

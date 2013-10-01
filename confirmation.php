@@ -37,7 +37,7 @@ require_once dirname(__FILE__).'/lib/touchdesign.php';
 
 $sofortbanking = new sofortbanking();
 
-$order_id = Order::getOrderByCartId(intval($_GET['user_variable_1']));
+$order_id = Order::getOrderByCartId(intval(Tools::getValue('user_variable_1')));
 
 $order = new Order($order_id);
 
