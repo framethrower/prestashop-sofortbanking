@@ -7,6 +7,7 @@ Move template files to views
 Rewrite admin display form for views
 Cast some user values for "better performances"...
 Remove some unused code for old backwards
+Add token for payment.php
 
 // Version 19
 
