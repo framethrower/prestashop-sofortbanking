@@ -34,21 +34,21 @@
 class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 {
 	public $ssl = true;
-	
+
 	/** @var string Supported languages */
-	private $_languages = array('en','de','es','fr','it','nl','pl','gb');
-	
+	private $languages = array('en','de','es','fr','it','nl','pl','gb');
+
 	/**
 	 * Check supported languages
 	 *
 	 * @param string $iso
 	 * @return string iso
 	 */
-	private function isSupportedLang($iso=null)
+	private function isSupportedLang($iso = null)
 	{
-		if($iso === null)
+		if ($iso === null)
 			$iso = Language::getIsoById((int)$this->context->cart->id_lang);
-		if(in_array($iso,$this->_languages))
+		if (in_array($iso, $this->languages))
 			return $iso;
 		else
 			return 'en';
@@ -61,28 +61,28 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 	{
 		$this->display_column_left = false;
 		parent::initContent();
-		
+
 		if (!$this->isTokenValid())
-		    die($this->module->l($this->module->displayName.' Error: (invalid token)'));
-		
+			die($this->module->l($this->module->displayName.' Error: (invalid token)'));
+
 		$cart = $this->context->cart;
-		
+
 		$address = new Address((int)$cart->id_address_invoice);
 		$customer = new Customer((int)$cart->id_customer);
 		$currency = $this->context->currency;
 		$country = new Country((int)$address->id_country);
 		$lang = Language::getIsoById((int)$cart->id_lang);
-		
+
 		if (!Configuration::get('SOFORTBANKING_USER_ID'))
 			die($this->module->l($this->module->displayName.' Error: (invalid or undefined userId)'));
-		
+
 		if (!Configuration::get('SOFORTBANKING_PROJECT_ID'))
 			die($this->module->l($this->module->displayName.' Error: (invalid or undefined projectId)'));
-		
-		if (!Validate::isLoadedObject($address) || !Validate::isLoadedObject($customer) 
+
+		if (!Validate::isLoadedObject($address) || !Validate::isLoadedObject($customer)
 			|| !Validate::isLoadedObject($currency))
 			die($this->module->l($this->module->displayName.' Error: (invalid address or customer)'));
-		
+
 		$parameters = array(
 			'user_id' => Configuration::get('SOFORTBANKING_USER_ID'),'project_id' => Configuration::get('SOFORTBANKING_PROJECT_ID'),
 			'sender_holder' => '','','','sender_country_id' => $country->iso_code,
@@ -93,7 +93,7 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 			'user_variable_2' => '','user_variable_3' => '','user_variable_4' => '','user_variable_5' => '',
 			'project_password' => Configuration::get('SOFORTBANKING_PROJECT_PW'),
 		);
-		
+
 		$this->context->smarty->assign(array(
 			'this_path' => $this->module->getPathUri(),
 			'this_path_ssl' => Tools::getHttpHost(true, true).__PS_BASE_URI__.'modules/'.$this->module->name.'/',
@@ -103,14 +103,14 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 			'total' => $cart->getOrderTotal(),
 			'isoCode' =>  $this->context->language->iso_code,
 			'version' => _PS_VERSION_,
-			'hash' => sha1(implode('|',$parameters)),
+			'hash' => sha1(implode('|', $parameters)),
 			'gateway' => 'https://www.sofortueberweisung.de/payment/start',
 			'lang' => $lang,
 			'cprotect' => Configuration::get('SOFORTBANKING_CPROTECT'),
 			'parameters' => $parameters,
 			'mod_lang' => $this->isSupportedLang()
 		));
-		
+
 		$this->setTemplate((Configuration::get('SOFORTBANKING_REDIRECT') == 'Y'
 			? 'payment_redirect.tpl' : 'payment_execution.tpl'));
 	}

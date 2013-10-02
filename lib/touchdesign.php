@@ -31,28 +31,25 @@
  *
  */
 
-class touchdesign
+class Touchdesign
 {
 
-  static function redirect($path=null,$query=null,$scheme=null,$host=null)
-  {
-    $url="";
-    
-    if($scheme === null){
-      $scheme = (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://');
-    }
+	public static function redirect($path = null, $query = null, $scheme = null, $host = null)
+	{
+		$url = '';
 
-    if($host === null){
-      $host = $_SERVER['HTTP_HOST'];
-    }
-    
-    if($path === null){
-      $path = __PS_BASE_URI__;
-    }
-    
-    die(header('Location: ' . $scheme . $host . $path . ($query !== null ? '?'.$query : '')));
-  }
-  
+		if ($scheme === null)
+			$scheme = (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://');
+
+		if ($host === null)
+			$host = $_SERVER['HTTP_HOST'];
+
+		if ($path === null)
+			$path = __PS_BASE_URI__;
+
+		die(header('Location: '.$scheme.$host.$path.($query !== null ? '?'.$query : '')));
+	}
+
 }
 
 ?>

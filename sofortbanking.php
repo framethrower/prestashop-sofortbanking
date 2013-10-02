@@ -32,15 +32,15 @@
  */
 
 if (!defined('_PS_VERSION_'))
-    exit;
+	exit;
 
 class Sofortbanking extends PaymentModule
 {
 	/** @var string HTML */
-	private $_html = '';
-	
+	private $html = '';
+
 	/** @var string Supported languages */
-	private $_languages = array('en','de','es','fr','it','nl','pl','gb');
+	private $languages = array('en','de','es','fr','it','nl','pl','gb');
 
 	/**
 	 * Build module
@@ -113,7 +113,8 @@ class Sofortbanking extends PaymentModule
 	 */
 	private function _postValidation()
 	{
-		if (Tools::getValue('submitUpdate')){
+		if (Tools::getValue('submitUpdate'))
+		{
 			if (!Tools::getValue('SOFORTBANKING_USER_ID'))
 				$this->_postErrors[] = $this->l('sofortueberweisung "user id" is required.');
 			if (!Tools::getValue('SOFORTBANKING_PROJECT_ID'))
@@ -128,8 +129,9 @@ class Sofortbanking extends PaymentModule
 	 */
 	public function getContent()
 	{
-		$this->_html = '<h2>'.$this->displayName.'</h2>';
-		if (Tools::isSubmit('submitUpdate')){
+		$this->html = '<h2>'.$this->displayName.'</h2>';
+		if (Tools::isSubmit('submitUpdate'))
+		{
 			Configuration::updateValue('SOFORTBANKING_USER_ID', Tools::getValue('SOFORTBANKING_USER_ID'));
 			Configuration::updateValue('SOFORTBANKING_PROJECT_ID', Tools::getValue('SOFORTBANKING_PROJECT_ID'));
 			Configuration::updateValue('SOFORTBANKING_PROJECT_PW', Tools::getValue('SOFORTBANKING_PROJECT_PW'));
@@ -140,13 +142,13 @@ class Sofortbanking extends PaymentModule
 		}
 
 		$this->_postValidation();
-		if (isset($this->_postErrors) && sizeof($this->_postErrors))
-			foreach ($this->_postErrors AS $err)
-				$this->_html .= '<div class="alert error">'. $err .'</div>';
-		elseif(Tools::getValue('submitUpdate') && !isset($this->_postErrors))
+		if (isset($this->_postErrors) && count($this->_postErrors))
+			foreach ($this->_postErrors as $err)
+				$this->html .= '<div class="alert error">'.$err.'</div>';
+		elseif (Tools::getValue('submitUpdate') && !isset($this->_postErrors))
 			$this->getSuccessMessage();
 
-		return $this->_html.$this->_displayForm();
+		return $this->html.$this->_displayForm();
 	}
 
 	/**
@@ -154,7 +156,7 @@ class Sofortbanking extends PaymentModule
 	 */
 	public function getSuccessMessage()
 	{
-		$this->_html.='
+		$this->html .= '
 		<div class="conf confirm">
 			'.$this->l('Settings updated').'
 		</div>';
@@ -165,42 +167,43 @@ class Sofortbanking extends PaymentModule
 	 */
 	private function _displayForm()
 	{
-	    $tplVars = array(
-	            'action' => $_SERVER['REQUEST_URI'],
-	            'img_path' => $this->_path.'img/'.$this->isSupportedLang($this->context->language->iso_code),
-	            'path' => $this->_path);
-	    
-	    $config = Configuration::getMultiple(array('SOFORTBANKING_USER_ID','SOFORTBANKING_PROJECT_ID','SOFORTBANKING_PROJECT_PW',
-	            'SOFORTBANKING_NOTIFY_PW','SOFORTBANKING_BLOCK_LOGO','SOFORTBANKING_CPROTECT','SOFORTBANKING_REDIRECT'));
-	    
-	    $link = array(
-	            'validation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php',
-	            'success' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-',
-	            'cancellation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'index.php?controller=order&step=3');
-	    
-	    $this->context->smarty->assign(array('sofort' => array('dfl' => $tplVars,'link' => $link,'config' => $config)));
+		$dfl = array(
+			'action' => $_SERVER['REQUEST_URI'],
+			'img_path' => $this->_path.'img/'.$this->isSupportedLang($this->context->language->iso_code),
+			'path' => $this->_path);
 
-	    return $this->display(__FILE__, 'views/templates/admin/display_form.tpl');
+		$config = Configuration::getMultiple(array('SOFORTBANKING_USER_ID','SOFORTBANKING_PROJECT_ID','SOFORTBANKING_PROJECT_PW',
+			'SOFORTBANKING_NOTIFY_PW','SOFORTBANKING_BLOCK_LOGO','SOFORTBANKING_CPROTECT','SOFORTBANKING_REDIRECT'));
+
+		$link = array(
+			'validation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
+				.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php',
+			'success' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
+				.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-',
+			'cancellation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
+				.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'index.php?controller=order&step=3');
+
+		$this->context->smarty->assign(array('sofort' => array('dfl' => $dfl, 'link' => $link, 'config' => $config)));
+
+		return $this->display(__FILE__, 'views/templates/admin/display_form.tpl');
 	}
-	
+
 	/**
 	 * Check supported languages
 	 *
 	 * @param string $iso
 	 * @return string iso
 	 */
-	private function isSupportedLang($iso=null)
+	private function isSupportedLang($iso = null)
 	{
-		global $cart;
-	
-		if($iso === null)
-			$iso = Language::getIsoById((int)$cart->id_lang);
-		if(in_array($iso,$this->_languages))
+		if ($iso === null)
+			$iso = Language::getIsoById((int)$this->context->cart->id_lang);
+		if (in_array($iso, $this->languages))
 			return $iso;
 		else
 			return 'en';
 	}
-	
+
 	/**
 	 * Build and display payment button
 	 * 
@@ -209,17 +212,15 @@ class Sofortbanking extends PaymentModule
 	 */
 	public function hookPayment($params)
 	{
-		global $cart;
-
-		$this->context->smarty->assign('this_path',$this->_path);
-		$this->context->smarty->assign('this_path_ssl',Tools::getHttpHost(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/');
-		$this->context->smarty->assign('cprotect',Configuration::get('SOFORTBANKING_CPROTECT'));
-		$this->context->smarty->assign('lang',Language::getIsoById((int)$params['cart']->id_lang));
-		$this->context->smarty->assign('mod_lang',$this->isSupportedLang());
+		$this->context->smarty->assign('this_path', $this->_path);
+		$this->context->smarty->assign('this_path_ssl', Tools::getHttpHost(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/');
+		$this->context->smarty->assign('cprotect', Configuration::get('SOFORTBANKING_CPROTECT'));
+		$this->context->smarty->assign('lang', Language::getIsoById((int)$params['cart']->id_lang));
+		$this->context->smarty->assign('mod_lang', $this->isSupportedLang());
 
 		return $this->display(__FILE__, 'payment.tpl');
 	}
-	
+
 	/**
 	 * Build and display confirmation
 	 *
@@ -248,11 +249,11 @@ class Sofortbanking extends PaymentModule
 	 * @param array $params
 	 * @return string Templatepart
 	 */
-	public function hookLeftColumn($params)
+	public function hookLeftColumn()
 	{
-		if(Configuration::get('SOFORTBANKING_BLOCK_LOGO') == "N")
+		if (Configuration::get('SOFORTBANKING_BLOCK_LOGO') == 'N')
 			return false;
-		$this->context->smarty->assign('mod_lang',$this->isSupportedLang());
+		$this->context->smarty->assign('mod_lang', $this->isSupportedLang());
 		return $this->display(__FILE__, 'left_column.tpl');
 	}
 
@@ -265,7 +266,7 @@ class Sofortbanking extends PaymentModule
 	{
 		if (!$this->active)
 			return false;
-		
+
 		if (!Configuration::get('SOFORTBANKING_USER_ID')
 				|| !Configuration::get('SOFORTBANKING_PROJECT_ID')
 				|| !Configuration::get('SOFORTBANKING_PROJECT_PW'))
