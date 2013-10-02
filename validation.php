@@ -57,6 +57,14 @@ $request = array('transaction' => Tools::getValue('transaction'), 'user_id' => T
 
 $cart = new Cart((int)Tools::getValue('user_variable_1'));
 
+if (class_exists('Context'))
+{
+	if (empty(Context::getContext()->link))
+		Context::getContext()->link = new Link();
+	Context::getContext()->language = new Language($cart->id_lang);
+	Context::getContext()->currency = new Currency($cart->id_currency);
+}
+
 $sofortbanking = new Sofortbanking();
 
 /* Validate submited post vars */
@@ -72,6 +80,6 @@ $customer = new Customer((int)$cart->id_customer);
 /* Validate this card in store */
 $sofortbanking->validateOrder($cart->id, $order_state, (float)number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
 	$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
-	null, null, false, $customer->secure_key);
+	null, null, false, $customer->secure_key, null);
 
 ?>
