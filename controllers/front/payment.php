@@ -53,7 +53,7 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 		else
 			return 'en';
 	}
-	
+
 	/**
 	 * @see FrontController::initContent()
 	 */
@@ -61,7 +61,10 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 	{
 		$this->display_column_left = false;
 		parent::initContent();
-
+		
+		if (!$this->isTokenValid())
+		    die($this->module->l($this->module->displayName.' Error: (invalid token)'));
+		
 		$cart = $this->context->cart;
 		
 		$address = new Address((int)$cart->id_address_invoice);
@@ -71,14 +74,14 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 		$lang = Language::getIsoById((int)$cart->id_lang);
 		
 		if (!Configuration::get('SOFORTBANKING_USER_ID'))
-			return $this->l($this->displayName.' Error: (invalid or undefined userId)');
+			die($this->module->l($this->module->displayName.' Error: (invalid or undefined userId)'));
 		
 		if (!Configuration::get('SOFORTBANKING_PROJECT_ID'))
-			return $this->l($this->displayName.' Error: (invalid or undefined projectId)');
+			die($this->module->l($this->module->displayName.' Error: (invalid or undefined projectId)'));
 		
 		if (!Validate::isLoadedObject($address) || !Validate::isLoadedObject($customer) 
 			|| !Validate::isLoadedObject($currency))
-			return $this->l($this->displayName.' Error: (invalid address or customer)');
+			die($this->module->l($this->module->displayName.' Error: (invalid address or customer)'));
 		
 		$parameters = array(
 			'user_id' => Configuration::get('SOFORTBANKING_USER_ID'),'project_id' => Configuration::get('SOFORTBANKING_PROJECT_ID'),
