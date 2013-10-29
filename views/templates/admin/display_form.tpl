@@ -46,7 +46,7 @@ fieldset a:hover {
 <div><img src="{$sofort.dfl.img_path}/sofortbanking.png" width="200" height="75" alt="sofortbanking.png" title="" /></div>
 <form method="post" action="{$sofort.dfl.action}">
 <fieldset>
-	<legend><img src="{$sofort.dfl.path}/logo.gif" width="16" height="16" alt="logo.gif" title="" />{l s='Settings'}</legend>
+	<legend><img src="{$sofort.dfl.path}/logo.gif" width="16" height="16" alt="logo.gif" title="" />{l s='Settings' mod='sofortbanking'}</legend>
 	<label>{l s='sofortbanking user ID?' mod='sofortbanking'}</label>
 	<div class="margin-form">
 		<input type="text" name="SOFORTBANKING_USER_ID" value="{$sofort.config.SOFORTBANKING_USER_ID}" />
@@ -118,8 +118,8 @@ fieldset a:hover {
 </fieldset>
 
 <fieldset class="space">
-	<legend><img src="../img/admin/unknown.gif" width="16" height="16" alt="unknown.gif" title="" />{l s='Help'}</legend>
-	<b>{l s='@Link:' mod='sofortbanking'}</b> <a target="_blank" href="http://www.touchdesign.de/ico/paymentnetwork.htm">{l s='sofortbanking.com'}</a><br />
+	<legend><img src="../img/admin/unknown.gif" width="16" height="16" alt="unknown.gif" title="" />{l s='Help' mod='sofortbanking'}</legend>
+	<b>{l s='@Link:' mod='sofortbanking'}</b> <a target="_blank" href="http://www.touchdesign.de/ico/paymentnetwork.htm">{l s='sofortbanking.com' mod='sofortbanking'}</a><br />
 	{l s='@Author and Copyright:' mod='sofortbanking'} <a target="_blank" href="http://www.touchdesign.de">touchdesign</a><br />
 	<b>{l s='@Description:' mod='sofortbanking'}</b><br /><br />
 	{l s='sofortbanking is the direct payment method of Payment Network AG. sofortbanking allows you to directly and automatically trigger a credit transfer during your online purchase with your online banking information. A transfer order is instantly confirmed to merchant allowing an instant delivery of goods and services.' mod='sofortbanking'}
