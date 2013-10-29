@@ -71,17 +71,17 @@ class Sofortbanking extends PaymentModule
 	public function install()
 	{
 		if (!parent::install() || !Configuration::updateValue('SOFORTBANKING_USER_ID', '') ||
-				!Configuration::updateValue('SOFORTBANKING_PROJECT_ID', '') ||
-				!Configuration::updateValue('SOFORTBANKING_PROJECT_PW', '') ||
-				!Configuration::updateValue('SOFORTBANKING_NOTIFY_PW', '') ||
-				!Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', 'Y') ||
-				!Configuration::updateValue('SOFORTBANKING_CPROTECT', 'N') ||
-				!Configuration::updateValue('SOFORTBANKING_OS_ERROR', 8) ||
-				!Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', 2) ||
-				!Configuration::updateValue('SOFORTBANKING_REDIRECT', 'N') ||
-				!$this->registerHook('payment') ||
-				!$this->registerHook('paymentReturn') ||
-				!$this->registerHook('leftColumn'))
+			!Configuration::updateValue('SOFORTBANKING_PROJECT_ID', '') ||
+			!Configuration::updateValue('SOFORTBANKING_PROJECT_PW', '') ||
+			!Configuration::updateValue('SOFORTBANKING_NOTIFY_PW', '') ||
+			!Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', 'Y') ||
+			!Configuration::updateValue('SOFORTBANKING_CPROTECT', 'N') ||
+			!Configuration::updateValue('SOFORTBANKING_OS_ERROR', 8) ||
+			!Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', 2) ||
+			!Configuration::updateValue('SOFORTBANKING_REDIRECT', 'N') ||
+			!$this->registerHook('payment') ||
+			!$this->registerHook('paymentReturn') ||
+			!$this->registerHook('leftColumn'))
 			return false;
 		return true;
 	}
