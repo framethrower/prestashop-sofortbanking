@@ -62,7 +62,7 @@ class Sofortbanking extends PaymentModule
 		$this->description = $this->l('Accepts payments by sofortbanking');
 		$this->confirmUninstall = $this->l('Are you sure you want to delete your details?');
 		/* Backward compatibility */
-		if (version_compare(_PS_VERSION_, '1.5', '<')
+		if (version_compare(_PS_VERSION_, '1.5', '<'))
 			require(_PS_MODULE_DIR_.$this->name.'/backward_compatibility/backward.php');
 	}
 

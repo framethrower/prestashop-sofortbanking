@@ -33,7 +33,6 @@
 
 require dirname(__FILE__).'/../../config/config.inc.php';
 require dirname(__FILE__).'/sofortbanking.php';
-require_once dirname(__FILE__).'/lib/touchdesign.php';
 
 $sofortbanking = new sofortbanking();
 
@@ -41,7 +40,7 @@ $order_id = Order::getOrderByCartId((int)Tools::getValue('user_variable_1'));
 
 $order = new Order($order_id);
 
-touchdesign::redirect(__PS_BASE_URI__.'index.php', 'controller=order-confirmation&id_cart='.$order->id_cart
+Tools::redirect('index.php?controller=order-confirmation&id_cart='.$order->id_cart
 	.'&id_module='.$sofortbanking->id.'&id_order='.$order_id
 	.'&key='.$order->secure_key);
 
