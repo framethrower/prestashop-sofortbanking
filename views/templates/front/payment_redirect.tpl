@@ -52,23 +52,23 @@
 
 <p>{l s='Please wait a moment, redirect to soforbanking is in progress...' mod='sofortbanking'}</p>
 
-<form action="{$gateway}" method="post" name="mod_sofortbanking" class="hidden">
-	<input type="hidden" name="user_id" value="{$parameters.user_id}" />
-	<input type="hidden" name="project_id" value="{$parameters.project_id}" />
-	<input type="hidden" name="sender_holder" value="{$parameters.sender_holder}" />
-	<input type="hidden" name="sender_country_id" value="{$parameters.sender_country_id}" />
-	<input type="hidden" name="amount" value="{$parameters.amount}" />
-	<input type="hidden" name="currency_id" value="{$parameters.currency_id}" />
-	<input type="hidden" name="reason_1" value="{$parameters.reason_1}" />
-	<input type="hidden" name="reason_2" value="{$parameters.reason_2}" />
-	<input type="hidden" name="user_variable_0" value="{$parameters.user_variable_0}" />
-	<input type="hidden" name="user_variable_1" value="{$parameters.user_variable_1}" />
-	<input type="hidden" name="user_variable_2" value="{$parameters.user_variable_2}" />
-	<input type="hidden" name="user_variable_3" value="{$parameters.user_variable_3}" />
-	<input type="hidden" name="user_variable_4" value="{$parameters.user_variable_4}" />
-	<input type="hidden" name="user_variable_5" value="{$parameters.user_variable_5}" />
-	<input type="hidden" name="hash" value="{$hash}" />
-	<input type="hidden" name="interface_version" value="PrestaShop {$version}" />
+<form action="{$gateway|escape:'htmlall':'UTF-8'}" method="post" name="mod_sofortbanking" class="hidden">
+	<input type="hidden" name="user_id" value="{$parameters.user_id|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="project_id" value="{$parameters.project_id|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="sender_holder" value="{$parameters.sender_holde|escape:'htmlall':'UTF-8'r}" />
+	<input type="hidden" name="sender_country_id" value="{$parameters.sender_country_id|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="amount" value="{$parameters.amount|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="currency_id" value="{$parameters.currency_id|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="reason_1" value="{$parameters.reason_1|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="reason_2" value="{$parameters.reason_2|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="user_variable_0" value="{$parameters.user_variable_0|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="user_variable_1" value="{$parameters.user_variable_1|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="user_variable_2" value="{$parameters.user_variable_2|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="user_variable_3" value="{$parameters.user_variable_3|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="user_variable_4" value="{$parameters.user_variable_4|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="user_variable_5" value="{$parameters.user_variable_5|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="hash" value="{$hash|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="interface_version" value="PrestaShop {$version|escape:'htmlall':'UTF-8'}" />
 </form>
 {/if}
 

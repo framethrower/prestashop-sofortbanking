@@ -88,7 +88,7 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 			'sender_holder' => '','','','sender_country_id' => $country->iso_code,
 			'amount' => number_format($cart->getOrderTotal(), 2, '.', ''),
 			'currency_id' => $currency->iso_code,'reason_1' => time().'-'.(int)$cart->id,
-			'reason_2' => $customer->firstname.' '.ucfirst(strtolower($customer->lastname)),
+			'reason_2' => $customer->firstname.' '.Tools::ucfirst(strtolower($customer->lastname)),
 			'user_variable_0' => $customer->secure_key,'user_variable_1' => (int)$cart->id,
 			'user_variable_2' => '','user_variable_3' => '','user_variable_4' => '','user_variable_5' => '',
 			'project_password' => Configuration::get('SOFORTBANKING_PROJECT_PW'),

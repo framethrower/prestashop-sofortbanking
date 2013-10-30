@@ -9,6 +9,9 @@ Cast some user values for "better performances"...
 Remove some unused code for old backwards
 Add token for payment.php
 Code cleanup for PrestaShop coding standards
+Add backward_compatibility
+Replace ucfrist with Tools::ucfirst
+Escape template vars
 
 // Version 19
 

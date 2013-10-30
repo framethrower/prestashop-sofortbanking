@@ -50,26 +50,26 @@
 
 <h3>{l s='sofortbanking payment' mod='sofortbanking'}</h3>
 
-<form action="{$gateway}" method="post">
+<form action="{$gateway|escape:'htmlall':'UTF-8'}" method="post">
 
-	<input type="hidden" name="user_id" value="{$parameters.user_id}" />
-	<input type="hidden" name="project_id" value="{$parameters.project_id}" />
-	<input type="hidden" name="sender_holder" value="{$parameters.sender_holder}" />
-	<input type="hidden" name="sender_country_id" value="{$parameters.sender_country_id}" />
-	<input type="hidden" name="amount" value="{$parameters.amount}" />
-	<input type="hidden" name="currency_id" value="{$parameters.currency_id}" />
-	<input type="hidden" name="reason_1" value="{$parameters.reason_1}" />
-	<input type="hidden" name="reason_2" value="{$parameters.reason_2}" />
-	<input type="hidden" name="user_variable_0" value="{$parameters.user_variable_0}" />
-	<input type="hidden" name="user_variable_1" value="{$parameters.user_variable_1}" />
-	<input type="hidden" name="user_variable_2" value="{$parameters.user_variable_2}" />
-	<input type="hidden" name="user_variable_3" value="{$parameters.user_variable_3}" />
-	<input type="hidden" name="user_variable_4" value="{$parameters.user_variable_4}" />
-	<input type="hidden" name="user_variable_5" value="{$parameters.user_variable_5}" />
-	<input type="hidden" name="hash" value="{$hash}" />
-	<input type="hidden" name="interface_version" value="PrestaShop {$version}" />
+	<input type="hidden" name="user_id" value="{$parameters.user_id|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="project_id" value="{$parameters.project_id|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="sender_holder" value="{$parameters.sender_holder|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="sender_country_id" value="{$parameters.sender_country_id|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="amount" value="{$parameters.amount|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="currency_id" value="{$parameters.currency_id|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="reason_1" value="{$parameters.reason_1|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="reason_2" value="{$parameters.reason_2|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="user_variable_0" value="{$parameters.user_variable_0|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="user_variable_1" value="{$parameters.user_variable_1|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="user_variable_2" value="{$parameters.user_variable_2|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="user_variable_3" value="{$parameters.user_variable_3|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="user_variable_4" value="{$parameters.user_variable_4|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="user_variable_5" value="{$parameters.user_variable_5|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="hash" value="{$hash|escape:'htmlall':'UTF-8'}" />
+	<input type="hidden" name="interface_version" value="PrestaShop {$version|escape:'htmlall':'UTF-8'}" />
 
-	<p><img src="{$this_path}img/{$mod_lang}/sofortbanking_small.png" alt="sofortbanking.png" title="" width="100" height="38" /></p>
+	<p><img src="{$this_path|escape:'htmlall':'UTF-8'}img/{$mod_lang|escape:'htmlall':'UTF-8'}/sofortbanking_small.png" alt="sofortbanking.png" title="" width="100" height="38" /></p>
 	
 	<p>{l s='SOFORT Banking - Online payments made easy.' mod='sofortbanking'}</p>
 	<p>{l s='With the TÜV-certified, international direct payment system SOFORT Banking.' mod='sofortbanking'} <a target="_blank" href="https://documents.sofort.com/de/sue/kundeninformationen">{l s='Read more.' mod='sofortbanking'}</a>

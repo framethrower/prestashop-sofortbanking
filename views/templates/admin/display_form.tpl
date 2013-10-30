@@ -43,31 +43,31 @@ fieldset a:hover {
 </style>
 {/literal}
 
-<div><img src="{$sofort.dfl.img_path}/sofortbanking.png" width="200" height="75" alt="sofortbanking.png" title="" /></div>
-<form method="post" action="{$sofort.dfl.action}">
+<div><img src="{$sofort.dfl.img_path|escape:'htmlall':'UTF-8'}/sofortbanking.png" width="200" height="75" alt="sofortbanking.png" title="" /></div>
+<form method="post" action="{$sofort.dfl.action|escape:'htmlall':'UTF-8'}">
 <fieldset>
-	<legend><img src="{$sofort.dfl.path}/logo.gif" width="16" height="16" alt="logo.gif" title="" />{l s='Settings' mod='sofortbanking'}</legend>
+	<legend><img src="{$sofort.dfl.path|escape:'htmlall':'UTF-8'}/logo.gif" width="16" height="16" alt="logo.gif" title="" />{l s='Settings' mod='sofortbanking'}</legend>
 	<label>{l s='sofortbanking user ID?' mod='sofortbanking'}</label>
 	<div class="margin-form">
-		<input type="text" name="SOFORTBANKING_USER_ID" value="{$sofort.config.SOFORTBANKING_USER_ID}" />
+		<input type="text" name="SOFORTBANKING_USER_ID" value="{$sofort.config.SOFORTBANKING_USER_ID|escape:'htmlall':'UTF-8'}" />
 		<p>{l s='Leave it blank for disabling' mod='sofortbanking'}</p>
 	</div>
 	<div class="clear"></div>
 	<label>{l s='sofortbanking project ID?' mod='sofortbanking'}</label>
 	<div class="margin-form">
-		<input type="text" name="SOFORTBANKING_PROJECT_ID" value="{$sofort.config.SOFORTBANKING_PROJECT_ID}" />
+		<input type="text" name="SOFORTBANKING_PROJECT_ID" value="{$sofort.config.SOFORTBANKING_PROJECT_ID|escape:'htmlall':'UTF-8'}" />
 		<p>{l s='Leave it blank for disabling' mod='sofortbanking'}</p>
 	</div>
 	<div class="clear"></div>
 	<label>{l s='sofortbanking project password?' mod='sofortbanking'}</label>
 	<div class="margin-form">
-		<input type="password" name="SOFORTBANKING_PROJECT_PW" value="{$sofort.config.SOFORTBANKING_PROJECT_PW}" />
+		<input type="password" name="SOFORTBANKING_PROJECT_PW" value="{$sofort.config.SOFORTBANKING_PROJECT_PW|escape:'htmlall':'UTF-8'}" />
 		<p>{l s='Leave it blank for disabling' mod='sofortbanking'}</p>
 	</div>
 	<div class="clear"></div>
 	<label>{l s='sofortbanking notify password?' mod='sofortbanking'}</label>
 	<div class="margin-form">
-		<input type="password" name="SOFORTBANKING_NOTIFY_PW" value="{$sofort.config.SOFORTBANKING_NOTIFY_PW}" />
+		<input type="password" name="SOFORTBANKING_NOTIFY_PW" value="{$sofort.config.SOFORTBANKING_NOTIFY_PW|escape:'htmlall':'UTF-8'}" />
 		<p>{l s='Leave it blank for disabling' mod='sofortbanking'}</p>
 	</div>
 	<div class="clear"></div>
@@ -90,7 +90,7 @@ fieldset a:hover {
 			{l s='You need a bank account with' mod='sofortbanking'}
 			<a target="_blank" href="http://www.sofort-bank.com" target="_blank">Sofort Bank</a>
 			{l s='You need a bank account with and customer protection must be enabled in your project settings. Please check with' mod='sofortbanking'}
-			<a target="_blank" href="https://kaeuferschutz.sofort-bank.com/consumerProtections/index/{$sofort.config.SOFORTBANKING_PROJECT_ID}">{l s='this link' mod='sofortbanking'}</a>
+			<a target="_blank" href="https://kaeuferschutz.sofort-bank.com/consumerProtections/index/{$sofort.config.SOFORTBANKING_PROJECT_ID|escape:'htmlall':'UTF-8'}">{l s='this link' mod='sofortbanking'}</a>
 			{l s='if customer protection is activated and enabled before enabling it here.' mod='sofortbanking'}
 		</p>
 	</div>
@@ -109,12 +109,12 @@ fieldset a:hover {
 </form><br />
 
 <fieldset>
-	<legend><img src="{$sofort.dfl.path}/logo.gif" width="16" height="16" alt="logo.gif" title="" />{l s='URLs' mod='sofortbanking'}</legend>
-	<b>{l s='Confirmation-Url:' mod='sofortbanking'} {l s='(Method POST)' mod='sofortbanking'}</b><br /><textarea rows=1 style="width:98%;">{$sofort.link.validation}</textarea>
+	<legend><img src="{$sofort.dfl.path|escape:'htmlall':'UTF-8'}/logo.gif" width="16" height="16" alt="logo.gif" title="" />{l s='URLs' mod='sofortbanking'}</legend>
+	<b>{l s='Confirmation-Url:' mod='sofortbanking'} {l s='(Method POST)' mod='sofortbanking'}</b><br /><textarea rows=1 style="width:98%;">{$sofort.link.validation|escape:'htmlall':'UTF-8'}</textarea>
 	<br /><br />
-	<b>{l s='Success-Url:' mod='sofortbanking'}</b><br /><textarea rows=1 style="width:98%;">{$sofort.link.success}</textarea>
+	<b>{l s='Success-Url:' mod='sofortbanking'}</b><br /><textarea rows=1 style="width:98%;">{$sofort.link.success|escape:'htmlall':'UTF-8'}</textarea>
 	<br /><br />
-	<b>{l s='Cancel-Url:' mod='sofortbanking'}</b><br /><textarea rows=1 style="width:98%;">{$sofort.link.cancellation}</textarea>
+	<b>{l s='Cancel-Url:' mod='sofortbanking'}</b><br /><textarea rows=1 style="width:98%;">{$sofort.link.cancellation|escape:'htmlall':'UTF-8'}</textarea>
 </fieldset>
 
 <fieldset class="space">
