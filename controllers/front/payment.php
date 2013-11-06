@@ -88,7 +88,7 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 			'sender_holder' => '','','','sender_country_id' => $country->iso_code,
 			'amount' => number_format($cart->getOrderTotal(), 2, '.', ''),
 			'currency_id' => $currency->iso_code,'reason_1' => time().'-'.(int)$cart->id,
-			'reason_2' => $customer->firstname.' '.Tools::ucfirst(strtolower($customer->lastname)),
+			'reason_2' => $customer->firstname.' '.Tools::ucfirst(Tools::strtolower($customer->lastname)),
 			'user_variable_0' => $customer->secure_key,'user_variable_1' => (int)$cart->id,
 			'user_variable_2' => '','user_variable_3' => '','user_variable_4' => '','user_variable_5' => '',
 			'project_password' => Configuration::get('SOFORTBANKING_PROJECT_PW'),
@@ -96,16 +96,11 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 
 		$this->context->smarty->assign(array(
 			'this_path' => $this->module->getPathUri(),
-			'this_path_ssl' => Tools::getHttpHost(true, true).__PS_BASE_URI__.'modules/'.$this->module->name.'/',
 			'nbProducts' => $cart->nbProducts(),
-			'cust_currency' => $this->context->currency,
-			'currencies' => $this->context->currency,
 			'total' => $cart->getOrderTotal(),
-			'isoCode' =>  $this->context->language->iso_code,
 			'version' => _PS_VERSION_,
 			'hash' => sha1(implode('|', $parameters)),
 			'gateway' => 'https://www.sofortueberweisung.de/payment/start',
-			'lang' => $lang,
 			'cprotect' => Configuration::get('SOFORTBANKING_CPROTECT'),
 			'parameters' => $parameters,
 			'mod_lang' => $this->isSupportedLang()
