@@ -40,8 +40,17 @@ $order_id = Order::getOrderByCartId((int)Tools::getValue('user_variable_1'));
 
 $order = new Order($order_id);
 
-Tools::redirect('index.php?controller=order-confirmation&id_cart='.$order->id_cart
-	.'&id_module='.$sofortbanking->id.'&id_order='.$order_id
-	.'&key='.$order->secure_key);
+/* Init Frontend variables for redirect */
+$controller = new FrontController();
+$controller->init();
+
+if (version_compare(_PS_VERSION_, '1.5', '>='))
+	Tools::redirect('index.php?controller=order-confirmation&id_cart='.$order->id_cart
+		.'&id_module='.$sofortbanking->id.'&id_order='.$order_id
+		.'&key='.$order->secure_key);
+else
+	Tools::redirect('order-confirmation.php?id_cart='.$order->id_cart
+		.'&id_module='.$sofortbanking->id.'&id_order='.$order_id
+		.'&key='.$order->secure_key);
 
 ?>

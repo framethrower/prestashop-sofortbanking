@@ -170,9 +170,14 @@ class Sofortbanking extends PaymentModule
 			'validation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
 				.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php',
 			'success' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
-				.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-',
-			'cancellation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
-				.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'index.php?controller=order&step=3');
+				.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-');
+
+		if (version_compare(_PS_VERSION_, '1.5', '>='))
+			$link['cancellation'] = (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
+				.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'index.php?controller=order&step=3';
+		else
+			$link['cancellation'] = (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
+				.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'order.php?step=3';
 
 		$this->context->smarty->assign(array('sofort' => array('dfl' => $dfl, 'link' => $link, 'config' => $config)));
 
@@ -209,7 +214,7 @@ class Sofortbanking extends PaymentModule
 		$this->context->smarty->assign('lang', Language::getIsoById((int)$params['cart']->id_lang));
 		$this->context->smarty->assign('mod_lang', $this->isSupportedLang());
 
-		return $this->display(__FILE__, 'payment.tpl');
+		return $this->display(__FILE__, 'views/templates/hook/payment.tpl');
 	}
 
 	/**
@@ -231,7 +236,7 @@ class Sofortbanking extends PaymentModule
 			)
 		);
 
-		return $this->display(__FILE__, 'payment_return.tpl');
+		return $this->display(__FILE__, 'views/templates/hook/payment_return.tpl');
 	}
 
 	/**
@@ -245,7 +250,7 @@ class Sofortbanking extends PaymentModule
 		if (Configuration::get('SOFORTBANKING_BLOCK_LOGO') == 'N')
 			return false;
 		$this->context->smarty->assign('mod_lang', $this->isSupportedLang());
-		return $this->display(__FILE__, 'left_column.tpl');
+		return $this->display(__FILE__, 'views/templates/hook/left_column.tpl');
 	}
 
 	/**
@@ -265,6 +270,59 @@ class Sofortbanking extends PaymentModule
 		return true;
 	}
 
+	/**
+	 * Build and display payment page for PS 1.4
+	 *
+	 * This part is only for backward comatibility to PS 1.4 and 
+	 * will be removed in one of the further module versions.
+	 */
+	public function backwardPaymentController()
+	{
+		$cart = $this->context->cart;
+
+		if (!$this->isPayment())
+			return false;
+
+		$address = new Address((int)$cart->id_address_invoice);
+		$customer = new Customer((int)$cart->id_customer);
+		$currency = $this->getCurrency();
+		$country = new Country((int)$address->id_country);
+
+		if (!Configuration::get('SOFORTBANKING_USER_ID'))
+			return $this->l($this->displayName.' Error: (invalid or undefined userId)');
+		if (!Configuration::get('SOFORTBANKING_PROJECT_ID'))
+			return $this->l($this->displayName.' Error: (invalid or undefined projectId)');
+		if (!Validate::isLoadedObject($address)
+				|| !Validate::isLoadedObject($customer)
+				|| !Validate::isLoadedObject($currency))
+			return $this->l($this->displayName.' Error: (invalid address or customer)');
+
+		$parameters = array(
+			'user_id' => Configuration::get('SOFORTBANKING_USER_ID'),'project_id' => Configuration::get('SOFORTBANKING_PROJECT_ID'),
+			'sender_holder' => '','','','sender_country_id' => $country->iso_code,
+			'amount' => number_format($cart->getOrderTotal(), 2, '.', ''),
+			'currency_id' => $currency->iso_code,'reason_1' => $this->l('CartId:').' '.time().'-'.(int)$cart->id,
+			'reason_2' => $customer->firstname.' '.Tools::ucfirst(Tools::strtolower($customer->lastname)),
+			'user_variable_0' => $customer->secure_key,'user_variable_1' => (int)$cart->id,
+			'user_variable_2' => '','user_variable_3' => '','user_variable_4' => '','user_variable_5' => '',
+			'project_password' => Configuration::get('SOFORTBANKING_PROJECT_PW'),
+		);
+
+		$this->context->smarty->assign(array(
+			'this_path' => $this->_path,
+			'nbProducts' => $cart->nbProducts(),
+			'total' => $cart->getOrderTotal(),
+			'version' => _PS_VERSION_,
+			'hash' => sha1(implode('|', $parameters)),
+			'gateway' => 'https://www.sofortueberweisung.de/payment/start',
+			'cprotect' => Configuration::get('SOFORTBANKING_CPROTECT'),
+			'parameters' => $parameters,
+			'mod_lang',$this->isSupportedLang()
+		));
+
+		return $this->display(__FILE__, (Configuration::get('SOFORTBANKING_REDIRECT') == 'Y'
+			? 'views/templates/front/payment_redirect.tpl' : 'views/templates/front/payment_execution.tpl'));
+	}
 }
 
 ?>

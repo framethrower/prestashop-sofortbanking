@@ -12,6 +12,8 @@ Code cleanup for PrestaShop coding standards
 Add backward_compatibility
 Replace ucfrist with Tools::ucfirst
 Escape template vars
+Replace strtolower with Tools::strtolower
+Add some compatibility fixes for PS 1.4
 
 // Version 19
 
