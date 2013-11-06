@@ -14,6 +14,7 @@ Replace ucfrist with Tools::ucfirst
 Escape template vars
 Replace strtolower with Tools::strtolower
 Add some compatibility fixes for PS 1.4
+Add extra string for payment button
 
 // Version 19
 
