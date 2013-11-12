@@ -9,6 +9,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_75e74dadd42d76ea206adda30801f
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_34c32843d334dd45babe605fa104f4fe'] = 'SOFORT Banking \"project id\" is required.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_03238c51b2998ee34fd259f7cdd663d0'] = 'SOFORT Banking \"project password\" is required.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c888438d14855d7d96a2724ee9c306bd'] = 'Confirmation';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = 'Cart-ID:';
 $_MODULE['<{sofortbanking}prestashop>validation_430b932b3ed2561e26c45227f74cf77d'] = 'Fatal Error (1)';
 $_MODULE['<{sofortbanking}prestashop>validation_963d0dffd2ef75d529e90f4c1e267274'] = 'Fatal Error (2)';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'SOFORT Banking transaction ID';
@@ -30,7 +31,6 @@ $_MODULE['<{sofortbanking}prestashop>display_form_eacbe2e55a155c59d79353f551e09b
 $_MODULE['<{sofortbanking}prestashop>display_form_c2e2fce3a995f59900d7afbbe58683f5'] = 'this link';
 $_MODULE['<{sofortbanking}prestashop>display_form_9ebf6132e7499eb380a52ade5ca9311c'] = 'if customer protection is activated and enabled before enabling it here.';
 $_MODULE['<{sofortbanking}prestashop>display_form_012247e5cf063cda07e92d687405fa69'] = 'Force redirect?';
-$_MODULE['<{sofortbanking}prestashop>display_form_fef174926c1d829ec956501ab5c10d6a'] = 'Yes, force redirect.';
 $_MODULE['<{sofortbanking}prestashop>display_form_577f8f5ea17fca2ec58501a9628b44eb'] = 'No, let the customer confirm the order first.';
 $_MODULE['<{sofortbanking}prestashop>display_form_d0e1dfd51beaf6428aae014beadb4fc6'] = 'Force redirect to SOFORT Banking payment page (skip confirmation page).';
 $_MODULE['<{sofortbanking}prestashop>display_form_06933067aafd48425d67bcb01bba5cb6'] = 'Update';
