@@ -104,6 +104,7 @@ class Sofortbanking extends PaymentModule
 	 */
 	private function postValidation()
 	{
+		$this->_errors = array();
 		if (Tools::getValue('submitUpdate'))
 		{
 			if (!Tools::getValue('SOFORTBANKING_USER_ID'))
