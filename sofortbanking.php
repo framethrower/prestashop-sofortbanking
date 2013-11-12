@@ -73,12 +73,12 @@ class Sofortbanking extends PaymentModule
 	 */
 	public function install()
 	{
-		if (!parent::install() || !Configuration::updateValue('SOFORTBANKING_USER_ID', '') || !Configuration::updateValue('SOFORTBANKING_PROJECT_ID', '') ||
-			!Configuration::updateValue('SOFORTBANKING_PROJECT_PW', '') || !Configuration::updateValue('SOFORTBANKING_NOTIFY_PW', '') ||
-			!Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', 'Y') || !Configuration::updateValue('SOFORTBANKING_CPROTECT', 'N') ||
-			!Configuration::updateValue('SOFORTBANKING_OS_ERROR', 8) || !Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', 2) ||
-			!Configuration::updateValue('SOFORTBANKING_REDIRECT', 'N') || !$this->registerHook('payment') ||
-			!$this->registerHook('paymentReturn') || !$this->registerHook('leftColumn'))
+		if (!parent::install() || !Configuration::updateValue('SOFORTBANKING_USER_ID', '') || !Configuration::updateValue('SOFORTBANKING_PROJECT_ID', '')
+			|| !Configuration::updateValue('SOFORTBANKING_PROJECT_PW', '') || !Configuration::updateValue('SOFORTBANKING_NOTIFY_PW', '')
+			|| !Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', 'Y') || !Configuration::updateValue('SOFORTBANKING_CPROTECT', 'N')
+			|| !Configuration::updateValue('SOFORTBANKING_OS_ERROR', 8) || !Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', 2)
+			|| !Configuration::updateValue('SOFORTBANKING_REDIRECT', 'N') || !$this->registerHook('payment')
+			|| !$this->registerHook('paymentReturn') || !$this->registerHook('leftColumn'))
 			return false;
 		return true;
 	}
@@ -90,11 +90,11 @@ class Sofortbanking extends PaymentModule
 	 */
 	public function uninstall()
 	{
-		if (!Configuration::deleteByName('SOFORTBANKING_USER_ID') || !Configuration::deleteByName('SOFORTBANKING_PROJECT_ID') ||
-			!Configuration::deleteByName('SOFORTBANKING_PROJECT_PW') || !Configuration::deleteByName('SOFORTBANKING_NOTIFY_PW') ||
-			!Configuration::deleteByName('SOFORTBANKING_BLOCK_LOGO') || !Configuration::deleteByName('SOFORTBANKING_OS_ERROR') ||
-			!Configuration::deleteByName('SOFORTBANKING_OS_ACCEPTED') || !Configuration::deleteByName('SOFORTBANKING_CPROTECT') ||
-			!Configuration::deleteByName('SOFORTBANKING_REDIRECT') || !parent::uninstall())
+		if (!Configuration::deleteByName('SOFORTBANKING_USER_ID') || !Configuration::deleteByName('SOFORTBANKING_PROJECT_ID')
+			|| !Configuration::deleteByName('SOFORTBANKING_PROJECT_PW') || !Configuration::deleteByName('SOFORTBANKING_NOTIFY_PW')
+			|| !Configuration::deleteByName('SOFORTBANKING_BLOCK_LOGO') || !Configuration::deleteByName('SOFORTBANKING_OS_ERROR')
+			|| !Configuration::deleteByName('SOFORTBANKING_OS_ACCEPTED') || !Configuration::deleteByName('SOFORTBANKING_CPROTECT')
+			|| !Configuration::deleteByName('SOFORTBANKING_REDIRECT') || !parent::uninstall())
 			return false;
 		return true;
 	}
