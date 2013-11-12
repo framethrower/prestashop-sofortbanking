@@ -59,7 +59,7 @@ else {
 	$sofortbanking = new sofortbanking();
 
 	/* Build and display payment page */
-	echo $sofortbanking->backwardPaymentController($cart);
+	echo $sofortbanking->backwardPaymentController();
 
 	$controller->displayFooter();
 
