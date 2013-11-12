@@ -102,16 +102,16 @@ class Sofortbanking extends PaymentModule
 	/**
 	 * Validate submited data
 	 */
-	private function _postValidation()
+	private function postValidation()
 	{
 		if (Tools::getValue('submitUpdate'))
 		{
 			if (!Tools::getValue('SOFORTBANKING_USER_ID'))
-				$this->_postErrors[] = $this->l('sofortueberweisung "user id" is required.');
+				$this->_errors[] = $this->l('sofortueberweisung "user id" is required.');
 			if (!Tools::getValue('SOFORTBANKING_PROJECT_ID'))
-				$this->_postErrors[] = $this->l('sofortueberweisung "project id" is required.');
+				$this->_errors[] = $this->l('sofortueberweisung "project id" is required.');
 			if (!Tools::getValue('SOFORTBANKING_PROJECT_PW'))
-				$this->_postErrors[] = $this->l('sofortueberweisung "project password" is required.');
+				$this->_errors[] = $this->l('sofortueberweisung "project password" is required.');
 		}
 	}
 
@@ -132,14 +132,14 @@ class Sofortbanking extends PaymentModule
 			Configuration::updateValue('SOFORTBANKING_REDIRECT', Tools::getValue('SOFORTBANKING_REDIRECT'));
 		}
 
-		$this->_postValidation();
-		if (isset($this->_postErrors) && count($this->_postErrors))
-			foreach ($this->_postErrors as $err)
+		$this->postValidation();
+		if (isset($this->_errors) && count($this->_errors))
+			foreach ($this->_errors as $err)
 				$this->html .= '<div class="alert error">'.$err.'</div>';
-		elseif (Tools::getValue('submitUpdate') && !isset($this->_postErrors))
+		elseif (Tools::getValue('submitUpdate') && !count($this->_errors))
 			$this->getSuccessMessage();
 
-		return $this->html.$this->_displayForm();
+		return $this->html.$this->displayForm();
 	}
 
 	/**
@@ -156,7 +156,7 @@ class Sofortbanking extends PaymentModule
 	/**
 	 * Build and display admin form for configurations
 	 */
-	private function _displayForm()
+	private function displayForm()
 	{
 		$dfl = array(
 			'action' => $_SERVER['REQUEST_URI'],
