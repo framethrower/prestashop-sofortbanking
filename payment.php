@@ -38,7 +38,7 @@
 require_once dirname(__FILE__).'/../../config/config.inc.php';
 require_once dirname(__FILE__).'/sofortbanking.php';
 
-// If PS 1.5 or higher redirect to module controller
+/* If PS 1.5 or higher redirect to module controller */
 if (version_compare(_PS_VERSION_, '1.5', '>='))
 	Tools::redirect(Context::getContext()->link->getModuleLink('sofortbanking', 'payment'), null, false, false);
 else {
