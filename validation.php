@@ -69,9 +69,9 @@ $sofortbanking = new Sofortbanking();
 
 /* Validate submited post vars */
 if (Tools::getValue('hash') != sha1(implode('|', $request)))
-	echo $sofortbanking->l('Fatal Error (1)');
+	die($sofortbanking->l('Fatal Error (1)'));
 elseif (!is_object($cart) || !$cart)
-	echo $sofortbanking->l('Fatal Error (2)');
+	die($sofortbanking->l('Fatal Error (2)'));
 else
 	$order_state = Configuration::get('SOFORTBANKING_OS_ACCEPTED');
 
