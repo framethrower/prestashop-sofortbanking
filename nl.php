@@ -9,6 +9,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_75e74dadd42d76ea206adda30801f
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_34c32843d334dd45babe605fa104f4fe'] = 'SOFORT Banking\"project ID\" is nodig.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_03238c51b2998ee34fd259f7cdd663d0'] = 'SOFORT Banking\"project wachtwoord\" is nodig.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c888438d14855d7d96a2724ee9c306bd'] = 'Bevestiging';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = 'Cart-ID:';
 $_MODULE['<{sofortbanking}prestashop>validation_430b932b3ed2561e26c45227f74cf77d'] = 'Fatale fout (1)';
 $_MODULE['<{sofortbanking}prestashop>validation_963d0dffd2ef75d529e90f4c1e267274'] = 'Fatale fout (2)';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'SOFORT Banking transactie ID';
@@ -30,7 +31,6 @@ $_MODULE['<{sofortbanking}prestashop>display_form_eacbe2e55a155c59d79353f551e09b
 $_MODULE['<{sofortbanking}prestashop>display_form_c2e2fce3a995f59900d7afbbe58683f5'] = 'deze link';
 $_MODULE['<{sofortbanking}prestashop>display_form_9ebf6132e7499eb380a52ade5ca9311c'] = 'eerst controleren en dan alleen hier activeren als uw project hiervoor werd vrijgegeven. Tevens moeten de voowaarden van de leverancier m.b.t. de consumenten bescherming geaccepteerd zijn';
 $_MODULE['<{sofortbanking}prestashop>display_form_012247e5cf063cda07e92d687405fa69'] = 'directe verbinding activeren?';
-$_MODULE['<{sofortbanking}prestashop>display_form_fef174926c1d829ec956501ab5c10d6a'] = 'Ja, direct doorverbinden';
 $_MODULE['<{sofortbanking}prestashop>display_form_577f8f5ea17fca2ec58501a9628b44eb'] = 'Nee, de klant moet eerst de bestelling bevestigen.';
 $_MODULE['<{sofortbanking}prestashop>display_form_d0e1dfd51beaf6428aae014beadb4fc6'] = 'Activeer het direct doorverbinden met SOFORT Banking nadat de wijze van betaling is gekozen. (De bevestigings pagina wordt overgeslagen)';
 $_MODULE['<{sofortbanking}prestashop>display_form_06933067aafd48425d67bcb01bba5cb6'] = 'Actualiseren';
@@ -68,3 +68,4 @@ $_MODULE['<{sofortbanking}prestashop>payment_return_8de637e24570c1edb0357826a2ad
 $_MODULE['<{sofortbanking}prestashop>payment_return_64430ad2835be8ad60c59e7d44e4b0b1'] = 'klantenservice';
 $_MODULE['<{sofortbanking}prestashop>payment_9cf51f6755e5294b00e246667b59261d'] = 'SOFORT Banking  Gemakkelijk en veilig betalen.Met het gemakkelijke en veilige betaalsysteem SOFORT banking kunt u betalen zonder dat u zich registreert. Het enige dat u nodig heeft zijn de toegangsgegevens van uw internet bankrekening. Hier meer. (https://documents.sofort.com/sb/klantinformatie/)';
 $_MODULE['<{sofortbanking}prestashop>payment_b30c30f4388b0c9ab0fe47be29149a18'] = 'Kopen met consumenten bescherming van SOFORT Banking';
+$_MODULE['<{sofortbanking}prestashop>payment_a0aeadb20782e6a291c33715a07c5839'] = 'Eenvoudig en veilig betalen met SOFORT Banking.';

@@ -68,3 +68,4 @@ $_MODULE['<{sofortbanking}prestashop>payment_return_8de637e24570c1edb0357826a2ad
 $_MODULE['<{sofortbanking}prestashop>payment_return_64430ad2835be8ad60c59e7d44e4b0b1'] = 'customer support';
 $_MODULE['<{sofortbanking}prestashop>payment_9cf51f6755e5294b00e246667b59261d'] = 'SOFORT Banking  Easy. Secure. Paid.With SOFORT Banking you can pay easily and securely with your usual online banking login data. No registration required. More info. (https://documents.sofort.com/sb/customer-information/)';
 $_MODULE['<{sofortbanking}prestashop>payment_b30c30f4388b0c9ab0fe47be29149a18'] = 'Shop safely with buyer protection by SOFORT Bank';
+$_MODULE['<{sofortbanking}prestashop>payment_a0aeadb20782e6a291c33715a07c5839'] = 'Pay easy and secure with SOFORT Banking.';

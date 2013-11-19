@@ -9,6 +9,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_75e74dadd42d76ea206adda30801f
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_34c32843d334dd45babe605fa104f4fe'] = 'Se requiere SOFORT Banking \"id de proyecto\".';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_03238c51b2998ee34fd259f7cdd663d0'] = 'Se requiere SOFORT Überweisung \"contraseña de proyecto\".';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c888438d14855d7d96a2724ee9c306bd'] = 'Ajustes guardados';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = 'Cart-ID:';
 $_MODULE['<{sofortbanking}prestashop>validation_430b932b3ed2561e26c45227f74cf77d'] = 'Fatal Error (1)';
 $_MODULE['<{sofortbanking}prestashop>validation_963d0dffd2ef75d529e90f4c1e267274'] = 'Fatal Error (2)';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'ID de transacción SOFORT Banking';
@@ -30,7 +31,6 @@ $_MODULE['<{sofortbanking}prestashop>display_form_eacbe2e55a155c59d79353f551e09b
 $_MODULE['<{sofortbanking}prestashop>display_form_c2e2fce3a995f59900d7afbbe58683f5'] = 'este enlace';
 $_MODULE['<{sofortbanking}prestashop>display_form_9ebf6132e7499eb380a52ade5ca9311c'] = 'y efectúe la activación aquí sólo si su proyecto ha sido habilitado y si se han aceptado las condiciones generales de la protección al comprador.';
 $_MODULE['<{sofortbanking}prestashop>display_form_012247e5cf063cda07e92d687405fa69'] = '¿Activar el reenvío directo?';
-$_MODULE['<{sofortbanking}prestashop>display_form_fef174926c1d829ec956501ab5c10d6a'] = 'Sì, reenvío directo';
 $_MODULE['<{sofortbanking}prestashop>display_form_577f8f5ea17fca2ec58501a9628b44eb'] = 'No, el cliente confirmará primero el pedido.';
 $_MODULE['<{sofortbanking}prestashop>display_form_d0e1dfd51beaf6428aae014beadb4fc6'] = 'Activar reenvío directo a SOFORT Banking después de la selección del método de pago. (Se omitirá la página de confirmación)';
 $_MODULE['<{sofortbanking}prestashop>display_form_06933067aafd48425d67bcb01bba5cb6'] = 'Actualizar';
@@ -68,3 +68,4 @@ $_MODULE['<{sofortbanking}prestashop>payment_return_8de637e24570c1edb0357826a2ad
 $_MODULE['<{sofortbanking}prestashop>payment_return_64430ad2835be8ad60c59e7d44e4b0b1'] = 'Soporte al cliente';
 $_MODULE['<{sofortbanking}prestashop>payment_9cf51f6755e5294b00e246667b59261d'] = 'SOFORT Banking  Fácil. Seguro. Pagado. SOFORT Banking es un servicio de transferencia directa, que funciona con los datos habituales de su banca online. Es fácil, seguro y no necesita registrarse. Más información. (https://documents.sofort.com/sb/informacion-clientes/) ';
 $_MODULE['<{sofortbanking}prestashop>payment_b30c30f4388b0c9ab0fe47be29149a18'] = 'Comprar con la protección al comprador de SOFORT Bank';
+$_MODULE['<{sofortbanking}prestashop>payment_a0aeadb20782e6a291c33715a07c5839'] = 'SOFORT Banking - Pagos online de forma fácil y segura';
