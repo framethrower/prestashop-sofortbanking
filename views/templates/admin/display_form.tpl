@@ -71,6 +71,22 @@ fieldset a:hover {
 		<p>{l s='Leave it blank for disabling' mod='sofortbanking'}</p>
 	</div>
 	<div class="clear"></div>
+	<label>{l s='Order accepted status' mod='sofortbanking'}</label>
+	<div class="margin-form">
+		<select name="SOFORTBANKING_OS_ACCEPTED">
+			{$sofort.orderstates.accepted}
+		</select>
+		<p>{l s='Order state for accepted payments' mod='sofortbanking'}</p>
+	</div>
+	<div class="clear"></div>
+	<label>{l s='Order error status' mod='sofortbanking'}</label>
+	<div class="margin-form">
+		<select name="SOFORTBANKING_OS_ERROR">
+			{$sofort.orderstates.error}
+		</select>
+		<p>{l s='Order state for failed payments' mod='sofortbanking'}</p>
+	</div>
+	<div class="clear"></div>
 	<label>{l s='sofortbanking Logo?' mod='sofortbanking'}</label>
 	<div class="margin-form">
 		<select name="SOFORTBANKING_BLOCK_LOGO">

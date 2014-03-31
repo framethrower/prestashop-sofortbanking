@@ -51,7 +51,7 @@ class Sofortbanking extends PaymentModule
 	{
 		$this->name = 'sofortbanking';
 		$this->tab = 'payments_gateways';
-		$this->version = '2.0';
+		$this->version = '2.1';
 		$this->author = 'touchdesign';
 		$this->module_key = '65af9f83d2ae6fbe6dbdaa91d21f952a';
 		$this->currencies = true;
@@ -131,6 +131,8 @@ class Sofortbanking extends PaymentModule
 			Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', Tools::getValue('SOFORTBANKING_BLOCK_LOGO'));
 			Configuration::updateValue('SOFORTBANKING_CPROTECT', Tools::getValue('SOFORTBANKING_CPROTECT'));
 			Configuration::updateValue('SOFORTBANKING_REDIRECT', Tools::getValue('SOFORTBANKING_REDIRECT'));
+			Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', Tools::getValue('SOFORTBANKING_OS_ACCEPTED'));
+			Configuration::updateValue('SOFORTBANKING_OS_ERROR', Tools::getValue('SOFORTBANKING_OS_ERROR'));
 		}
 
 		$this->postValidation();
@@ -152,6 +154,23 @@ class Sofortbanking extends PaymentModule
 		<div class="conf confirm">
 			'.$this->l('Settings updated').'
 		</div>';
+	}
+
+	/**
+	 * Build order state dropdown
+	 */
+	private function getOrderStatesOptionFields($selected = null)
+	{
+		$orderStates = OrderState::getOrderStates((int)$this->context->cookie->id_lang);
+
+		$result = '';
+		foreach ($orderStates as $state) {
+			$result.= '<option value="'.$state['id_order_state'].'" ';
+			$result.= ($state['id_order_state'] == $selected ? 'selected="selected"' : '');
+			$result.= '>'.$state['name'].'</option>';
+		}
+
+		return $result;
 	}
 
 	/**
@@ -180,7 +199,11 @@ class Sofortbanking extends PaymentModule
 			$link['cancellation'] = (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
 				.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'order.php?step=3';
 
-		$this->context->smarty->assign(array('sofort' => array('dfl' => $dfl, 'link' => $link, 'config' => $config)));
+		$orderstates = array(
+			'accepted' => $this->getOrderStatesOptionFields(Configuration::get('SOFORTBANKING_OS_ACCEPTED')),
+			'error' => $this->getOrderStatesOptionFields(Configuration::get('SOFORTBANKING_OS_ERROR')));
+
+		$this->context->smarty->assign(array('sofort' => array('orderstates' => $orderstates, 'dfl' => $dfl, 'link' => $link, 'config' => $config)));
 
 		return $this->display(__FILE__, 'views/templates/admin/display_form.tpl');
 	}
