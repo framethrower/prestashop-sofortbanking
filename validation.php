@@ -77,9 +77,13 @@ else
 
 $customer = new Customer((int)$cart->id_customer);
 
-/* Validate this card in store */
-$sofortbanking->validateOrder($cart->id, $order_state, (float)number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
-	$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
-	null, null, false, $customer->secure_key, null);
+/* Validate this card in store if needed */
+if (($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED') && Configuration::get('SOFORTBANKING_OS_ACCEPTED_IGNORE') != 'Y')
+	|| ($order_state == Configuration::get('SOFORTBANKING_OS_ERROR') && Configuration::get('SOFORTBANKING_OS_ERROR_IGNORE') != 'Y'))
+{
+	$sofortbanking->validateOrder($cart->id, $order_state, (float)number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
+		$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
+		null, null, false, $customer->secure_key, null);
+}
 
 ?>

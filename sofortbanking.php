@@ -76,7 +76,8 @@ class Sofortbanking extends PaymentModule
 		if (!parent::install() || !Configuration::updateValue('SOFORTBANKING_USER_ID', '') || !Configuration::updateValue('SOFORTBANKING_PROJECT_ID', '')
 			|| !Configuration::updateValue('SOFORTBANKING_PROJECT_PW', '') || !Configuration::updateValue('SOFORTBANKING_NOTIFY_PW', '')
 			|| !Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', 'Y') || !Configuration::updateValue('SOFORTBANKING_CPROTECT', 'N')
-			|| !Configuration::updateValue('SOFORTBANKING_OS_ERROR', 8) || !Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', 2)
+			|| !Configuration::updateValue('SOFORTBANKING_OS_ERROR', 8) || !Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', 5)
+			|| !Configuration::updateValue('SOFORTBANKING_OS_ERROR_IGNORE', 'N') || !Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED_IGNORE', 'N')
 			|| !Configuration::updateValue('SOFORTBANKING_REDIRECT', 'N') || !$this->registerHook('payment')
 			|| !$this->registerHook('paymentReturn') || !$this->registerHook('leftColumn'))
 			return false;
@@ -94,6 +95,7 @@ class Sofortbanking extends PaymentModule
 			|| !Configuration::deleteByName('SOFORTBANKING_PROJECT_PW') || !Configuration::deleteByName('SOFORTBANKING_NOTIFY_PW')
 			|| !Configuration::deleteByName('SOFORTBANKING_BLOCK_LOGO') || !Configuration::deleteByName('SOFORTBANKING_OS_ERROR')
 			|| !Configuration::deleteByName('SOFORTBANKING_OS_ACCEPTED') || !Configuration::deleteByName('SOFORTBANKING_CPROTECT')
+			|| !Configuration::deleteByName('SOFORTBANKING_OS_ERROR_IGNORE') || !Configuration::deleteByName('SOFORTBANKING_OS_ACCEPTED_IGNORE')
 			|| !Configuration::deleteByName('SOFORTBANKING_REDIRECT') || !parent::uninstall())
 			return false;
 		return true;
@@ -133,6 +135,8 @@ class Sofortbanking extends PaymentModule
 			Configuration::updateValue('SOFORTBANKING_REDIRECT', Tools::getValue('SOFORTBANKING_REDIRECT'));
 			Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', Tools::getValue('SOFORTBANKING_OS_ACCEPTED'));
 			Configuration::updateValue('SOFORTBANKING_OS_ERROR', Tools::getValue('SOFORTBANKING_OS_ERROR'));
+			Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED_IGNORE', Tools::getValue('SOFORTBANKING_OS_ACCEPTED_IGNORE'));
+			Configuration::updateValue('SOFORTBANKING_OS_ERROR_IGNORE', Tools::getValue('SOFORTBANKING_OS_ERROR_IGNORE'));
 		}
 
 		$this->postValidation();
@@ -161,13 +165,14 @@ class Sofortbanking extends PaymentModule
 	 */
 	private function getOrderStatesOptionFields($selected = null)
 	{
-		$orderStates = OrderState::getOrderStates((int)$this->context->cookie->id_lang);
+		$order_states = OrderState::getOrderStates((int)$this->context->cookie->id_lang);
 
 		$result = '';
-		foreach ($orderStates as $state) {
-			$result.= '<option value="'.$state['id_order_state'].'" ';
-			$result.= ($state['id_order_state'] == $selected ? 'selected="selected"' : '');
-			$result.= '>'.$state['name'].'</option>';
+		foreach ($order_states as $state)
+		{
+			$result .= '<option value="'.$state['id_order_state'].'" ';
+			$result .= ($state['id_order_state'] == $selected ? 'selected="selected"' : '');
+			$result .= '>'.$state['name'].'</option>';
 		}
 
 		return $result;
@@ -184,7 +189,8 @@ class Sofortbanking extends PaymentModule
 			'path' => $this->_path);
 
 		$config = Configuration::getMultiple(array('SOFORTBANKING_USER_ID','SOFORTBANKING_PROJECT_ID','SOFORTBANKING_PROJECT_PW',
-			'SOFORTBANKING_NOTIFY_PW','SOFORTBANKING_BLOCK_LOGO','SOFORTBANKING_CPROTECT','SOFORTBANKING_REDIRECT'));
+			'SOFORTBANKING_NOTIFY_PW','SOFORTBANKING_BLOCK_LOGO','SOFORTBANKING_CPROTECT','SOFORTBANKING_REDIRECT',
+			'SOFORTBANKING_OS_ACCEPTED_IGNORE','SOFORTBANKING_OS_ERROR_IGNORE'));
 
 		$link = array(
 			'validation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
@@ -199,11 +205,11 @@ class Sofortbanking extends PaymentModule
 			$link['cancellation'] = (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
 				.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'order.php?step=3';
 
-		$orderstates = array(
+		$order_states = array(
 			'accepted' => $this->getOrderStatesOptionFields(Configuration::get('SOFORTBANKING_OS_ACCEPTED')),
 			'error' => $this->getOrderStatesOptionFields(Configuration::get('SOFORTBANKING_OS_ERROR')));
 
-		$this->context->smarty->assign(array('sofort' => array('orderstates' => $orderstates, 'dfl' => $dfl, 'link' => $link, 'config' => $config)));
+		$this->context->smarty->assign(array('sofort' => array('order_states' => $order_states, 'dfl' => $dfl, 'link' => $link, 'config' => $config)));
 
 		return $this->display(__FILE__, 'views/templates/admin/display_form.tpl');
 	}
