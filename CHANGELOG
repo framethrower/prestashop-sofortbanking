@@ -1,3 +1,12 @@
+// Version 21
+
+Add order state dropdowns for accepted and failed payments
+Add optional checkbox to ignore status update events
+Set new default status for payed orders
+Small fixes for PS coding standards
+Add order validation by confirmation url
+Update notification validation.php for failed payments
+
 // Version 20
 
 Remove old Payment tab

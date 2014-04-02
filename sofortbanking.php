@@ -258,12 +258,9 @@ class Sofortbanking extends PaymentModule
 		if (!$this->isPayment())
 			return false;
 
-		$state = $params['objOrder']->getCurrentState();
-		if ($state == Configuration::get('SOFORTBANKING_OS_ACCEPTED'))
-			$this->context->smarty->assign(array(
-				'total_to_pay' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false),
-				'status' => 'accepted'
-			)
+		$this->context->smarty->assign(array(
+			'total_to_pay' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false),
+			'status' => ($params['objOrder']->getCurrentState() == Configuration::get('SOFORTBANKING_OS_ACCEPTED') ? true : false))
 		);
 
 		return $this->display(__FILE__, 'views/templates/hook/payment_return.tpl');

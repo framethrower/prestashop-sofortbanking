@@ -31,7 +31,7 @@
  *}
 
 <!-- sofortbanking module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
-{if $status == 'accepted' || $status == 'pending'}
+{if $status === true}
 	<p>
 		{l s='Your order on' mod='sofortbanking'} <span class="bold">{$shop_name|escape:'htmlall':'UTF-8'}</span> {l s='is complete.' mod='sofortbanking'}
 		<br /><br />

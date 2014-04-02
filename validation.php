@@ -31,6 +31,8 @@
  *
  */
 
+sleep(10);
+
 require dirname(__FILE__).'/../../config/config.inc.php';
 require dirname(__FILE__).'/sofortbanking.php';
 
@@ -67,23 +69,37 @@ if (class_exists('Context'))
 
 $sofortbanking = new Sofortbanking();
 
-/* Validate submited post vars */
-if (Tools::getValue('hash') != sha1(implode('|', $request)))
-	die($sofortbanking->l('Fatal Error (1)'));
-elseif (!is_object($cart) || !$cart)
-	die($sofortbanking->l('Fatal Error (2)'));
-else
+/* If valid hash, set order state as accepted */
+if (is_object($cart) && Tools::getValue('hash') == sha1(implode('|', $request)))
 	$order_state = Configuration::get('SOFORTBANKING_OS_ACCEPTED');
 
-$customer = new Customer((int)$cart->id_customer);
+$customer = new Customer($cart->id_customer);
 
 /* Validate this card in store if needed */
 if (($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED') && Configuration::get('SOFORTBANKING_OS_ACCEPTED_IGNORE') != 'Y')
 	|| ($order_state == Configuration::get('SOFORTBANKING_OS_ERROR') && Configuration::get('SOFORTBANKING_OS_ERROR_IGNORE') != 'Y'))
 {
-	$sofortbanking->validateOrder($cart->id, $order_state, (float)number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
-		$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
-		null, null, false, $customer->secure_key, null);
+	if (!Order::getOrderByCartId($cart->id))
+		$sofortbanking->validateOrder($cart->id, $order_state, (float)number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
+			$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
+			null, null, false, $customer->secure_key, null);
+	else
+	{
+		$order = new Order(Order::getOrderByCartId($cart->id));
+		if ($order->getCurrentState() != $order_state)
+		{
+			$history = new OrderHistory();
+			$history->id_order = $order->id;
+			$history->changeIdOrderState($order_state, $order->id);
+			$history->addWithemail(true);
+			/* Add private order message for seller */
+			$orderMessage = new Message();
+			$orderMessage->message = $sofortbanking->l('Change order state for transaction id:'.Tools::getValue('transaction').' by SOFORT notification.');
+			$orderMessage->private = 1;
+			$orderMessage->id_order = $order->id;
+			$orderMessage->add();
+		}
+	}
 }
 
 ?>

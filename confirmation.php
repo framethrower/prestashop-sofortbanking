@@ -34,9 +34,31 @@
 require dirname(__FILE__).'/../../config/config.inc.php';
 require dirname(__FILE__).'/sofortbanking.php';
 
-$sofortbanking = new sofortbanking();
+$order_state = Configuration::get('SOFORTBANKING_OS_ERROR');
+$cart = new Cart((int)Tools::getValue('user_variable_1'));
 
-$order_id = Order::getOrderByCartId((int)Tools::getValue('user_variable_1'));
+if (class_exists('Context'))
+{
+	if (empty(Context::getContext()->link))
+		Context::getContext()->link = new Link();
+	Context::getContext()->language = new Language($cart->id_lang);
+	Context::getContext()->currency = new Currency($cart->id_currency);
+}
+
+$sofortbanking = new Sofortbanking();
+
+/* If valid hash, set order state as accepted */
+if (is_object($cart) && Tools::getValue('hash') == sha1(Tools::getValue('user_variable_1').Configuration::get('SOFORTBANKING_PROJECT_PW')))
+	$order_state = Configuration::get('SOFORTBANKING_OS_ACCEPTED');
+
+$customer = new Customer((int)$cart->id_customer);
+
+/* Validate this card in store if needed */
+if (!Order::getOrderByCartId($cart->id) && ($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED') || $order_state == Configuration::get('SOFORTBANKING_OS_ERROR')))
+	$sofortbanking->validateOrder($cart->id, $order_state, (float)number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
+		$sofortbanking->displayName, null, null, null, false, $customer->secure_key, null);
+
+$order_id = Order::getOrderByCartId($cart->id);
 
 $order = new Order($order_id);
 
