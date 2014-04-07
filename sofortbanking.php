@@ -59,7 +59,7 @@ class Sofortbanking extends PaymentModule
 		parent::__construct();
 		$this->page = basename(__FILE__, '.php');
 		$this->displayName = $this->l('sofortbanking');
-		$this->description = $this->l('Accepts payments by sofortbanking');
+		$this->description = $this->l('SOFORT Banking - Your economic payment system. Recommended by merchants.');
 		$this->confirmUninstall = $this->l('Are you sure you want to delete your details?');
 		/* Backward compatibility */
 		if (version_compare(_PS_VERSION_, '1.5', '<'))
