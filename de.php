@@ -18,7 +18,7 @@ $_MODULE['<{sofortbanking}prestashop>display_form_77001477367570323eaaf75634c9d6
 $_MODULE['<{sofortbanking}prestashop>display_form_6220432d4a9990aa961b3e368edaafdd'] = 'Einrichtung und Konfiguration';
 $_MODULE['<{sofortbanking}prestashop>display_form_d07647a9c8d55cd3a2bfc68cb3c2a39c'] = 'Um SOFORT Überweisung nutzen zu können sind wenige Schritte notwendig:';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f98b7f230f3c91292f0de4c99e263f2'] = 'Registrierung';
-$_MODULE['<{sofortbanking}prestashop>display_form_9bfc8a215e1a7b0bf017a5603eaf39c9'] = 'Um SOFORT Überweisung nut-zen zu können benötigen Sie einen Kundenaccount bei der SOFORT AG. Sie sind noch kein Kunde?';
+$_MODULE['<{sofortbanking}prestashop>display_form_9bfc8a215e1a7b0bf017a5603eaf39c9'] = 'Um SOFORT Überweisung nutzen zu können benötigen Sie einen Kundenaccount bei der SOFORT AG. Sie sind noch kein Kunde?';
 $_MODULE['<{sofortbanking}prestashop>display_form_15e80d88e64872dffe151e5ba783270b'] = 'Registrieren Sie sich jetzt!';
 $_MODULE['<{sofortbanking}prestashop>display_form_71912897d6f5554e461cd9dd8df63c9a'] = 'Bitte richten Sie im Anbietermenü der SOFORT AG ein Projekt ein und hinterlegen die folgenden URLs an der entsprechenden Stelle';
 $_MODULE['<{sofortbanking}prestashop>display_form_460733160c0738d898a2ebbccded9d5b'] = '(Bitte achten Sie darauf ein \"SOFORT-Classic-Projekt\" anzulegen)';
@@ -49,7 +49,7 @@ $_MODULE['<{sofortbanking}prestashop>display_form_bafd7322c6e97d25b6299b5d6fe892
 $_MODULE['<{sofortbanking}prestashop>display_form_90b4582553f1b33365504d2808652395'] = 'Voraussetzung: Konto bei der';
 $_MODULE['<{sofortbanking}prestashop>display_form_eacbe2e55a155c59d79353f551e09b07'] = 'und Aktivierung in Ihren Projekteinstellungen. Bitte unbedingt über';
 $_MODULE['<{sofortbanking}prestashop>display_form_c2e2fce3a995f59900d7afbbe58683f5'] = 'diesen Link';
-$_MODULE['<{sofortbanking}prestashop>display_form_9ebf6132e7499eb380a52ade5ca9311c'] = 'vorher überprüfen und hier nur aktivieren wenn auch Ihr Projekt dafür vorher überprüfen und hier nur aktivieren wenn auch Ihr Projekt dafür freigeschaltet wurde und damit verbunden die Händlerbedingungen zum Käuferschutz akzeptiert wurden.';
+$_MODULE['<{sofortbanking}prestashop>display_form_9ebf6132e7499eb380a52ade5ca9311c'] = 'vorher überprüfen und hier nur aktivieren wenn auch Ihr Projekt dafür freigeschaltet wurde und damit verbunden die Händlerbedingungen zum Käuferschutz akzeptiert wurden. ';
 $_MODULE['<{sofortbanking}prestashop>display_form_012247e5cf063cda07e92d687405fa69'] = 'Direkte Weiterleitung aktivieren?';
 $_MODULE['<{sofortbanking}prestashop>display_form_577f8f5ea17fca2ec58501a9628b44eb'] = 'Nein, der Kunde soll vorher die Bestellung bestätigen.';
 $_MODULE['<{sofortbanking}prestashop>display_form_d0e1dfd51beaf6428aae014beadb4fc6'] = 'Direkte Weiterleitung zu SOFORT Überweisung nach Auswahl der Zahlart aktivieren. (Bestätigungsseite wird übersprungen)';
