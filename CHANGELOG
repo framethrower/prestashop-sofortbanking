@@ -6,6 +6,9 @@ Set new default status for payed orders
 Small fixes for PS coding standards
 Add order validation by confirmation url
 Update notification validation.php for failed payments
+Fix token redirect and authentication check in payment.php for PS compat 1.4
+Add new clear module configuration layout
+Update translations
 
 // Version 20
 

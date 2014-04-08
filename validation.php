@@ -93,11 +93,11 @@ if (($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED') && Configur
 			$history->changeIdOrderState($order_state, $order->id);
 			$history->addWithemail(true);
 			/* Add private order message for seller */
-			$orderMessage = new Message();
-			$orderMessage->message = $sofortbanking->l('Change order state by SOFORT notification for transaction id: ').Tools::getValue('transaction');
-			$orderMessage->private = 1;
-			$orderMessage->id_order = $order->id;
-			$orderMessage->add();
+			$message = new Message();
+			$message->message = $sofortbanking->l('Change order state by SOFORT notification for transaction id: ').Tools::getValue('transaction');
+			$message->private = 1;
+			$message->id_order = $order->id;
+			$message->add();
 		}
 	}
 }

@@ -71,7 +71,6 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 		$customer = new Customer((int)$cart->id_customer);
 		$currency = $this->context->currency;
 		$country = new Country((int)$address->id_country);
-		$lang = Language::getIsoById((int)$cart->id_lang);
 
 		if (!Configuration::get('SOFORTBANKING_USER_ID'))
 			die($this->module->l($this->module->displayName.' Error: (invalid or undefined userId)'));

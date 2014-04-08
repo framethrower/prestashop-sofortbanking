@@ -54,7 +54,8 @@ if (is_object($cart) && Tools::getValue('hash') == sha1(Tools::getValue('user_va
 $customer = new Customer((int)$cart->id_customer);
 
 /* Validate this card in store if needed */
-if (!Order::getOrderByCartId($cart->id) && ($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED') || $order_state == Configuration::get('SOFORTBANKING_OS_ERROR')))
+if (!Order::getOrderByCartId($cart->id) && ($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED')
+	|| $order_state == Configuration::get('SOFORTBANKING_OS_ERROR')))
 	$sofortbanking->validateOrder($cart->id, $order_state, (float)number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
 		$sofortbanking->displayName, null, null, null, false, $customer->secure_key, null);
 

@@ -110,7 +110,7 @@ fieldset a:hover {
 		<label>{l s='Order accepted status' mod='sofortbanking'}</label>
 		<div class="margin-form">
 			<select name="SOFORTBANKING_OS_ACCEPTED">
-				{$sofort.order_states.accepted}
+				{$sofort.order_states.accepted|escape:'UTF-8'}
 			</select> <input type="checkbox" name="SOFORTBANKING_OS_ACCEPTED_IGNORE" {if $sofort.config.SOFORTBANKING_OS_ACCEPTED_IGNORE == "Y"}checked="checked"{/if} value="Y" /> {l s='No status update for this event' mod='sofortbanking'}<br />
 			<br />
 			<p>{l s='Order state for accepted payments' mod='sofortbanking'}</p>
@@ -119,7 +119,7 @@ fieldset a:hover {
 		<label>{l s='Order error status' mod='sofortbanking'}</label>
 		<div class="margin-form">
 			<select name="SOFORTBANKING_OS_ERROR">
-				{$sofort.order_states.error}
+				{$sofort.order_states.error|escape:'UTF-8'}
 			</select> <input type="checkbox" name="SOFORTBANKING_OS_ERROR_IGNORE" {if $sofort.config.SOFORTBANKING_OS_ERROR_IGNORE == "Y"}checked="checked"{/if} value="Y" /> {l s='No status update for this event' mod='sofortbanking'}<br />
 			<br />
 			<p>{l s='Order state for failed payments' mod='sofortbanking'}</p>

@@ -40,17 +40,16 @@ require_once dirname(__FILE__).'/sofortbanking.php';
 
 /* If PS 1.5 or higher redirect to module controller */
 if (version_compare(_PS_VERSION_, '1.5', '>='))
-	Tools::redirect(Context::getContext()->link->getModuleLink('sofortbanking', 'payment'), null, false, false);
-else {
+	Tools::redirect(Context::getContext()->link->getModuleLink('sofortbanking', 'payment').'?token='.Tools::getValue('token'));
+else
+{
 
 	$controller = new FrontController();
 	$controller->init();
+	$controller->auth = true;
 
 	/* Check if token is valid */
 	if (Configuration::get('PS_TOKEN_ENABLE') && !(strcasecmp(Tools::getToken(false), Tools::getValue('token')) == 0))
-		Tools::redirect('order.php', 'order=back.php');
-	/* Check if user is logged */
-	if (!$cookie->isLogged(true))
 		Tools::redirect('order.php', 'order=back.php');
 
 	$controller->setMedia();
