@@ -138,22 +138,11 @@ class Sofortbanking extends PaymentModule
 		$this->postValidation();
 		if (isset($this->_errors) && count($this->_errors))
 			foreach ($this->_errors as $err)
-				$this->html .= '<div class="alert error">'.$err.'</div>';
+				$this->html .= $this->displayError($err);
 		elseif (Tools::getValue('submitUpdate') && !count($this->_errors))
-			$this->getSuccessMessage();
-
+			$this->html .= $this->displayConfirmation($this->l('Settings updated'));
+		
 		return $this->html.$this->displayForm();
-	}
-
-	/**
-	 * Get success message for submited and updated datas
-	 */
-	public function getSuccessMessage()
-	{
-		$this->html .= '
-		<div class="conf confirm">
-			'.$this->l('Settings updated').'
-		</div>';
 	}
 
 	/**
