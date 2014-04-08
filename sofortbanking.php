@@ -192,7 +192,7 @@ class Sofortbanking extends PaymentModule
 			'validation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
 				.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php',
 			'success' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
-				.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-');
+				.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-&hash=-USER_VARIABLE_1_HASH_PASS-');
 
 		if (version_compare(_PS_VERSION_, '1.5', '>='))
 			$link['cancellation'] = (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
