@@ -141,7 +141,7 @@ class Sofortbanking extends PaymentModule
 				$this->html .= $this->displayError($err);
 		elseif (Tools::getValue('submitUpdate') && !count($this->_errors))
 			$this->html .= $this->displayConfirmation($this->l('Settings updated'));
-		
+
 		return $this->html.$this->displayForm();
 	}
 
