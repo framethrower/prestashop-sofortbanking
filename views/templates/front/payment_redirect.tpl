@@ -28,7 +28,16 @@
 
 <style type="text/css">
 #module-sofortbanking-payment #center_column {
-	width:757px;
+width:757px;
+}
+#module-sofortbanking-payment.hide-right-column #center_column {
+width:100%;
+}
+#module-sofortbanking-payment #columns .breadcrumb {
+display:none;
+}
+#module-sofortbanking-payment #center_column .breadcrumb {
+display:table;
 }
 </style>
 
