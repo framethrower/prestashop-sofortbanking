@@ -69,7 +69,7 @@ $_MODULE['<{sofortbanking}prestashop>payment_execution_b459d7e1103a33f6790ca26c0
 $_MODULE['<{sofortbanking}prestashop>payment_execution_6af381041f6fb0734eac4b0964d827e8'] = 'Zvolili jste způsob platby SOFORT Banking a budete následně přesměrováni na SOFORT Banking, abyste mohli hned provést platbu.';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_167add1e8662b28f92fd0ab08e3c5ff5'] = 'Celková částka Vaší objednávky činí';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_1f87346a16cf80c372065de3c54c86d9'] = '(včetně DPH)';
-$_MODULE['<{sofortbanking}prestashop>payment_execution_52f64bc0164b0e79deaeaaaa7e93f98f'] = 'Potvrďte prosím svou objednávku pomocí tlačítka \\\"Objednat s povinností platby\\\"';
+$_MODULE['<{sofortbanking}prestashop>payment_execution_52f64bc0164b0e79deaeaaaa7e93f98f'] = 'Potvrďte prosím svou objednávku pomocí tlačítka \"Objednat s povinností platby\"';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_569fd05bdafa1712c4f6be5b153b8418'] = 'Zvolit jiný způsob platby';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_46b9e3665f187c739c55983f757ccda0'] = 'Objednat s povinností platby';
 $_MODULE['<{sofortbanking}prestashop>payment_redirect_8160b19e00d84831a18547ae1320d2a7'] = 'Plaťte přes SOFORT Banking';

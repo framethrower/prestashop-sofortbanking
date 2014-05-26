@@ -73,6 +73,8 @@ fieldset a:hover {
 		<b>{l s='Cancel-Url:' mod='sofortbanking'}</b><br /><textarea rows=1 style="width:98%;">{$sofort.link.cancellation|escape:'htmlall':'UTF-8'}</textarea>
 		<br /><br />
 		<b>{l s='Confirmation-Url:' mod='sofortbanking'} {l s='(Method POST)' mod='sofortbanking'}</b><br /><textarea rows=1 style="width:98%;">{$sofort.link.validation|escape:'htmlall':'UTF-8'}</textarea>
+		<br />
+		<p>{l s='Please also generate a per project and notification password in the corresponding menu entry in SOFORT and make sure that the hash algorithm "SHA1 "is selected.' mod='sofortbanking'}</p>
 	</fieldset>
 	<br />
 	

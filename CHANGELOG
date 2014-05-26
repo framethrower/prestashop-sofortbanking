@@ -1,4 +1,4 @@
-// Version 21
+// Version 23
 
 Add order state dropdowns for accepted and failed payments
 Add optional checkbox to ignore status update events
@@ -7,8 +7,18 @@ Small fixes for PS coding standards
 Add order validation by confirmation url
 Update notification validation.php for failed payments
 Fix token redirect and authentication check in payment.php for PS compat 1.4
+Add compats for PS 1.6
 Add new clear module configuration layout
 Update translations
+Add new translations (Slovak, Czech, Hungarian)
+
+// Version 22
+
+Increment...
+
+// Version 21
+
+Increment...
 
 // Version 20
 

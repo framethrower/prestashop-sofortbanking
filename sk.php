@@ -63,13 +63,13 @@ $_MODULE['<{sofortbanking}prestashop>display_form_83dfa65d82d4e8ccf9eb4ff121aa61
 $_MODULE['<{sofortbanking}prestashop>payment_execution_8160b19e00d84831a18547ae1320d2a7'] = 'Platba cez SOFORT Banking';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_f1d3b424cd68795ecaa552883759aceb'] = 'Potvrdenie objednávky';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_879f6b8877752685a966564d072f498f'] = 'Vá nákupný koík je prázdny.';
-$_MODULE['<{sofortbanking}prestashop>payment_execution_d21f6083263df8b02158f303e6bd7c54'] = 'SOFORT Banking - jednoducho a bezpečne platiť.\';';
+$_MODULE['<{sofortbanking}prestashop>payment_execution_d21f6083263df8b02158f303e6bd7c54'] = 'SOFORT Banking - jednoducho a bezpečne platiť.';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_5c48e9dbf7bde1a61d5bfdae5cdd5a7d'] = 'Prostredníctvom platobného systému SOFORT Banking s certifikáciou TÜV môžete pomocou Vaších obvyklých údajov z internet bankingu platiť bez registrácie, jednoducho a bezpečne.';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_b459d7e1103a33f6790ca26c05b99715'] = 'Viac sa dozviete tu.';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_6af381041f6fb0734eac4b0964d827e8'] = 'Ako spôsob platby ste si zvolili SOFORT Banking a následne budete presmerovaný na SOFORT Banking na okamité prevedenie platby.';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_167add1e8662b28f92fd0ab08e3c5ff5'] = 'Celková suma Vaej objednávky predstavuje';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_1f87346a16cf80c372065de3c54c86d9'] = '(vrátane DPH)';
-$_MODULE['<{sofortbanking}prestashop>payment_execution_52f64bc0164b0e79deaeaaaa7e93f98f'] = 'Prosím, potvrďte Vašu objednávku tak, že ju odošlete stlačením tlačidla  \\\"Záväzne objednať\\\".';
+$_MODULE['<{sofortbanking}prestashop>payment_execution_52f64bc0164b0e79deaeaaaa7e93f98f'] = 'Prosím, potvrďte Vašu objednávku tak, že ju odošlete stlačením tlačidla  \"Záväzne objednať\".';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_569fd05bdafa1712c4f6be5b153b8418'] = 'Zvoliť iný spôsob platby';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_46b9e3665f187c739c55983f757ccda0'] = 'Záväzne objednať';
 $_MODULE['<{sofortbanking}prestashop>payment_redirect_8160b19e00d84831a18547ae1320d2a7'] = 'Zaplatiť cez SOFORT Banking';

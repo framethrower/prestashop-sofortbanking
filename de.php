@@ -27,6 +27,7 @@ $_MODULE['<{sofortbanking}prestashop>display_form_0460817770faafdd4fca012a46a9ef
 $_MODULE['<{sofortbanking}prestashop>display_form_429e6f2cf4af25753fe27adbc5def9ec'] = 'Abbruch-Link (Rückkehr zum Shop):';
 $_MODULE['<{sofortbanking}prestashop>display_form_e722d72b214116587e4e6082588df694'] = 'Bestätigungs-URL (HTTP-Benachrichtigung):';
 $_MODULE['<{sofortbanking}prestashop>display_form_f99e79a7210477b35ca277a786b1ffff'] = '(Methode POST)';
+$_MODULE['<{sofortbanking}prestashop>display_form_d19723cd3de5f95c768ad468eea24d2b'] = 'Bitte generieren Sie außerdem je ein Projekt- und Benachrichtigungspasswort im entsprechenden Menüeintrag bei SOFORT und achten Sie darauf, dass der Hash-Algorithmus \"SHA1\" gewählt ist.';
 $_MODULE['<{sofortbanking}prestashop>display_form_b04f2c8a90cfc485fc990dc8dc4ba293'] = 'Modulkonfiguration';
 $_MODULE['<{sofortbanking}prestashop>display_form_acc316cbdee7e34a0ba391715b27c7e0'] = 'Bitte hinterlegen Sie Ihre SOFORT-Projektdaten und Passwörter in die folgenden Felder:';
 $_MODULE['<{sofortbanking}prestashop>display_form_14dec8bb8ffa34a52b0c38a8bfefb3a3'] = 'Kundennummer:';
