@@ -3,7 +3,7 @@
 	<name>sofortbanking</name>
 	<displayName><![CDATA[SOFORT Banking]]></displayName>
 	<version><![CDATA[2.1]]></version>
-	<description><![CDATA[SOFORT Banking - Your economic payment system. Recommended by merchants.]]></description>
+	<description><![CDATA[SOFORT Banking - The payment system that benefits you. Recommended by merchants.]]></description>
 	<author><![CDATA[touchdesign]]></author>
 	<tab><![CDATA[payments_gateways]]></tab>
 	<confirmUninstall><![CDATA[Are you sure you want to delete your details?]]></confirmUninstall>

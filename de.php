@@ -59,7 +59,7 @@ $_MODULE['<{sofortbanking}prestashop>display_form_0a54158ca691945ca91a3f53d43812
 $_MODULE['<{sofortbanking}prestashop>display_form_15bbb9d0bbf25e8d2978de1168c749dc'] = 'Webseite';
 $_MODULE['<{sofortbanking}prestashop>display_form_c333c328f4167ee1f6d76dc1fef83dc4'] = 'Gerne helfen wir Ihnen bei der Einrichtung. Kontaktieren Sie einfach unseren';
 $_MODULE['<{sofortbanking}prestashop>display_form_9fd61ca36b8ea5302464a32ef9a8aecc'] = 'Support.';
-$_MODULE['<{sofortbanking}prestashop>display_form_83dfa65d82d4e8ccf9eb4ff121aa6115'] = 'Copyright & Autor:';
+$_MODULE['<{sofortbanking}prestashop>display_form_83dfa65d82d4e8ccf9eb4ff121aa6115'] = 'Copyright & Autor';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_8160b19e00d84831a18547ae1320d2a7'] = 'Zahlen mit SOFORT Überweisung';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_f1d3b424cd68795ecaa552883759aceb'] = 'Bestellbestätigung';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_879f6b8877752685a966564d072f498f'] = 'Ihr Warenkorb ist leer.';
