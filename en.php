@@ -27,7 +27,7 @@ $_MODULE['<{sofortbanking}prestashop>display_form_0460817770faafdd4fca012a46a9ef
 $_MODULE['<{sofortbanking}prestashop>display_form_429e6f2cf4af25753fe27adbc5def9ec'] = 'Cancellation-Link (return to shop):';
 $_MODULE['<{sofortbanking}prestashop>display_form_e722d72b214116587e4e6082588df694'] = 'Confirmation-URL (HTTP-notification):';
 $_MODULE['<{sofortbanking}prestashop>display_form_f99e79a7210477b35ca277a786b1ffff'] = '(method POST)';
-$_MODULE['<{sofortbanking}prestashop>display_form_d19723cd3de5f95c768ad468eea24d2b'] = 'Please also generate a per project and notification password in the corresponding menu entry in SOFORT and make sure that the hash algorithm \"SHA1 \"is selected.';
+$_MODULE['<{sofortbanking}prestashop>display_form_d19723cd3de5f95c768ad468eea24d2b'] = 'Please generate a project and a notification password in the corresponding menu entry at SOFORT and make sure that the hash algorithm \"SHA1\" is selected.';
 $_MODULE['<{sofortbanking}prestashop>display_form_b04f2c8a90cfc485fc990dc8dc4ba293'] = 'Module configuration';
 $_MODULE['<{sofortbanking}prestashop>display_form_acc316cbdee7e34a0ba391715b27c7e0'] = 'Please store your SOFORT project data and passwords in the following fields:';
 $_MODULE['<{sofortbanking}prestashop>display_form_14dec8bb8ffa34a52b0c38a8bfefb3a3'] = 'Customer number:';

@@ -20,6 +20,8 @@ Add compats for PS 1.6
 Add new clear module configuration layout
 Update translations
 Add new translations (Slovak, Czech, Hungarian)
+Fix invalid token in one page checkout
+Fix urls for multistores
 
 // Version 22
 

@@ -27,6 +27,7 @@ $_MODULE['<{sofortbanking}prestashop>display_form_0460817770faafdd4fca012a46a9ef
 $_MODULE['<{sofortbanking}prestashop>display_form_429e6f2cf4af25753fe27adbc5def9ec'] = 'Enlace de anulación (reenvío a tienda online):';
 $_MODULE['<{sofortbanking}prestashop>display_form_e722d72b214116587e4e6082588df694'] = 'URL de confirmación (notificación HTTP):';
 $_MODULE['<{sofortbanking}prestashop>display_form_f99e79a7210477b35ca277a786b1ffff'] = '(Método POST)';
+$_MODULE['<{sofortbanking}prestashop>display_form_d19723cd3de5f95c768ad468eea24d2b'] = 'Genere una contraseña por cada proyecto y notificación de alerta en la entrada de menú correspondiente en SOFORT y fíjese en que el algorimo hash «SHA1» esté seleccionado.';
 $_MODULE['<{sofortbanking}prestashop>display_form_b04f2c8a90cfc485fc990dc8dc4ba293'] = 'Configuración del módulo';
 $_MODULE['<{sofortbanking}prestashop>display_form_acc316cbdee7e34a0ba391715b27c7e0'] = 'Introduzca los datos y las contraseñas del proyecto SOFORT en los siguientes campos:';
 $_MODULE['<{sofortbanking}prestashop>display_form_14dec8bb8ffa34a52b0c38a8bfefb3a3'] = 'Número de cliente:';
@@ -59,7 +60,7 @@ $_MODULE['<{sofortbanking}prestashop>display_form_0a54158ca691945ca91a3f53d43812
 $_MODULE['<{sofortbanking}prestashop>display_form_15bbb9d0bbf25e8d2978de1168c749dc'] = 'página web';
 $_MODULE['<{sofortbanking}prestashop>display_form_c333c328f4167ee1f6d76dc1fef83dc4'] = 'Estamos a su disposición para ayudarle con la instalación. Póngase en contacto con nuestro';
 $_MODULE['<{sofortbanking}prestashop>display_form_9fd61ca36b8ea5302464a32ef9a8aecc'] = 'equipo de soporte técnico';
-$_MODULE['<{sofortbanking}prestashop>display_form_83dfa65d82d4e8ccf9eb4ff121aa6115'] = 'Author and Copyright';
+$_MODULE['<{sofortbanking}prestashop>display_form_83dfa65d82d4e8ccf9eb4ff121aa6115'] = 'Autor y Copyright';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_8160b19e00d84831a18547ae1320d2a7'] = 'Pagar con SOFORT Banking';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_f1d3b424cd68795ecaa552883759aceb'] = 'Confirmación del pedido';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_879f6b8877752685a966564d072f498f'] = 'Su carrito de la compra está vacío';

@@ -177,18 +177,20 @@ class Sofortbanking extends PaymentModule
 			'SOFORTBANKING_NOTIFY_PW','SOFORTBANKING_BLOCK_LOGO','SOFORTBANKING_CPROTECT','SOFORTBANKING_REDIRECT',
 			'SOFORTBANKING_OS_ACCEPTED_IGNORE','SOFORTBANKING_OS_ERROR_IGNORE'));
 
-		$link = array(
-			'validation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
-				.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php',
-			'success' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
-				.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-&hash=-USER_VARIABLE_1_HASH_PASS-');
-
 		if (version_compare(_PS_VERSION_, '1.5', '>='))
-			$link['cancellation'] = (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
-				.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'index.php?controller=order&step=3';
+			$link = array(
+				'validation' => $this->context->shop->getBaseURL().'modules/'.$this->name.'/validation.php',
+				'success' => $this->context->shop->getBaseURL().'modules/'.$this->name
+					.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-&hash=-USER_VARIABLE_1_HASH_PASS-',
+				'cancellation' => $this->context->shop->getBaseURL().'index.php?controller=order&step=3');
 		else
-			$link['cancellation'] = (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
-				.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'order.php?step=3';
+			$link = array(
+				'validation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
+					.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php',
+				'success' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
+					.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-&hash=-USER_VARIABLE_1_HASH_PASS-',
+				'cancellation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
+					.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'order.php?step=3');
 
 		$order_states = array(
 			'accepted' => $this->getOrderStatesOptionFields(Configuration::get('SOFORTBANKING_OS_ACCEPTED')),
@@ -228,6 +230,7 @@ class Sofortbanking extends PaymentModule
 		$this->context->smarty->assign('cprotect', Configuration::get('SOFORTBANKING_CPROTECT'));
 		$this->context->smarty->assign('lang', Language::getIsoById((int)$params['cart']->id_lang));
 		$this->context->smarty->assign('mod_lang', $this->isSupportedLang());
+		$this->context->smarty->assign('static_token', Tools::getToken(false));
 
 		return $this->display(__FILE__, 'views/templates/hook/payment.tpl');
 	}
