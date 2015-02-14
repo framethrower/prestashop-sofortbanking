@@ -51,7 +51,7 @@ fieldset a:hover {
 
 <fieldset class="level1">
 <legend><img src="{$sofort.dfl.path|escape:'htmlall':'UTF-8'}/logo.gif" width="16" height="16" alt="logo.gif" title="" />{l s='Over SOFORT Banking' mod='sofortbanking'}</legend>
-	<b>{l s='SOFORT Banking is the direct payment method of SOFORT AG. SOFORT Banking allows the buyer to directly and automatically trigger a credit transfer during his online purchase with them online banking information. A transfer order is instantly confirmed to merchant allowing an instant delivery of goods and services. So you can send stock items and digital goods immediately - you will receive your purchases quickly. More about SOFORT Banking and SOFORT AG' mod='sofortbanking'}</b> <a target="_blank" href="https://sofort.com/"><b>{l s='sofort.com.' mod='sofortbanking'}</b></a><br />
+	<b>{l s='SOFORT Banking is the direct payment method of SOFORT AG. SOFORT Banking allows the buyer to directly and automatically trigger a credit transfer during his online purchase with them online banking information. A transfer order is instantly confirmed to merchant allowing an instant delivery of goods and services. So you can send stock items and digital goods immediately - you will receive your purchases quickly. More about SOFORT Banking and SOFORT AG' mod='sofortbanking'}</b> <a target="_blank" href="https://www.sofortueberweisung.de/payment/users/register/284"><b>{l s='sofort.com.' mod='sofortbanking'}</b></a><br />
 </fieldset>
 <br />
 
