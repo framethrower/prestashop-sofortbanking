@@ -242,7 +242,7 @@ class Sofortbanking extends PaymentModule
 	 * @param array $params
 	 * @return array $result
 	 */
-	public function hookDisplayPaymentEU($params = null)
+	public function hookDisplayPaymentEU($params)
 	{
 		$lang = $this->isSupportedLang();
 		$result = array(
