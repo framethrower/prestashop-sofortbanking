@@ -252,11 +252,11 @@ class Sofortbanking extends PaymentModule
 						array('token' => Tools::getToken(false), 'redirect' => true), true)
 		);
 
-		if (strtolower(Configuration::get('SOFORTBANKING_CPROTECT')) == 'y' && strtolower($lang) == 'de')
-			$result = array_merge($result, array('logo' => $this->_path . 'img/' . $lang . '/banner_400x100_ks.png',
+		if (Tools::strtolower(Configuration::get('SOFORTBANKING_CPROTECT')) == 'y' && Tools::strtolower($lang) == 'de')
+			$result = array_merge($result, array('logo' => $this->_path.'img/'.$lang.'/banner_400x100_ks.png',
 					'cta_text' => $this->l('Buy secure with customer protection by sofortbanking')));
 		else
-		    $result = array_merge($result, array('logo' => $this->_path . 'img/' . $lang . '/banner_300x100.png',
+			$result = array_merge($result, array('logo' => $this->_path.'img/'.$lang.'/banner_300x100.png',
 					'cta_text' => $this->l('Pay easy and secure with SOFORT Banking.')));
 
 		return $result;
