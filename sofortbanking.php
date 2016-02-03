@@ -47,12 +47,13 @@ class Sofortbanking extends PaymentModule
 	{
 		$this->name = 'sofortbanking';
 		$this->tab = 'payments_gateways';
-		$this->version = '2.5.3';
+		$this->version = '2.5.5';
 		$this->author = 'touchdesign';
 		$this->module_key = '65af9f83d2ae6fbe6dbdaa91d21f952a';
 		$this->currencies = true;
 		$this->currencies_mode = 'radio';
 		$this->is_eu_compatible = 1;
+		$this->controllers = array('payment');
 		parent::__construct();
 		$this->page = basename(__FILE__, '.php');
 		$this->displayName = $this->l('sofortbanking');
