@@ -320,7 +320,7 @@ class Sofortbanking extends PaymentModule
 	/**
 	 * Build and display payment page for PS 1.4
 	 *
-	 * This part is only for backward comatibility to PS 1.4 and
+	 * This part is only for backward compatibility to PS 1.4 and
 	 * will be removed in one of the further module versions.
 	 */
 	public function backwardPaymentController()
