@@ -47,7 +47,7 @@ class Sofortbanking extends PaymentModule
 	{
 		$this->name = 'sofortbanking';
 		$this->tab = 'payments_gateways';
-		$this->version = '2.5.5';
+		$this->version = '2.5.7';
 		$this->author = 'touchdesign';
 		$this->module_key = '65af9f83d2ae6fbe6dbdaa91d21f952a';
 		$this->currencies = true;
@@ -221,7 +221,7 @@ class Sofortbanking extends PaymentModule
 
 	/**
 	 * Build and display payment button
-	 * 
+	 *
 	 * @param array $params
 	 * @return string Templatepart
 	 */
@@ -320,7 +320,7 @@ class Sofortbanking extends PaymentModule
 	/**
 	 * Build and display payment page for PS 1.4
 	 *
-	 * This part is only for backward comatibility to PS 1.4 and 
+	 * This part is only for backward comatibility to PS 1.4 and
 	 * will be removed in one of the further module versions.
 	 */
 	public function backwardPaymentController()
