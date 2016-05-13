@@ -13,7 +13,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'SOFORT – Transferencia bancaria directa online.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = 'ID del carrito de la compra';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'ID de transacción SOFORT';
-$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Change order state by SOFORT notification for transaction id:';
+$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'El estado de la transacción ID se ha actualizado correctamente';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'Acerca de SOFORT';
 $_MODULE['<{sofortbanking}prestashop>display_form_915f879e097a04f65070e0c5c99ae113'] = 'SOFORT es el sistema de transferencia bancaria directa online de SOFORT GmbH. Con SOFORT, sus clientes podrán iniciar el pago mediante transferencia bancaria desde su comercio y ejecutarlo en tres simples pasos con sus datos de Banca Online. Su comercio recibe una confirmación en tiempo real de la transferencia efectuada y podrá tramitar los pedidos sin demora. Los fondos son transferidos desde la cuenta bancaria de su cliente a la cuenta bancaria de su comercio. Sin cuentas intermediarias y por el importe original de venta. Más información:';
 $_MODULE['<{sofortbanking}prestashop>display_form_77001477367570323eaaf75634c9d6c2'] = 'sofort.com.';

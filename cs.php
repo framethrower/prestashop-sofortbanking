@@ -13,7 +13,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'Plaťte jednoducho a bezpečne so SOFORT';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = 'ID nákupního košíku';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'SOFORT ID transakce:';
-$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Změň stav objednávky notifikací SOFORT pro ID transakce';
+$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Stav objednávky byl úspěšně aktualizován pro ID transakce:';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'Co je SOFORT';
 $_MODULE['<{sofortbanking}prestashop>display_form_915f879e097a04f65070e0c5c99ae113'] = 'SOFORT je spůsob platby společnosti SOFORT GmbH prostřednictvím příkazu k úhradě.  Pomocí SOFORT vyhotovíte ještě během objednávky pohodlně převod ve výši dané částky ze svého účtu v rámci internetového bankovnictví. Prodejce obdrží po zrealizovaní platby přes SOFORT potvrzení v reálném čase. Může tak okamžitě zaslat zboží skladem a digitální zboží a kupující obdrží své nákupy rychleji. Více o SOFORT a společnosti SOFORT GmbH na';
 $_MODULE['<{sofortbanking}prestashop>display_form_77001477367570323eaaf75634c9d6c2'] = 'sofort.com.';
@@ -86,4 +86,4 @@ $_MODULE['<{sofortbanking}prestashop>payment_return_8de637e24570c1edb0357826a2ad
 $_MODULE['<{sofortbanking}prestashop>payment_return_64430ad2835be8ad60c59e7d44e4b0b1'] = 'zákaznický servis';
 $_MODULE['<{sofortbanking}prestashop>payment_9cf51f6755e5294b00e246667b59261d'] = 'Plaťte přes SOFORT';
 $_MODULE['<{sofortbanking}prestashop>payment_b30c30f4388b0c9ab0fe47be29149a18'] = 'Nakupujte s ochranou kupujícího od Deutsche Handelsbank';
-$_MODULE['<{sofortbanking}prestashop>payment_a0aeadb20782e6a291c33715a07c5839'] = 'Plaťte jednoducho a bezpečne so SOFORT';
+$_MODULE['<{sofortbanking}prestashop>payment_a0aeadb20782e6a291c33715a07c5839'] = 'Plaťte jednoduše a bezpečně so SOFORT';

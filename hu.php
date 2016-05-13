@@ -13,7 +13,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'Fizessen egyszerűen és biztonságosan a SOFORT-tal.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = 'Bevásárlókosár azonosító';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'SOFORT tranzakciós azonosító';
-$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Change order state by SOFORT notification for transaction id:';
+$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'A tranzakciós azonosító fizetési státuszának módosítását kapják:';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'A SOFORT-ról';
 $_MODULE['<{sofortbanking}prestashop>display_form_915f879e097a04f65070e0c5c99ae113'] = 'A SOFORT a SOFORT GmbH direkt átutalási rendszere. A SOFORT segítségével a vásárló még a megrendelés közben kényelmesen kezdeményezi a mindenkori összeg átutalását az internetes bankjánál. Ön mint keresekedő a SOFORT befejezésekor valós idejű visszaigazolást kap. Így Ön a raktári áruk és a digitális termékek megrendelését azonnal feldolgozhatja - így a vásárló a megvásárolt árut gyorsabban kapja meg. További felvilágosítás a SOFORT-ról és a SOFORT GmbH-ról a';
 $_MODULE['<{sofortbanking}prestashop>display_form_77001477367570323eaaf75634c9d6c2'] = 'sofort.com oldalon.';

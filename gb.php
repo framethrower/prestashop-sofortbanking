@@ -13,7 +13,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'SOFORT - Online payments made easy.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = 'Cart-ID:';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'SOFORT transaction ID';
-$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Change order state by SOFORT notification for transaction id:';
+$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Order state successfully updated for transaction ID:';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'About SOFORT';
 $_MODULE['<{sofortbanking}prestashop>display_form_915f879e097a04f65070e0c5c99ae113'] = 'SOFORT is the direct payment system provided by SOFORT GmbH. SOFORT allows buyers to make a wire transfer of the respective amount during the order process using their online banking account. You as a merchant will receive a real-time confirmation after the SOFORT transaction has been completed. This enables you to immediately ship goods on stock and digital goods - and the buyer will receive the purchased items faster. Learn more about SOFORT and SOFORT GmbH at';
 $_MODULE['<{sofortbanking}prestashop>display_form_77001477367570323eaaf75634c9d6c2'] = 'sofort.com.';

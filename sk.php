@@ -13,7 +13,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'Plaťte jednoducho a bezpečne cez SOFORT';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = 'ID nákupného košíka';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'SOFORT ID transakcie';
-$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Zmeň stav objednávky notifikáciou SOFORT pre ID transakcie';
+$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Stav objednávky bol úspešne aktualizovaný pre ID transakcie:';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'Čo je SOFORT';
 $_MODULE['<{sofortbanking}prestashop>display_form_915f879e097a04f65070e0c5c99ae113'] = 'SOFORT je spôsob platby spoločnosti SOFORT GmbH realizovaný prostredníctvom priameho príkazu na úhradu. SOFORT umožňuje kupujúcim zadať pohodlne ešte počas objednávania príkaz na úhradu príslušnej čiastky do svojho účtu internet bankingu. Po ukončení platby cez SOFORT Banking dostane obchodník v reálnom čase potvrdenie o  uskutočnení platby. Tovar zo skladu i digitálny tovar tak môže obchodník odoslať okamžite a zákazník dostane svoj nákup rýchlejšie. Viac o SOFORT a spoločnosti SOFORT GmbH na';
 $_MODULE['<{sofortbanking}prestashop>display_form_77001477367570323eaaf75634c9d6c2'] = 'sofort.com.';
@@ -65,7 +65,7 @@ $_MODULE['<{sofortbanking}prestashop>display_form_9fd61ca36b8ea5302464a32ef9a8ae
 $_MODULE['<{sofortbanking}prestashop>display_form_83dfa65d82d4e8ccf9eb4ff121aa6115'] = 'autor a autorské práva';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_8160b19e00d84831a18547ae1320d2a7'] = 'Platba cez SOFORT';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_f1d3b424cd68795ecaa552883759aceb'] = 'Potvrdenie objednávky';
-$_MODULE['<{sofortbanking}prestashop>payment_execution_879f6b8877752685a966564d072f498f'] = 'Vá nákupný koík je prázdny.';
+$_MODULE['<{sofortbanking}prestashop>payment_execution_879f6b8877752685a966564d072f498f'] = 'Váš nákupný košík je prázdny';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_d21f6083263df8b02158f303e6bd7c54'] = 'SOFORT - jednoducho a bezpečne platiť.';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_5c48e9dbf7bde1a61d5bfdae5cdd5a7d'] = 'Prostredníctvom platobného systému SOFORT s certifikáciou TÜV môžete pomocou Vaších obvyklých údajov z internet bankingu platiť bez registrácie, jednoducho a bezpečne.';
 $_MODULE['<{sofortbanking}prestashop>payment_execution_b459d7e1103a33f6790ca26c05b99715'] = 'Viac sa dozviete tu.';
@@ -83,7 +83,7 @@ $_MODULE['<{sofortbanking}prestashop>payment_return_2e2117b7c81aa9ea6931641ea2c6
 $_MODULE['<{sofortbanking}prestashop>payment_return_75fbf512d744977d62599cc3f0ae2bb4'] = 'je úplná.';
 $_MODULE['<{sofortbanking}prestashop>payment_return_cfa0f5d192620d230ccbf3664d9d0610'] = 'Celková suma Vašej objednávky predstavuje';
 $_MODULE['<{sofortbanking}prestashop>payment_return_8de637e24570c1edb0357826a2ad5aea'] = 'V rámci Vašej objednávky došlo k chybe, obráťte sa prosím na našu';
-$_MODULE['<{sofortbanking}prestashop>payment_return_64430ad2835be8ad60c59e7d44e4b0b1'] = 'Podpora za stranke';
+$_MODULE['<{sofortbanking}prestashop>payment_return_64430ad2835be8ad60c59e7d44e4b0b1'] = 'zákaznícku podporu';
 $_MODULE['<{sofortbanking}prestashop>payment_9cf51f6755e5294b00e246667b59261d'] = 'Plaťte so SOFORT';
 $_MODULE['<{sofortbanking}prestashop>payment_b30c30f4388b0c9ab0fe47be29149a18'] = 'Nakupujte s ochranou kupujúceho od Deutsche Handelsbank';
 $_MODULE['<{sofortbanking}prestashop>payment_a0aeadb20782e6a291c33715a07c5839'] = 'Plaťte jednoducho a bezpečne cez SOFORT';

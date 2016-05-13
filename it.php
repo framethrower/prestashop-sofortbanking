@@ -13,7 +13,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'Pagamenti online semplici e sicuri';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = '@ID carrello';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'SOFORT ID transazione';
-$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Change order state by SOFORT notification for transaction id:';
+$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'lo stato attuale dell\'ordine per la transazione ID è stata aggiornata con successo';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'Riguardo SOFORT';
 $_MODULE['<{sofortbanking}prestashop>display_form_915f879e097a04f65070e0c5c99ae113'] = 'SOFORT è il metodo di bonifico diretto di SOFORT GmbH. Con SOFORT, già durante l\'ordine, gli acquirenti impostano comodamente un bonifico per il rispettivo importo sul tuo conto di online banking. Tu, come commerciante, terminato il bonifico ricevi una conferma in tempo reale. In tal modo puoi inviare subito la merce in deposito e i prodotti digitali - e l\'acquirente riceve i suoi acquisti più velocemente. Per sapere di più su SOFORT e SOFORT GmbH:';
 $_MODULE['<{sofortbanking}prestashop>display_form_77001477367570323eaaf75634c9d6c2'] = 'sofort.com.';

@@ -13,7 +13,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'Łatwa i bezpieczna płatność z SOFORT.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = 'ID koszyka:';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'ID transakcji w SOFORT';
-$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Change order state by SOFORT notification for transaction id:';
+$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Status zamówienia dla Transaktions-ID został aktualizowany:';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'O SOFORT';
 $_MODULE['<{sofortbanking}prestashop>display_form_915f879e097a04f65070e0c5c99ae113'] = 'SOFORT to proces przelewu bezpośredniego firmy SOFORT GmbH. Korzystając z SOFORT klienci jeszcze w trakcie składania zamówienia szybko i wygodnie zlecają przelew odpowiedniej kwoty ze swojego konta bankowości internetowej. Ty jako sprzedawca po zakończonej transakcji z SOFORT natychmiast otrzymasz potwierdzenie jej dokonania. Dzięki temu towary, które od razu są dostępne w magazynie oraz produkty cyfrowe, mogą zostać wysłane natychmiast, a zatem klient szybciej otrzyma swoje zakupy. Więcej informacji o SOFORT oraz o firmie SOFORT GmbH znajdziesz na stronie';
 $_MODULE['<{sofortbanking}prestashop>display_form_77001477367570323eaaf75634c9d6c2'] = 'sofort.com.';

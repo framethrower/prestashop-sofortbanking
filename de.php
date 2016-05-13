@@ -13,7 +13,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'Einfach und sicher bezahlen mit SOFORT Überweisung.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = 'Warenkorb-ID';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'SOFORT Überweisung Transaktions ID';
-$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Änderung des Zahlstatus für transaktion-Id erhalten:';
+$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Änderung des Zahlstatus für Transaktions-ID erhalten:';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'Über SOFORT Überweisung';
 $_MODULE['<{sofortbanking}prestashop>display_form_915f879e097a04f65070e0c5c99ae113'] = 'SOFORT Überweisung ist das Direkt-Überweisungsverfahren der SOFORT GmbH. Mit SOFORT Überweisung stellen Sie noch während Ihrer Bestellung bequem eine Überweisung über den jeweiligen Betrag in Ihr Online-Banking-Konto ein. Der Händler erhält nach Abschluss der SOFORT Überweisung eine Echtzeitbestätigung. So kann er Lagerware und digitale Güter sofort versenden - Sie erhalten dann Ihre Einkäufe schneller. Mehr zu SOFORT Überweisung und der SOFORT GmbH auf';
 $_MODULE['<{sofortbanking}prestashop>display_form_77001477367570323eaaf75634c9d6c2'] = 'sofort.com.';

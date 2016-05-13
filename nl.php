@@ -13,7 +13,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'SOFORT – eenvoudig betalen via internetbankieren.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_170149a92b2369179bf59bbd535d2f03'] = 'Cart-ID:';
 $_MODULE['<{sofortbanking}prestashop>validation_cc638b4907ba6355753034f409a9d198'] = 'SOFORT transactie ID';
-$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'Change order state by SOFORT notification for transaction id:';
+$_MODULE['<{sofortbanking}prestashop>validation_fcbea145650164a544da186fdf453836'] = 'De status van betaling voor de volgende transactie is gewijzigd:';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'Over SOFORT ';
 $_MODULE['<{sofortbanking}prestashop>display_form_915f879e097a04f65070e0c5c99ae113'] = 'Een SOFORT transactie is een online bankoverschrijving. Uw klant kiest tijdens het online winkelen SOFORT als betaalmethode en komt automatisch terecht op het beveiligde SOFORT betaalschema. Hij betaalt rechtstreeks van zijn online bankrekening aan u. Vervolgens krijgt u een real-time bevestiging van de succesvolle transactie. De bestelling kan dus onmiddellijk worden verwerkt. Meer informatie over SOFORT GmbH';
 $_MODULE['<{sofortbanking}prestashop>display_form_77001477367570323eaaf75634c9d6c2'] = 'sofort.com.';
