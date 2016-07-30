@@ -47,7 +47,7 @@ class Sofortbanking extends PaymentModule
 	{
 		$this->name = 'sofortbanking';
 		$this->tab = 'payments_gateways';
-		$this->version = '2.5.7';
+		$this->version = '2.5.7.1';
 		$this->author = 'touchdesign';
 		$this->module_key = '1e7a07b1bfca0b8e9c0be68eab098797';
 		$this->currencies = true;
@@ -344,7 +344,7 @@ class Sofortbanking extends PaymentModule
 				|| !Validate::isLoadedObject($currency))
 			return $this->l($this->displayName.' Error: (invalid address or customer)');
 
-		$parameters = array(
+		$parameters = array_map('trim',array(
 			'user_id' => Configuration::get('SOFORTBANKING_USER_ID'),'project_id' => Configuration::get('SOFORTBANKING_PROJECT_ID'),
 			'sender_holder' => '','','','sender_country_id' => $country->iso_code,
 			'amount' => number_format($cart->getOrderTotal(), 2, '.', ''),
@@ -353,7 +353,7 @@ class Sofortbanking extends PaymentModule
 			'user_variable_0' => $customer->secure_key,'user_variable_1' => (int)$cart->id,
 			'user_variable_2' => '','user_variable_3' => '','user_variable_4' => '','user_variable_5' => '',
 			'project_password' => Configuration::get('SOFORTBANKING_PROJECT_PW'),
-		);
+		));
 
 		$this->context->smarty->assign(array(
 			'this_path' => $this->_path,
