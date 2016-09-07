@@ -74,7 +74,7 @@ if (($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED') && Configur
 	|| ($order_state == Configuration::get('SOFORTBANKING_OS_ERROR') && Configuration::get('SOFORTBANKING_OS_ERROR_IGNORE') != 'Y'))
 {
 	if (!Order::getOrderByCartId($cart->id))
-		$sofortbanking->validateOrder($cart->id, $order_state, (float)number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
+		$sofortbanking->validateOrder($cart->id, $order_state, $request['amount'],
 			$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
 			null, null, false, $customer->secure_key, null);
 	else

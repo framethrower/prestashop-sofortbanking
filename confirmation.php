@@ -53,8 +53,9 @@ $customer = new Customer((int)$cart->id_customer);
 if (!Order::getOrderByCartId($cart->id) && ($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED')
 	|| $order_state == Configuration::get('SOFORTBANKING_OS_ERROR')))
 {
-	$sofortbanking->validateOrder($cart->id, $order_state, (float)number_format($cart->getOrderTotal(true, 3), 2, '.', ''),
-		$sofortbanking->displayName, null, null, null, false, $customer->secure_key, null);
+	$sofortbanking->validateOrder($cart->id, $order_state, Tools::getValue('amount'),
+		$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
+		null, null, false, $customer->secure_key, null);
 	Configuration::updateValue('SOFORTBANKING_CONFIGURATION_OK', true);
 }
 

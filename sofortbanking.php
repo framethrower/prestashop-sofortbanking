@@ -47,7 +47,7 @@ class Sofortbanking extends PaymentModule
 	{
 		$this->name = 'sofortbanking';
 		$this->tab = 'payments_gateways';
-		$this->version = '2.5.7.1';
+		$this->version = '2.5.8';
 		$this->author = 'touchdesign';
 		$this->module_key = '1e7a07b1bfca0b8e9c0be68eab098797';
 		$this->currencies = true;
@@ -183,14 +183,14 @@ class Sofortbanking extends PaymentModule
 			$link = array(
 				'validation' => $this->context->shop->getBaseURL().'modules/'.$this->name.'/validation.php',
 				'success' => $this->context->shop->getBaseURL().'modules/'.$this->name
-					.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-&hash=-USER_VARIABLE_1_HASH_PASS-',
+					.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-&hash=-USER_VARIABLE_1_HASH_PASS-&amount=-AMOUNT-&transaction=-TRANSACTION-',
 				'cancellation' => $this->context->shop->getBaseURL().'index.php?controller=order&step=3');
 		else
 			$link = array(
 				'validation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
 					.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/validation.php',
 				'success' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
-					.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-&hash=-USER_VARIABLE_1_HASH_PASS-',
+					.$_SERVER['HTTP_HOST']._MODULE_DIR_.$this->name.'/confirmation.php?user_variable_1=-USER_VARIABLE_1-&hash=-USER_VARIABLE_1_HASH_PASS-&amount=-AMOUNT-&transaction=-TRANSACTION-',
 				'cancellation' => (Configuration::get('PS_SSL_ENABLED') == 1 ? 'https://' : 'http://')
 					.$_SERVER['HTTP_HOST'].__PS_BASE_URI__.'order.php?step=3');
 

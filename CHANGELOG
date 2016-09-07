@@ -1,3 +1,7 @@
+// Version 258
+
+Fix validation bug, thx for the feedback to Marek Vavrecan
+
 // Version 2571
 
 Fix trim white spaces for input hash
