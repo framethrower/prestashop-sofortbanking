@@ -42,25 +42,26 @@ if (class_exists('Context'))
 }
 
 $sofortbanking = new Sofortbanking();
+$hash = sha1(Tools::getValue('user_variable_1').Configuration::get('SOFORTBANKING_PROJECT_PW'));
 
-/* If valid hash, set order state as accepted */
-if (is_object($cart) && Tools::getValue('hash') == sha1(Tools::getValue('user_variable_1').Configuration::get('SOFORTBANKING_PROJECT_PW')))
-	$order_state = Configuration::get('SOFORTBANKING_OS_ACCEPTED');
-
-$customer = new Customer((int)$cart->id_customer);
-
-/* Validate this card in store if needed */
-if (!Order::getOrderByCartId($cart->id) && ($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED')
-	|| $order_state == Configuration::get('SOFORTBANKING_OS_ERROR')))
+/* If valid hash... */
+if (is_object($cart) && Tools::getValue('hash') == $hash)
 {
-	$sofortbanking->validateOrder($cart->id, $order_state, Tools::getValue('amount'),
-		$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
-		null, null, false, $customer->secure_key, null);
-	Configuration::updateValue('SOFORTBANKING_CONFIGURATION_OK', true);
+	$order_state = Configuration::get('SOFORTBANKING_OS_ACCEPTED');
+	$customer = new Customer((int)$cart->id_customer);
+
+	/* Validate this card in store if needed */
+	if (!Order::getOrderByCartId($cart->id) && ($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED')
+		|| $order_state == Configuration::get('SOFORTBANKING_OS_ERROR')))
+	{
+		$sofortbanking->validateOrder($cart->id, $order_state, Tools::getValue('amount'),
+			$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
+			null, null, false, $customer->secure_key, null);
+		Configuration::updateValue('SOFORTBANKING_CONFIGURATION_OK', true);
+	}
 }
 
 $order_id = Order::getOrderByCartId($cart->id);
-
 $order = new Order($order_id);
 
 /* Init Frontend variables for redirect */
