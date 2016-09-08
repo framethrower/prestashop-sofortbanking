@@ -52,6 +52,7 @@ $request = array('transaction' => Tools::getValue('transaction'), 'user_id' => T
 	'created' => Tools::getValue('created'), 'project_password' => $password);
 
 $cart = new Cart((int)Tools::getValue('user_variable_1'));
+$hash = sha1(implode('|', $request));
 
 if (class_exists('Context'))
 {
@@ -64,7 +65,7 @@ if (class_exists('Context'))
 $sofortbanking = new Sofortbanking();
 
 /* If valid hash, set order state as accepted */
-if (is_object($cart) && Tools::getValue('hash') == sha1(implode('|', $request)))
+if (is_object($cart) && Tools::getValue('hash') == $hash)
 	$order_state = Configuration::get('SOFORTBANKING_OS_ACCEPTED');
 
 $customer = new Customer($cart->id_customer);
@@ -77,7 +78,7 @@ if (($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED') && Configur
 		$sofortbanking->validateOrder($cart->id, $order_state, $request['amount'],
 			$sofortbanking->displayName, $sofortbanking->l('Directebanking transaction id: ').Tools::getValue('transaction'),
 			null, null, false, $customer->secure_key, null);
-	else
+	elseif (Tools::getValue('hash') == $hash)
 	{
 		$order = new Order(Order::getOrderByCartId($cart->id));
 		if ($order->getCurrentState() != $order_state)

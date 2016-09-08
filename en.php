@@ -2,6 +2,7 @@
 
 global $_MODULE;
 $_MODULE = array();
+$_MODULE['<{sofortbanking}prestashop>confirmation_cc638b4907ba6355753034f409a9d198'] = 'SOFORT transaction ID';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_509a4658ba4b9a50ee9ae034572fdac0'] = 'SOFORT';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_6918233afcc6870197164257dc710d5b'] = 'SOFORT - online direct payment method. More than 35,000 merchants in Europe trust SOFORT. ';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_69a1a3ad8dd5da6db3c4da838a0cf9c7'] = 'Are you sure you want to delete your details?';
