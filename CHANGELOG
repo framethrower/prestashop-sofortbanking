@@ -1,5 +1,6 @@
 // Version 258
 
+Add backward compatibility for versions lower than 1.7
 Add compatibility for PS 1.7
 Remove old payment_redirect.tpl
 Fix success validation

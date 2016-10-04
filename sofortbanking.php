@@ -294,12 +294,20 @@ class Sofortbanking extends PaymentModule
 		if (!$this->isPayment())
 			return false;
 
-		/* TODO: Check for backward compatibilty */
-		$this->context->smarty->assign(array(
-			'shop_name' => $this->context->shop->name,
-			'amount' => Tools::displayPrice($params['order']->getOrdersTotalPaid(), new Currency($params['order']->id_currency), false),
-			'status' => ($params['order']->getCurrentState() == Configuration::get('SOFORTBANKING_OS_ACCEPTED') ? true : false))
-		);
+		/* If PS version is >= 1.7 */
+		if (version_compare(_PS_VERSION_, '1.7', '>=')) {
+			$this->context->smarty->assign(array(
+					'amount' => Tools::displayPrice($params['order']->getOrdersTotalPaid(), new Currency($params['order']->id_currency), false),
+					'status' => ($params['order']->getCurrentState() == Configuration::get('SOFORTBANKING_OS_ACCEPTED') ? true : false))
+			);
+		} else {
+			$this->context->smarty->assign(array(
+					'amount' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false),
+					'status' => ($params['objOrder']->getCurrentState() == Configuration::get('SOFORTBANKING_OS_ACCEPTED') ? true : false))
+			);
+		}
+
+		$this->context->smarty->assign('shop_name', $this->context->shop->name);
 
 		return $this->display(__FILE__, 'views/templates/hook/payment_return.tpl');
 	}
