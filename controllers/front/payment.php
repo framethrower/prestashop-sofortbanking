@@ -103,7 +103,15 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 			'mod_lang' => $this->isSupportedLang()
 		));
 
-		$this->setTemplate((Configuration::get('SOFORTBANKING_REDIRECT') == 'Y'
-			? 'payment_redirect.tpl' : 'payment_execution.tpl'));
+		/* If redirect enabled or PS version is >= 1.7 */
+		if (Configuration::get('SOFORTBANKING_REDIRECT') == 'Y' || version_compare(_PS_VERSION_, '1.7', '>=')) {
+			$p='';
+			foreach($parameters as $key => $value) {
+				$p .= $key . '=' . $value . '&';
+			}
+			Tools::redirect('https://www.sofortueberweisung.de/payment/start?'.$p.'hash='. sha1(implode('|', $parameters)));
+		} else {
+			$this->setTemplate('payment_execution.tpl');
+		}
 	}
 }

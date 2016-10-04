@@ -1,9 +1,12 @@
 // Version 258
 
+Add compatibility for PS 1.7
+Remove old payment_redirect.tpl
 Fix success validation
 Update missing translations
 Fix change order state
 Fix validation bug, thx for the feedback to Marek Vavrecan
+Fix trim white spaces for input hash
 
 // Version 2571
 

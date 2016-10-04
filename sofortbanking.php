@@ -27,6 +27,8 @@
  * to license@touchdesign.de so we can send you a copy immediately.
  */
 
+use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
+
 if (!defined('_PS_VERSION_'))
 	exit;
 
@@ -77,7 +79,7 @@ class Sofortbanking extends PaymentModule
 			|| !Configuration::updateValue('SOFORTBANKING_OS_ERROR', 8) || !Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', 5)
 			|| !Configuration::updateValue('SOFORTBANKING_OS_ERROR_IGNORE', 'N') || !Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED_IGNORE', 'N')
 			|| !Configuration::updateValue('SOFORTBANKING_REDIRECT', 'N') || !$this->registerHook('payment') || !$this->registerHook('displayPaymentEU')
-			|| !$this->registerHook('paymentReturn') || !$this->registerHook('leftColumn'))
+			|| !$this->registerHook('paymentReturn') || !$this->registerHook('leftColumn') || !$this->registerHook('paymentOptions'))
 			return false;
 		return true;
 	}
@@ -219,6 +221,24 @@ class Sofortbanking extends PaymentModule
 			return 'en';
 	}
 
+	public function hookPaymentOptions($params)
+	{
+		if (!$this->active) {
+			return;
+		}
+
+		$this->context->smarty->assign('cprotect', Configuration::get('SOFORTBANKING_CPROTECT'));
+		$this->context->smarty->assign('lang', Language::getIsoById((int)$params['cart']->id_lang));
+		$this->context->smarty->assign('mod_lang', $this->isSupportedLang());
+
+		$paymentOption = new PaymentOption();
+		$paymentOption->setCallToActionText($this->l('sofortbanking'))
+			->setAction($this->context->link->getModuleLink($this->name, 'payment', array('token' => Tools::getToken(false)), true))
+			->setAdditionalInformation($this->context->smarty->fetch('module:sofortbanking/views/templates/hook/payment_options.tpl'));
+
+		return [$paymentOption];
+	}
+
 	/**
 	 * Build and display payment button
 	 *
@@ -274,9 +294,11 @@ class Sofortbanking extends PaymentModule
 		if (!$this->isPayment())
 			return false;
 
+		/* TODO: Check for backward compatibilty */
 		$this->context->smarty->assign(array(
-			'total_to_pay' => Tools::displayPrice($params['total_to_pay'], $params['currencyObj'], false),
-			'status' => ($params['objOrder']->getCurrentState() == Configuration::get('SOFORTBANKING_OS_ACCEPTED') ? true : false))
+			'shop_name' => $this->context->shop->name,
+			'amount' => Tools::displayPrice($params['order']->getOrdersTotalPaid(), new Currency($params['order']->id_currency), false),
+			'status' => ($params['order']->getCurrentState() == Configuration::get('SOFORTBANKING_OS_ACCEPTED') ? true : false))
 		);
 
 		return $this->display(__FILE__, 'views/templates/hook/payment_return.tpl');
@@ -367,8 +389,16 @@ class Sofortbanking extends PaymentModule
 			'mod_lang',$this->isSupportedLang()
 		));
 
-		return $this->display(__FILE__, (Configuration::get('SOFORTBANKING_REDIRECT') == 'Y'
-			? 'views/templates/front/payment_redirect.tpl' : 'views/templates/front/payment_execution.tpl'));
+		/* If redirect enabled */
+		if (Configuration::get('SOFORTBANKING_REDIRECT') == 'Y') {
+			$p='';
+			foreach($parameters as $key => $value) {
+				$p .= $key . '=' . $value . '&';
+			}
+			Tools::redirect('https://www.sofortueberweisung.de/payment/start?'.$p.'hash='. sha1(implode('|', $parameters)));
+		} else {
+			return $this->display(__FILE__, 'views/templates/front/payment_execution.tpl');
+		}
 	}
 }
 
