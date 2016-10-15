@@ -27,8 +27,6 @@
  * to license@touchdesign.de so we can send you a copy immediately.
  */
 
-use PrestaShop\PrestaShop\Core\Payment\PaymentOption;
-
 if (!defined('_PS_VERSION_'))
 	exit;
 
@@ -231,7 +229,7 @@ class Sofortbanking extends PaymentModule
 		$this->context->smarty->assign('lang', Language::getIsoById((int)$params['cart']->id_lang));
 		$this->context->smarty->assign('mod_lang', $this->isSupportedLang());
 
-		$paymentOption = new PaymentOption();
+		$paymentOption = new \PrestaShop\PrestaShop\Core\Payment\PaymentOption();
 		$paymentOption->setCallToActionText($this->l('sofortbanking'))
 			->setAction($this->context->link->getModuleLink($this->name, 'payment', array('token' => Tools::getToken(false)), true))
 			->setAdditionalInformation($this->context->smarty->fetch('module:sofortbanking/views/templates/hook/payment_options.tpl'));
