@@ -272,7 +272,6 @@ class Sofortbanking extends PaymentModule
 			return false;
 
 		$this->context->smarty->assign('cprotect', Configuration::get('SOFORTBANKING_CPROTECT'));
-		$this->context->smarty->assign('lang', Language::getIsoById((int)$params['cart']->id_lang));
 		$this->context->smarty->assign('mod_lang', $this->isSupportedLang());
 
 		$paymentOption = new \PrestaShop\PrestaShop\Core\Payment\PaymentOption();
@@ -294,10 +293,7 @@ class Sofortbanking extends PaymentModule
 		if (!$this->isPayment())
 			return false;
 
-		$this->context->smarty->assign('this_path', $this->_path);
-		$this->context->smarty->assign('this_path_ssl', Tools::getHttpHost(true, true).__PS_BASE_URI__.'modules/'.$this->name.'/');
 		$this->context->smarty->assign('cprotect', Configuration::get('SOFORTBANKING_CPROTECT'));
-		$this->context->smarty->assign('lang', Language::getIsoById((int)$params['cart']->id_lang));
 		$this->context->smarty->assign('mod_lang', $this->isSupportedLang());
 		$this->context->smarty->assign('static_token', Tools::getToken(false));
 

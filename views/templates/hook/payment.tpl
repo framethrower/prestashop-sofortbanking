@@ -27,7 +27,7 @@
  *}
 
 <p class="payment_module">
-	<a href="{if method_exists('Link','getModuleLink')}{$link->getModuleLink('sofortbanking', 'payment', ['token' => $static_token])}{else}{$this_path_ssl|escape:'htmlall':'UTF-8'}payment.php?token={$static_token|escape:'htmlall':'UTF-8'}{/if}" title="{l s='Pay with sofortbanking' mod='sofortbanking'}">
+	<a href="{$link->getModuleLink('sofortbanking', 'payment', ['token' => $static_token])}" title="{l s='Pay with sofortbanking' mod='sofortbanking'}">
 	{if $cprotect == "Y" && $lang_iso == "de"}
 		<img src="https://images.sofort.com/{$mod_lang|escape:'htmlall':'UTF-8'}/su/banner_400x100_ks.png" alt="banner_400x100_ks.png" title="{l s='Buy secure with customer protection by sofortbanking' mod='sofortbanking'}" width="400" height="100" />
 		{l s='Buy secure with customer protection by sofortbanking' mod='sofortbanking'}
