@@ -65,19 +65,6 @@ fieldset a:hover {
 	</fieldset>
 	<br />
 	
-	<fieldset class="level2" style="border-color:#FF8C00; border-width:4px">
-		<b>{l s='Please setup in the provider menu SOFORT AG a project and define the following URLs at the appropriate point' mod='sofortbanking'} <font color="#FF0000">{l s='(Please make sure an "SOFORT-Classic-Project" to create)' mod='sofortbanking'}</font>:</b><br /><br />
-		<legend style="border-color:#FF8C00; border-width:4px"><img src="{$sofort.dfl.img_path|escape:'htmlall':'UTF-8'}/step_2.png" width="16" height="16" alt="step_2.png" title="" />{l s='Setup a project' mod='sofortbanking'}</legend>
-		<b>{l s='Success-Url:' mod='sofortbanking'}</b><br /><textarea rows=1 style="width:98%;">{$sofort.link.success|escape:'htmlall':'UTF-8'}</textarea>
-		<br /><br />
-		<b>{l s='Cancel-Url:' mod='sofortbanking'}</b><br /><textarea rows=1 style="width:98%;">{$sofort.link.cancellation|escape:'htmlall':'UTF-8'}</textarea>
-		<br /><br />
-		<b>{l s='Confirmation-Url:' mod='sofortbanking'} {l s='(Method POST)' mod='sofortbanking'}</b><br /><textarea rows=1 style="width:98%;">{$sofort.link.validation|escape:'htmlall':'UTF-8'}</textarea>
-		<br />
-		<p>{l s='Please also generate a per project and notification password in the corresponding menu entry in SOFORT and make sure that the hash algorithm "SHA1 "is selected.' mod='sofortbanking'}</p>
-	</fieldset>
-	<br />
-	
 	<fieldset class="level2">
 		<legend><img src="{$sofort.dfl.img_path|escape:'htmlall':'UTF-8'}/step_3.png" width="16" height="16" alt="step_3.png" title="">{l s='Module configuration' mod='sofortbanking'}</legend>
 		<b>{l s='Please leave your SOFORT-Project data and passwords in the fields below:' mod='sofortbanking'}</b><br /><br />
@@ -93,15 +80,9 @@ fieldset a:hover {
 			<p>{l s='Leave it blank for disabling' mod='sofortbanking'}</p>
 		</div>
 		<div class="clear"></div>
-		<label>{l s='Project password?' mod='sofortbanking'}</label>
+		<label>{l s='API Key?' mod='sofortbanking'}</label>
 		<div class="margin-form">
-			<input type="password" name="SOFORTBANKING_PROJECT_PW" value="{$sofort.config.SOFORTBANKING_PROJECT_PW|escape:'htmlall':'UTF-8'}" />
-			<p>{l s='Leave it blank for disabling' mod='sofortbanking'}</p>
-		</div>
-		<div class="clear"></div>
-		<label>{l s='Notify password?' mod='sofortbanking'}</label>
-		<div class="margin-form">
-			<input type="password" name="SOFORTBANKING_NOTIFY_PW" value="{$sofort.config.SOFORTBANKING_NOTIFY_PW|escape:'htmlall':'UTF-8'}" />
+			<input type="password" name="SOFORTBANKING_API_KEY" value="{$sofort.config.SOFORTBANKING_API_KEY|escape:'htmlall':'UTF-8'}" />
 			<p>{l s='Leave it blank for disabling' mod='sofortbanking'}</p>
 		</div>
 		<div class="clear"></div>
@@ -145,15 +126,6 @@ fieldset a:hover {
 				<a target="_blank" href="https://kaeuferschutz.sofort-bank.com/consumerProtections/index/{$sofort.config.SOFORTBANKING_PROJECT_ID|escape:'htmlall':'UTF-8'}">{l s='this link' mod='sofortbanking'}</a>
 				{l s='if customer protection is activated and enabled before enabling it here.' mod='sofortbanking'}
 			</p>
-		</div>
-		<div class="clear"></div>
-		<label>{l s='Force redirect?' mod='sofortbanking'}</label>
-		<div class="margin-form">
-			<select name="SOFORTBANKING_REDIRECT">
-				<option {if $sofort.config.SOFORTBANKING_REDIRECT == "Y"}selected{/if} value="Y">{l s='Yes' mod='sofortbanking'}</option>
-				<option {if $sofort.config.SOFORTBANKING_REDIRECT == "N"}selected{/if} value="N">{l s='No, let the customer confirm the order first.' mod='sofortbanking'}</option>
-			</select>
-			<p>{l s='Force redirect to soforbanking payment page (skip confirm page).' mod='sofortbanking'}</p>
 		</div>
 		<div class="clear"></div>
 		<div class="margin-form clear pspace"><input type="submit" name="submitUpdate" value="{l s='Save' mod='sofortbanking'}" class="button" /></div>

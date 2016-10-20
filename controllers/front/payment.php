@@ -27,28 +27,11 @@
  * to license@touchdesign.de so we can send you a copy immediately.
  */
 
+require_once dirname(__FILE__).'/../../lib/sofortlib/payment/sofortLibSofortueberweisung.inc.php';
+
 class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 {
 	public $ssl = true;
-
-	/** @var string Supported languages */
-	private $languages = array('en','de','es','fr','it','nl','pl','gb','hu','cs','sk');
-
-	/**
-	 * Check supported languages
-	 *
-	 * @param string $iso
-	 * @return string iso
-	 */
-	private function isSupportedLang($iso = null)
-	{
-		if ($iso === null)
-			$iso = Language::getIsoById((int)$this->context->cart->id_lang);
-		if (in_array($iso, $this->languages))
-			return $iso;
-		else
-			return 'en';
-	}
 
 	/**
 	 * @see FrontController::initContent()
@@ -61,57 +44,48 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 		parent::initContent();
 
 		if (!$this->isTokenValid())
-			die($this->module->l($this->module->displayName.' Error: (invalid token)'));
+			throw new \Exception(sprintf('%s Error: (Invalid token)', $this->module->displayName));
+
+		if (!$this->module->isPayment())
+			throw new \Exception(sprintf('%s Error: (Inactive or incomplete module configuration)', $this->module->displayName));
 
 		$cart = $this->context->cart;
-
 		$address = new Address((int)$cart->id_address_invoice);
 		$customer = new Customer((int)$cart->id_customer);
 		$currency = $this->context->currency;
 		$country = new Country((int)$address->id_country);
 
-		if (!Configuration::get('SOFORTBANKING_USER_ID'))
-			die($this->module->l($this->module->displayName.' Error: (invalid or undefined userId)'));
-
-		if (!Configuration::get('SOFORTBANKING_PROJECT_ID'))
-			die($this->module->l($this->module->displayName.' Error: (invalid or undefined projectId)'));
-
 		if (!Validate::isLoadedObject($address) || !Validate::isLoadedObject($customer)
 			|| !Validate::isLoadedObject($currency))
-			die($this->module->l($this->module->displayName.' Error: (invalid address or customer)'));
+			throw new \Exception(sprintf('%s Error: (Invalid address or customer object)', $this->module->displayName));
 
-		$parameters = array_map('trim',array(
-			'user_id' => Configuration::get('SOFORTBANKING_USER_ID'),'project_id' => Configuration::get('SOFORTBANKING_PROJECT_ID'),
-			'sender_holder' => '','','','sender_country_id' => $country->iso_code,
-			'amount' => number_format($cart->getOrderTotal(), 2, '.', ''),
-			'currency_id' => $currency->iso_code,'reason_1' => time().'-'.(int)$cart->id,
-			'reason_2' => $customer->firstname.' '.Tools::ucfirst(Tools::strtolower($customer->lastname)),
-			'user_variable_0' => $customer->secure_key,'user_variable_1' => (int)$cart->id,
-			'user_variable_2' => '','user_variable_3' => '','user_variable_4' => '','user_variable_5' => '',
-			'project_password' => Configuration::get('SOFORTBANKING_PROJECT_PW'),
-		));
+		$sofortueberweisung = new Sofortueberweisung(sprintf('%s:%s:%s', Configuration::get('SOFORTBANKING_USER_ID'),
+				Configuration::get('SOFORTBANKING_PROJECT_ID'), Configuration::get('SOFORTBANKING_API_KEY')));
 
-		$this->context->smarty->assign(array(
-			'this_path' => $this->module->getPathUri(),
-			'nbProducts' => $cart->nbProducts(),
-			'total' => $cart->getOrderTotal(),
-			'version' => _PS_VERSION_,
-			'hash' => sha1(implode('|', $parameters)),
-			'gateway' => 'https://www.sofortueberweisung.de/payment/start',
-			'cprotect' => Configuration::get('SOFORTBANKING_CPROTECT'),
-			'parameters' => $parameters,
-			'mod_lang' => $this->isSupportedLang()
-		));
+		$sofortueberweisung->setUserVariable(array($cart->id, $customer->secure_key));
+		$sofortueberweisung->setAmount(number_format($cart->getOrderTotal(), 2, '.', ''));
+		$sofortueberweisung->setCurrencyCode($currency->iso_code);
+		$sofortueberweisung->setReason(sprintf('#%09d - %s %s', $cart->id,  $customer->firstname, Tools::ucfirst(Tools::strtolower($customer->lastname))));
 
-		/* If redirect enabled or PS version is >= 1.7 */
-		if (Configuration::get('SOFORTBANKING_REDIRECT') == 'Y' || version_compare(_PS_VERSION_, '1.7', '>=')) {
-			$p='';
-			foreach($parameters as $key => $value) {
-				$p .= $key . '=' . $value . '&';
-			}
-			Tools::redirect('https://www.sofortueberweisung.de/payment/start?'.$p.'hash='. sha1(implode('|', $parameters)));
+		$url = array(
+				'notification' => $this->context->shop->getBaseURL().'modules/'.$this->module->name.'/notification.php',
+				'success' => $this->context->shop->getBaseURL().'modules/'.$this->module->name
+					.'/confirmation.php?transaction=-TRANSACTION-',
+				'cancellation' => $this->context->shop->getBaseURL().'index.php?controller=order&step=3');
+
+		$sofortueberweisung->setSuccessUrl($url['success']);
+		$sofortueberweisung->setAbortUrl($url['cancellation']);
+		$sofortueberweisung->setNotificationUrl($url['notification'], 'untraceable,pending,received,loss,refunded');
+
+		if(Configuration::get('SOFORTBANKING_CPROTECT') == 'Y') {
+			$sofortueberweisung->setCustomerprotection(true);
+		}
+
+		$sofortueberweisung->sendRequest();
+		if($sofortueberweisung->isError()) {
+			throw new \Exception(sprintf('Sofortbanking module configuration error: %s', $sofortueberweisung->getError()));
 		} else {
-			$this->setTemplate('payment_execution.tpl');
+			Tools::redirect($sofortueberweisung->getPaymentUrl());
 		}
 	}
 }
