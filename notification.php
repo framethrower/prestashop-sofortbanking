@@ -35,7 +35,7 @@ require_once dirname(__FILE__).'/lib/sofortlib/core/sofortLibTransactionData.inc
 
 $sofortNotification = new SofortLibNotification();
 
-if((!$notification = $sofortNotification->getNotification(file_get_contents('php://input')))) {
+if((!$notification = $sofortNotification->getNotification(Tools::file_get_contents('php://input')))) {
     throw new \Exception('Invalid notification, nothing todo.');
 }
 

@@ -17,7 +17,7 @@ In order to use SOFORT, you need a [merchant account][3] with SOFORT GmbH.
 Copyright by: [touchdesign][5]
 Chief developer: Christin Gruber
 
-## Licenses
+## License
 
 Released under open software license (OSL 3.0).
 

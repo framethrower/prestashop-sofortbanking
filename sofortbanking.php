@@ -235,7 +235,7 @@ class Sofortbanking extends PaymentModule
 	{
 		$dfl = array(
 			'action' => $_SERVER['REQUEST_URI'],
-			'img_path' => $this->_path.'img/'.$this->isSupportedLang($this->context->language->iso_code),
+			'img_path' => $this->_path.'views/img/'.$this->isSupportedLang($this->context->language->iso_code),
 			'path' => $this->_path);
 
 		$config = Configuration::getMultiple(array('SOFORTBANKING_USER_ID','SOFORTBANKING_PROJECT_ID','SOFORTBANKING_API_KEY',

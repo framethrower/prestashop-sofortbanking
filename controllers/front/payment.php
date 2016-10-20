@@ -53,7 +53,6 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 		$address = new Address((int)$cart->id_address_invoice);
 		$customer = new Customer((int)$cart->id_customer);
 		$currency = $this->context->currency;
-		$country = new Country((int)$address->id_country);
 
 		if (!Validate::isLoadedObject($address) || !Validate::isLoadedObject($customer)
 			|| !Validate::isLoadedObject($currency))
