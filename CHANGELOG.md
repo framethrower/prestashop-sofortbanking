@@ -2,6 +2,7 @@
 
 * Version 3.0.0
 
+  * Switched to PSR-2 coding style
   * Added sql slave support
   * Dropped support for PS 1.4 (Note payment.php was removed)
   * Use MD for README, CHANGELOG -> README.md, CHANGELOG.md

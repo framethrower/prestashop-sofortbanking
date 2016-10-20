@@ -27,28 +27,27 @@
  * to license@touchdesign.de so we can send you a copy immediately.
  */
 
-require_once dirname(__FILE__).'/../../config/config.inc.php';
-require_once dirname(__FILE__).'/../../init.php';
-require_once dirname(__FILE__).'/sofortbanking.php';
+require_once dirname(__FILE__) . '/../../config/config.inc.php';
+require_once dirname(__FILE__) . '/../../init.php';
+require_once dirname(__FILE__) . '/sofortbanking.php';
 
 $sofortbanking = new Sofortbanking();
 
 $i = 0;
 do {
-	$order = $sofortbanking->getOrderByTransaction(Tools::getValue('transaction'));
-	if($i >= $sofortbanking::TIMEOUT || $order->id) {
-		break;
-	}
-	$i++;
-	sleep(1);
+    $order = $sofortbanking->getOrderByTransaction(Tools::getValue('transaction'));
+    if ($i >= $sofortbanking::TIMEOUT || $order->id) {
+        break;
+    }
+    $i ++;
+    sleep(1);
 } while (!$order->id);
 
-if(!$order || !is_object($order) || $order->id === null) {
-	Tools::redirect('index.php');
+if (!$order || !is_object($order) || $order->id === null) {
+    Tools::redirect('index.php');
 }
 
-Tools::redirect('index.php?controller=order-confirmation&id_cart='.$order->id_cart
-	.'&id_module='.$sofortbanking->id.'&id_order='.$order->id
-	.'&key='.$order->secure_key);
+Tools::redirect('index.php?controller=order-confirmation&id_cart=' . $order->id_cart . '&id_module=' . $sofortbanking->id .
+    '&id_order=' . $order->id . '&key=' . $order->secure_key);
 
 ?>

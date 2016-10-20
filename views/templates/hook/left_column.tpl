@@ -28,8 +28,8 @@
 
 <!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
 <div id="sofortbanking_logo_block_left" class="paiement_logo_block">
-	<a target="_blank" href="{$sofort_link|escape:'htmlall':'UTF-8'}">
-		<img src="https://images.sofort.com/{$mod_lang|escape:'htmlall':'UTF-8'}/su/banner_120x180.png" alt="banner_120x180.png" title="" width="120" height="180" />
-	</a>
+    <a target="_blank" href="{$sofort_link|escape:'htmlall':'UTF-8'}">
+        <img src="https://images.sofort.com/{$mod_lang|escape:'htmlall':'UTF-8'}/su/banner_120x180.png" alt="banner_120x180.png" title="" width="120" height="180" />
+    </a>
 </div>
 <!-- touchdesign | sofortbanking Module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->

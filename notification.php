@@ -27,25 +27,25 @@
  * to license@touchdesign.de so we can send you a copy immediately.
  */
 
-require_once dirname(__FILE__).'/../../config/config.inc.php';
-require_once dirname(__FILE__).'/../../init.php';
-require_once dirname(__FILE__).'/sofortbanking.php';
-require_once dirname(__FILE__).'/lib/sofortlib/core/sofortLibNotification.inc.php';
-require_once dirname(__FILE__).'/lib/sofortlib/core/sofortLibTransactionData.inc.php';
+require_once dirname(__FILE__) . '/../../config/config.inc.php';
+require_once dirname(__FILE__) . '/../../init.php';
+require_once dirname(__FILE__) . '/sofortbanking.php';
+require_once dirname(__FILE__) . '/lib/sofortlib/core/sofortLibNotification.inc.php';
+require_once dirname(__FILE__) . '/lib/sofortlib/core/sofortLibTransactionData.inc.php';
 
 $sofortNotification = new SofortLibNotification();
 
-if((!$notification = $sofortNotification->getNotification(Tools::file_get_contents('php://input')))) {
+if ((!$notification = $sofortNotification->getNotification(Tools::file_get_contents('php://input')))) {
     throw new \Exception('Invalid notification, nothing todo.');
 }
 
 $sofortTransaction = new SofortLibTransactionData(sprintf('%s:%s:%s', Configuration::get('SOFORTBANKING_USER_ID'),
-        Configuration::get('SOFORTBANKING_PROJECT_ID'), Configuration::get('SOFORTBANKING_API_KEY')));
+    Configuration::get('SOFORTBANKING_PROJECT_ID'), Configuration::get('SOFORTBANKING_API_KEY')));
 $sofortTransaction->addTransaction($notification);
 $sofortTransaction->setApiVersion('2.0');
 $sofortTransaction->sendRequest();
 
-if($sofortTransaction->isError()) {
+if ($sofortTransaction->isError()) {
     throw new \Exception(sprintf('SOFORT transaction data "%s".', $sofortTransaction->getError()));
 } else {
 
@@ -55,17 +55,17 @@ if($sofortTransaction->isError()) {
         'amount' => $sofortTransaction->getAmount(),
         'status' => $sofortTransaction->getStatus(),
         'cart_id' => $sofortTransaction->getUserVariable(),
-        'secure_key' => $sofortTransaction->getUserVariable(0,1)
+        'secure_key' => $sofortTransaction->getUserVariable(0, 1)
     );
 
     try {
-        if((!$cart = new Cart((int)$transaction['cart_id'])) || !is_object($cart) || $cart->id === null) {
+        if ((!$cart = new Cart((int) $transaction['cart_id'])) || !is_object($cart) || $cart->id === null) {
             throw new \Exception(sprintf('Unable to load cart by card id "%d".', $transaction['cart_id']));
         }
-        if((!$customer = new Customer($cart->id_customer)) || $customer->secure_key != $transaction['secure_key']) {
+        if ((!$customer = new Customer($cart->id_customer)) || $customer->secure_key != $transaction['secure_key']) {
             throw new \Exception('Invalid or missing customer secure key for this transaction.');
         }
-    } catch(\Exception $e) {
+    } catch (\Exception $e) {
         throw $e;
     }
 
@@ -93,21 +93,19 @@ if($sofortTransaction->isError()) {
     /* Validate this card in store if needed */
     if (($order_state == Sofortbanking::OS_RECEIVED || $order_state == Sofortbanking::OS_REFUNDED)
         || ($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED') && Configuration::get('SOFORTBANKING_OS_ACCEPTED_IGNORE') != 'Y')
-        || ($order_state == Configuration::get('SOFORTBANKING_OS_ERROR') && Configuration::get('SOFORTBANKING_OS_ERROR_IGNORE') != 'Y'))
-    {
+        || ($order_state == Configuration::get('SOFORTBANKING_OS_ERROR') && Configuration::get('SOFORTBANKING_OS_ERROR_IGNORE') != 'Y')) {
+
         $sofortbanking = new Sofortbanking();
         $order = new Order(Order::getOrderByCartId($cart->id));
 
         if ($order->id === null) {
-            $sofortbanking->validateOrder($cart->id, $order_state, $transaction['amount'],
-                    $sofortbanking->displayName, $sofortbanking->l(sprintf('SOFORT transaction ID: %s.', $transaction['id'])),
-                    array('transaction_id' => $transaction['id']), null, false, $transaction['secure_key'], null);
+            $sofortbanking->validateOrder($cart->id, $order_state, $transaction['amount'], $sofortbanking->displayName,
+                $sofortbanking->l(sprintf('SOFORT transaction ID: %s.', $transaction['id'])), array(
+                    'transaction_id' => $transaction['id']
+                ), null, false, $transaction['secure_key'], null);
             $sofortbanking->saveTransaction($transaction['id'], $sofortbanking->currentOrder);
-        }
-        else
-        {
-            if ($order->getCurrentState() != $order_state)
-            {
+        } else {
+            if ($order->getCurrentState() != $order_state) {
                 $history = new OrderHistory();
                 $history->id_order = $order->id;
                 $history->changeIdOrderState($order_state, $order->id);

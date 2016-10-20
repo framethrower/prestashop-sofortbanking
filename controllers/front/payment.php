@@ -27,64 +27,68 @@
  * to license@touchdesign.de so we can send you a copy immediately.
  */
 
-require_once dirname(__FILE__).'/../../lib/sofortlib/payment/sofortLibSofortueberweisung.inc.php';
+require_once dirname(__FILE__) . '/../../lib/sofortlib/payment/sofortLibSofortueberweisung.inc.php';
 
 class SofortbankingPaymentModuleFrontController extends ModuleFrontController
 {
-	public $ssl = true;
+    public $ssl = true;
 
-	/**
-	 * @see FrontController::initContent()
-	 */
-	public function initContent()
-	{
-		$this->display_column_left = false;
-		$this->display_column_right = false;
+    /**
+     *
+     * @see FrontController::initContent()
+     */
+    public function initContent()
+    {
+        $this->display_column_left = false;
+        $this->display_column_right = false;
 
-		parent::initContent();
+        parent::initContent();
 
-		if (!$this->isTokenValid())
-			throw new \Exception(sprintf('%s Error: (Invalid token)', $this->module->displayName));
+        if (!$this->isTokenValid())
+            throw new \Exception(sprintf('%s Error: (Invalid token)', $this->module->displayName));
 
-		if (!$this->module->isPayment())
-			throw new \Exception(sprintf('%s Error: (Inactive or incomplete module configuration)', $this->module->displayName));
+        if (!$this->module->isPayment())
+            throw new \Exception(sprintf('%s Error: (Inactive or incomplete module configuration)', $this->module->displayName));
 
-		$cart = $this->context->cart;
-		$address = new Address((int)$cart->id_address_invoice);
-		$customer = new Customer((int)$cart->id_customer);
-		$currency = $this->context->currency;
+        $cart = $this->context->cart;
+        $address = new Address((int) $cart->id_address_invoice);
+        $customer = new Customer((int) $cart->id_customer);
+        $currency = $this->context->currency;
 
-		if (!Validate::isLoadedObject($address) || !Validate::isLoadedObject($customer)
-			|| !Validate::isLoadedObject($currency))
-			throw new \Exception(sprintf('%s Error: (Invalid address or customer object)', $this->module->displayName));
+        if (!Validate::isLoadedObject($address) || !Validate::isLoadedObject($customer) || !Validate::isLoadedObject($currency))
+            throw new \Exception(sprintf('%s Error: (Invalid address or customer object)', $this->module->displayName));
 
-		$sofortueberweisung = new Sofortueberweisung(sprintf('%s:%s:%s', Configuration::get('SOFORTBANKING_USER_ID'),
-				Configuration::get('SOFORTBANKING_PROJECT_ID'), Configuration::get('SOFORTBANKING_API_KEY')));
+        $sofortueberweisung = new Sofortueberweisung(sprintf('%s:%s:%s', Configuration::get('SOFORTBANKING_USER_ID'),
+            Configuration::get('SOFORTBANKING_PROJECT_ID'), Configuration::get('SOFORTBANKING_API_KEY')));
 
-		$sofortueberweisung->setUserVariable(array($cart->id, $customer->secure_key));
-		$sofortueberweisung->setAmount(number_format($cart->getOrderTotal(), 2, '.', ''));
-		$sofortueberweisung->setCurrencyCode($currency->iso_code);
-		$sofortueberweisung->setReason(sprintf('#%09d - %s %s', $cart->id,  $customer->firstname, Tools::ucfirst(Tools::strtolower($customer->lastname))));
+        $sofortueberweisung->setUserVariable(array(
+            $cart->id,
+            $customer->secure_key
+        ));
+        $sofortueberweisung->setAmount(number_format($cart->getOrderTotal(), 2, '.', ''));
+        $sofortueberweisung->setCurrencyCode($currency->iso_code);
+        $sofortueberweisung->setReason(sprintf('#%09d - %s %s', $cart->id, $customer->firstname,
+            Tools::ucfirst(Tools::strtolower($customer->lastname))));
 
-		$url = array(
-				'notification' => $this->context->shop->getBaseURL().'modules/'.$this->module->name.'/notification.php',
-				'success' => $this->context->shop->getBaseURL().'modules/'.$this->module->name
-					.'/confirmation.php?transaction=-TRANSACTION-',
-				'cancellation' => $this->context->shop->getBaseURL().'index.php?controller=order&step=3');
+        $url = array(
+            'notification' => $this->context->shop->getBaseURL() . 'modules/' . $this->module->name . '/notification.php',
+            'success' => $this->context->shop->getBaseURL() . 'modules/' . $this->module->name . '/confirmation.php?transaction=-TRANSACTION-',
+            'cancellation' => $this->context->shop->getBaseURL() . 'index.php?controller=order&step=3'
+        );
 
-		$sofortueberweisung->setSuccessUrl($url['success']);
-		$sofortueberweisung->setAbortUrl($url['cancellation']);
-		$sofortueberweisung->setNotificationUrl($url['notification'], 'untraceable,pending,received,loss,refunded');
+        $sofortueberweisung->setSuccessUrl($url['success']);
+        $sofortueberweisung->setAbortUrl($url['cancellation']);
+        $sofortueberweisung->setNotificationUrl($url['notification'], 'untraceable,pending,received,loss,refunded');
 
-		if(Configuration::get('SOFORTBANKING_CPROTECT') == 'Y') {
-			$sofortueberweisung->setCustomerprotection(true);
-		}
+        if (Configuration::get('SOFORTBANKING_CPROTECT') == 'Y') {
+            $sofortueberweisung->setCustomerprotection(true);
+        }
 
-		$sofortueberweisung->sendRequest();
-		if($sofortueberweisung->isError()) {
-			throw new \Exception(sprintf('Sofortbanking module configuration error: %s', $sofortueberweisung->getError()));
-		} else {
-			Tools::redirect($sofortueberweisung->getPaymentUrl());
-		}
-	}
+        $sofortueberweisung->sendRequest();
+        if ($sofortueberweisung->isError()) {
+            throw new \Exception(sprintf('Sofortbanking module configuration error: %s', $sofortueberweisung->getError()));
+        } else {
+            Tools::redirect($sofortueberweisung->getPaymentUrl());
+        }
+    }
 }

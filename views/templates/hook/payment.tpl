@@ -26,15 +26,17 @@
  * to license@touchdesign.de so we can send you a copy immediately.
  *}
 
+<!-- sofortbanking module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
 <p class="payment_module">
-	<a href="{$link->getModuleLink('sofortbanking', 'payment', ['token' => $static_token])}" title="{l s='Pay with sofortbanking' mod='sofortbanking'}">
-	{if $cprotect == "Y" && $lang_iso == "de"}
-		<img src="https://images.sofort.com/{$mod_lang|escape:'htmlall':'UTF-8'}/su/banner_400x100_ks.png" alt="banner_400x100_ks.png" title="{l s='Buy secure with customer protection by sofortbanking' mod='sofortbanking'}" width="400" height="100" />
-		{l s='Buy secure with customer protection by sofortbanking' mod='sofortbanking'}
-	{else}
-		<img src="https://images.sofort.com/{$mod_lang|escape:'htmlall':'UTF-8'}/su/banner_300x100.png" alt="banner_300x100.png" title="{l s='Pay easy and secure with SOFORT Banking.' mod='sofortbanking'}" width="300" height="100" />
-		{l s='Pay easy and secure with SOFORT Banking.' mod='sofortbanking'}
-	{/if}
-	<br class="clear" />
-	</a>
+    <a href="{$link->getModuleLink('sofortbanking', 'payment', ['token' => $static_token])}" title="{l s='Pay with sofortbanking' mod='sofortbanking'}">
+    {if $cprotect == "Y" && $lang_iso == "de"}
+        <img src="https://images.sofort.com/{$mod_lang|escape:'htmlall':'UTF-8'}/su/banner_400x100_ks.png" alt="banner_400x100_ks.png" title="{l s='Buy secure with customer protection by sofortbanking' mod='sofortbanking'}" width="400" height="100" />
+        {l s='Buy secure with customer protection by sofortbanking' mod='sofortbanking'}
+    {else}
+        <img src="https://images.sofort.com/{$mod_lang|escape:'htmlall':'UTF-8'}/su/banner_300x100.png" alt="banner_300x100.png" title="{l s='Pay easy and secure with SOFORT Banking.' mod='sofortbanking'}" width="300" height="100" />
+        {l s='Pay easy and secure with SOFORT Banking.' mod='sofortbanking'}
+    {/if}
+    <br class="clear" />
+    </a>
 </p>
+<!-- sofortbanking module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
