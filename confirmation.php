@@ -33,9 +33,13 @@ require_once dirname(__FILE__) . '/sofortbanking.php';
 
 $sofortbanking = new Sofortbanking();
 
+if ((!$transaction = Tools::getValue('transaction'))) {
+    Tools::redirect('index.php');
+}
+
 $i = 0;
 do {
-    $order = $sofortbanking->getOrderByTransaction(Tools::getValue('transaction'));
+    $order = $sofortbanking->getOrderByTransaction($transaction);
     if ($i >= $sofortbanking::TIMEOUT || $order->id) {
         break;
     }
@@ -47,7 +51,5 @@ if (!$order || !is_object($order) || $order->id === null) {
     Tools::redirect('index.php');
 }
 
-Tools::redirect('index.php?controller=order-confirmation&id_cart=' . $order->id_cart . '&id_module=' . $sofortbanking->id .
-    '&id_order=' . $order->id . '&key=' . $order->secure_key);
-
-?>
+Tools::redirect('index.php?controller=order-confirmation&id_cart=' . $order->id_cart . '&id_module=' .
+    $sofortbanking->id . '&id_order=' . $order->id . '&key=' . $order->secure_key);
