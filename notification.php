@@ -39,8 +39,10 @@ if ((!$notification = $sofortNotification->getNotification(Tools::file_get_conte
     throw new \Exception('Invalid notification, nothing todo.');
 }
 
-$sofortTransaction = new SofortLibTransactionData(sprintf('%s:%s:%s', Configuration::get('SOFORTBANKING_USER_ID'),
-    Configuration::get('SOFORTBANKING_PROJECT_ID'), Configuration::get('SOFORTBANKING_API_KEY')));
+$sofortTransaction = new SofortLibTransactionData(sprintf('%s:%s:%s',
+    Configuration::get('SOFORTBANKING_USER_ID'),
+    Configuration::get('SOFORTBANKING_PROJECT_ID'),
+    Configuration::get('SOFORTBANKING_API_KEY')));
 $sofortTransaction->addTransaction($notification);
 $sofortTransaction->setApiVersion('2.0');
 $sofortTransaction->sendRequest();
@@ -49,7 +51,7 @@ if ($sofortTransaction->isError()) {
     throw new \Exception(sprintf('SOFORT transaction data "%s".', $sofortTransaction->getError()));
 } else {
 
-    /* Get transaction datas */
+    /* Join transaction datas */
     $transaction = array(
         'id' => $sofortTransaction->getTransaction(),
         'amount' => $sofortTransaction->getAmount(),
@@ -69,7 +71,7 @@ if ($sofortTransaction->isError()) {
         throw $e;
     }
 
-    /* Set new order state */
+    /* Allocate new order state */
     switch ($transaction['status']) {
         case 'untraceable':
             $order_state = Configuration::get('SOFORTBANKING_OS_ACCEPTED');
@@ -90,33 +92,41 @@ if ($sofortTransaction->isError()) {
             $order_state = Configuration::get('SOFORTBANKING_OS_ERROR');
     }
 
-    /* Validate this card in store if needed */
-    if (($order_state == Sofortbanking::OS_RECEIVED || $order_state == Sofortbanking::OS_REFUNDED)
-        || ($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED') && Configuration::get('SOFORTBANKING_OS_ACCEPTED_IGNORE') != 'Y')
-        || ($order_state == Configuration::get('SOFORTBANKING_OS_ERROR') && Configuration::get('SOFORTBANKING_OS_ERROR_IGNORE') != 'Y')) {
+    $sofortbanking = new Sofortbanking();
+    $order = new Order(Order::getOrderByCartId($cart->id));
 
-        $sofortbanking = new Sofortbanking();
-        $order = new Order(Order::getOrderByCartId($cart->id));
+    if ($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED')
+        && $order->id === null) {
 
-        if ($order->id === null) {
-            $sofortbanking->validateOrder($cart->id, $order_state, $transaction['amount'], $sofortbanking->displayName,
-                $sofortbanking->l(sprintf('SOFORT transaction ID: %s.', $transaction['id'])), array(
-                    'transaction_id' => $transaction['id']
-                ), null, false, $transaction['secure_key'], null);
-            $sofortbanking->saveTransaction($transaction['id'], $sofortbanking->currentOrder);
-        } else {
-            if ($order->getCurrentState() != $order_state) {
-                $history = new OrderHistory();
-                $history->id_order = $order->id;
-                $history->changeIdOrderState($order_state, $order->id);
-                $history->addWithemail(true);
-                /* Add private order message for seller */
-                $message = new Message();
-                $message->message = $sofortbanking->l(sprintf('Order state successfully updated for transaction ID: %s.'), $transaction['id']);
-                $message->private = 1;
-                $message->id_order = $order->id;
-                $message->add();
-            }
+        $sofortbanking->validateOrder($cart->id, $order_state, $transaction['amount'], $sofortbanking->displayName,
+            $sofortbanking->l(sprintf('SOFORT transaction ID: %s.', $transaction['id'])), array(
+                'transaction_id' => $transaction['id']
+            ), null, false, $transaction['secure_key'], null);
+        $sofortbanking->saveTransaction($transaction['id'], $sofortbanking->currentOrder);
+
+    } elseif ($order->id && $order->getCurrentState() != $order_state) {
+
+        if ($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED')
+            && Configuration::get('SOFORTBANKING_OS_ACCEPTED_IGNORE') != 'Y') {
+                throw new \Exception('Notification disabled for accepted order state, nothing todo.');
         }
+
+        if ($order_state == Configuration::get('SOFORTBANKING_OS_ERROR')
+            && Configuration::get('SOFORTBANKING_OS_ERROR_IGNORE') != 'Y') {
+                throw new \Exception('Notification disabled for error order state, nothing todo.');
+        }
+
+        $history = new OrderHistory();
+        $history->id_order = $order->id;
+        $history->changeIdOrderState($order_state, $order->id);
+        $history->addWithemail(true);
+
+        $message = new Message();
+        $message->message = $sofortbanking->l(sprintf('Order state successfully updated for transaction ID: %s.'), $transaction['id']);
+        $message->private = 1;
+        $message->id_order = $order->id;
+        $message->add();
+
     }
+
 }
