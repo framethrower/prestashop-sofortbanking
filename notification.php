@@ -106,13 +106,13 @@ if ($sofortTransaction->isError()) {
 
     } elseif ($order->id && $order->getCurrentState() != $order_state) {
 
-        if ($order_state == Configuration::get('SOFORTBANKING_OS_ACCEPTED')
-            && Configuration::get('SOFORTBANKING_OS_ACCEPTED_IGNORE') != 'Y') {
+        if ($order->getCurrentState() == Configuration::get('SOFORTBANKING_OS_ACCEPTED')
+            && Configuration::get('SOFORTBANKING_OS_ACCEPTED_IGNORE') == 'Y') {
                 throw new \Exception('Notification disabled for accepted order state, nothing todo.');
         }
 
-        if ($order_state == Configuration::get('SOFORTBANKING_OS_ERROR')
-            && Configuration::get('SOFORTBANKING_OS_ERROR_IGNORE') != 'Y') {
+        if ($order->getCurrentState() == Configuration::get('SOFORTBANKING_OS_ERROR')
+            && Configuration::get('SOFORTBANKING_OS_ERROR_IGNORE') == 'Y') {
                 throw new \Exception('Notification disabled for error order state, nothing todo.');
         }
 
