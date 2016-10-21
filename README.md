@@ -21,8 +21,6 @@ Chief developer: Christin Gruber
 
 Released under open software license (OSL 3.0).
 
-## Ressourcen
-
 [1]: http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm
 [2]: https://github.com/touchdesign/prestashop-sofortbanking
 [3]: https://www.sofortueberweisung.de/payment/users/register/284
