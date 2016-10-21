@@ -2,8 +2,8 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{sofortbanking}prestashop>sofortbanking_509a4658ba4b9a50ee9ae034572fdac0'] = 'Przelew w SOFORT';
-$_MODULE['<{sofortbanking}prestashop>sofortbanking_6918233afcc6870197164257dc710d5b'] = 'SOFORT - Twoja korzystna metoda płatności. Polecana przez sprzedawców.';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_bc3c6c1609a01b1fa5d51068d4cb758d'] = 'Przelew w SOFORT';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_c9cc10fc7a843387c18a3951b649d3ab'] = 'SOFORT - Twoja korzystna metoda płatności. Polecana przez sprzedawców.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_69a1a3ad8dd5da6db3c4da838a0cf9c7'] = 'Jesteś pewien, ze chcesz wykasować cały moduł ze wszystkimi szczegółami?';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_75e74dadd42d76ea206adda30801f542'] = 'Konieczne jest podanie \"user id\" w SOFORT';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_34c32843d334dd45babe605fa104f4fe'] = 'Konieczne jest podanie \"project id\" w SOFORT';

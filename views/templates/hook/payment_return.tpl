@@ -31,7 +31,7 @@
     <p>
         {l s='Your order on' mod='sofortbanking'} <span class="bold">{$shop_name|escape:'htmlall':'UTF-8'}</span> {l s='is complete.' mod='sofortbanking'}
         <br /><br />
-        {l s='The total amount of this order is' mod='sofortbanking'} <span class="price">{$amount:'htmlall':'UTF-8'}</span>
+        {l s='The total amount of this order is' mod='sofortbanking'} <span class="price">{$amount|escape:'UTF-8'}</span>
     </p>
 {else}
     <p class="warning">

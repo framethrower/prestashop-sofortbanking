@@ -2,8 +2,8 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{sofortbanking}prestashop>sofortbanking_509a4658ba4b9a50ee9ae034572fdac0'] = 'SOFORT';
-$_MODULE['<{sofortbanking}prestashop>sofortbanking_6918233afcc6870197164257dc710d5b'] = 'SOFORT - il tuo sistema di pagamento conveniente. Consigliato dai commercianti online.';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_bc3c6c1609a01b1fa5d51068d4cb758d'] = 'SOFORT';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_c9cc10fc7a843387c18a3951b649d3ab'] = 'SOFORT - il tuo sistema di pagamento conveniente. Consigliato dai commercianti online.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_69a1a3ad8dd5da6db3c4da838a0cf9c7'] = 'Sei sicuro di voler cancellare i tuoi dettagli';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_75e74dadd42d76ea206adda30801f542'] = 'Occorre SOFORT \"user ID\"';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_34c32843d334dd45babe605fa104f4fe'] = 'Occorre SOFORT \"ID progetto\"';

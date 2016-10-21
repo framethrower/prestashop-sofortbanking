@@ -2,8 +2,8 @@
 
 global $_MODULE;
 $_MODULE = array();
-$_MODULE['<{sofortbanking}prestashop>sofortbanking_509a4658ba4b9a50ee9ae034572fdac0'] = 'SOFORT Überweisung';
-$_MODULE['<{sofortbanking}prestashop>sofortbanking_6918233afcc6870197164257dc710d5b'] = 'SOFORT Überweisung - Ihr günstiges Bezahlsystem. Von Händlern empfohlen.';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_bc3c6c1609a01b1fa5d51068d4cb758d'] = 'SOFORT Überweisung';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_c9cc10fc7a843387c18a3951b649d3ab'] = 'SOFORT Überweisung - Ihr günstiges Bezahlsystem. Von Händlern empfohlen.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_69a1a3ad8dd5da6db3c4da838a0cf9c7'] = 'Sicher das Sie das Modul mit allen Details löschen möchten?';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_75e74dadd42d76ea206adda30801f542'] = 'SOFORT Überweisung \"user id\" wird benötigt.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_34c32843d334dd45babe605fa104f4fe'] = 'SOFORT Überweisung \"project id\" wird benötigt.';
