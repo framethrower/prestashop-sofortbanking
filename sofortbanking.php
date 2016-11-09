@@ -342,7 +342,7 @@ class Sofortbanking extends PaymentModule
         $this->context->smarty->assign('mod_lang', $this->isSupportedLang());
 
         $paymentOption = new \PrestaShop\PrestaShop\Core\Payment\PaymentOption();
-        $paymentOption->setCallToActionText($this->l('SOFORT'))
+        $paymentOption->setCallToActionText($this->l('SOFORT (Online Bank Transfer)'))
             ->setAction($this->context->link->getModuleLink($this->name, 'payment', array(
                 'token' => Tools::getToken(false)
             ), true))

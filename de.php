@@ -10,6 +10,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_75e74dadd42d76ea206adda30801f
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_34c32843d334dd45babe605fa104f4fe'] = 'SOFORT Überweisung \"project id\" wird benötigt.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_bfee5e0a8d6b5487e460dcf21712ff17'] = 'SOFORT Überweisung \"API-Key\" wird benötigt.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c888438d14855d7d96a2724ee9c306bd'] = 'Einstellungen gespeichert';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_c6cd0cd44d24a1aef7bd993eed9131a2'] = 'SOFORT Überweisung';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149a18'] = 'Kaufen mit dem Käuferschutz der Deutschen Handelsbank';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'Einfach und sicher bezahlen mit SOFORT Überweisung.';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'Über SOFORT Überweisung';
@@ -50,7 +51,9 @@ $_MODULE['<{sofortbanking}prestashop>display_form_c333c328f4167ee1f6d76dc1fef83d
 $_MODULE['<{sofortbanking}prestashop>display_form_9fd61ca36b8ea5302464a32ef9a8aecc'] = 'Support.';
 $_MODULE['<{sofortbanking}prestashop>display_form_83dfa65d82d4e8ccf9eb4ff121aa6115'] = 'Copyright & Autor';
 $_MODULE['<{sofortbanking}prestashop>payment_options_b30c30f4388b0c9ab0fe47be29149a18'] = 'Kaufen mit dem Käuferschutz der Deutschen Handelsbank';
-$_MODULE['<{sofortbanking}prestashop>payment_options_a0aeadb20782e6a291c33715a07c5839'] = 'Einfach und sicher bezahlen mit SOFORT Überweisung.';
+$_MODULE['<{sofortbanking}prestashop>payment_options_c8e094d82a21e17b2cebd075b465f392'] = 'Zahlen Sie beim Online-Shoppen einfach wie Sie es gewohnt sind. Mit Ihren Online-Banking Daten und maximal sicher via PIN und TAN. Dank einer Echtzeit-Transaktionsbestätigung an den Shop ist ein sofortiger Versand Ihrer bestellten Waren möglich.';
+$_MODULE['<{sofortbanking}prestashop>payment_options_54a8498c938b3a0569adafc680588b45'] = 'https://documents.sofort.com/sue/kundeninformationen';
+$_MODULE['<{sofortbanking}prestashop>payment_options_d3da97e2d9aee5c8fbe03156ad051c99'] = 'Mehr hier';
 $_MODULE['<{sofortbanking}prestashop>payment_return_2e2117b7c81aa9ea6931641ea2c6499f'] = 'Ihre Bestellung auf';
 $_MODULE['<{sofortbanking}prestashop>payment_return_75fbf512d744977d62599cc3f0ae2bb4'] = 'ist vollständig.';
 $_MODULE['<{sofortbanking}prestashop>payment_return_cfa0f5d192620d230ccbf3664d9d0610'] = 'Der Totalbetrag Ihrer Bestellung beträgt';
@@ -58,4 +61,6 @@ $_MODULE['<{sofortbanking}prestashop>payment_return_8de637e24570c1edb0357826a2ad
 $_MODULE['<{sofortbanking}prestashop>payment_return_64430ad2835be8ad60c59e7d44e4b0b1'] = 'Kundensupport';
 $_MODULE['<{sofortbanking}prestashop>payment_9cf51f6755e5294b00e246667b59261d'] = 'SOFORT Überweisung - Einfach sicher zahlen. Mit dem TÜV-zertifizierten Bezahlsystem SOFORT Überweisung können Sie dank PIN & TAN, ohne Registrierung, einfach und sicher mit Ihren gewohnten Online-Banking-Daten zahlen. Mehr hier: https://documents.sofort.com/de/sue/kundeninformationen';
 $_MODULE['<{sofortbanking}prestashop>payment_b30c30f4388b0c9ab0fe47be29149a18'] = 'Kaufen mit dem Käuferschutz der Deutschen Handelsbank';
-$_MODULE['<{sofortbanking}prestashop>payment_a0aeadb20782e6a291c33715a07c5839'] = 'Einfach und sicher bezahlen mit SOFORT Überweisung.';
+$_MODULE['<{sofortbanking}prestashop>payment_c8e094d82a21e17b2cebd075b465f392'] = 'Zahlen Sie beim Online-Shoppen einfach wie Sie es gewohnt sind. Mit Ihren Online-Banking Daten und maximal sicher via PIN und TAN. Dank einer Echtzeit-Transaktionsbestätigung an den Shop ist ein sofortiger Versand Ihrer bestellten Waren möglich.';
+$_MODULE['<{sofortbanking}prestashop>payment_d3da97e2d9aee5c8fbe03156ad051c99'] = 'Mehr hier';
+$_MODULE['<{sofortbanking}prestashop>payment_54a8498c938b3a0569adafc680588b45'] = 'https://documents.sofort.com/sue/kundeninformationen';

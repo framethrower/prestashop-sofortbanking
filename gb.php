@@ -10,6 +10,7 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_75e74dadd42d76ea206adda30801f
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_34c32843d334dd45babe605fa104f4fe'] = 'SOFORT \"project id\" is required.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_bfee5e0a8d6b5487e460dcf21712ff17'] = 'SOFORT \"API-Key\" is required.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c888438d14855d7d96a2724ee9c306bd'] = 'Settings updated';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_c6cd0cd44d24a1aef7bd993eed9131a2'] = 'SOFORT (Online Bank Transfer)';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149a18'] = 'Shop safely with buyer protection by Deutsche Handelsbank';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'SOFORT - Online payments made easy.';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'About SOFORT';
@@ -50,12 +51,15 @@ $_MODULE['<{sofortbanking}prestashop>display_form_c333c328f4167ee1f6d76dc1fef83d
 $_MODULE['<{sofortbanking}prestashop>display_form_9fd61ca36b8ea5302464a32ef9a8aecc'] = 'Support.';
 $_MODULE['<{sofortbanking}prestashop>display_form_83dfa65d82d4e8ccf9eb4ff121aa6115'] = 'Author and Copyright';
 $_MODULE['<{sofortbanking}prestashop>payment_options_b30c30f4388b0c9ab0fe47be29149a18'] = 'Shop safely with buyer protection by Deutsche Handelsbank';
-$_MODULE['<{sofortbanking}prestashop>payment_options_a0aeadb20782e6a291c33715a07c5839'] = 'SOFORT - Online payments made easy.';
+$_MODULE['<{sofortbanking}prestashop>payment_options_c8e094d82a21e17b2cebd075b465f392'] = 'Easy, comfortable and secure - without registration. Automatic data transfer and the real-time transaction notification enable a smooth payment process and a faster delivery.';
+$_MODULE['<{sofortbanking}prestashop>payment_options_54a8498c938b3a0569adafc680588b45'] = 'https://documents.sofort.com/sb/customer-information/';
+$_MODULE['<{sofortbanking}prestashop>payment_options_d3da97e2d9aee5c8fbe03156ad051c99'] = 'More';
 $_MODULE['<{sofortbanking}prestashop>payment_return_2e2117b7c81aa9ea6931641ea2c6499f'] = 'Your order on';
 $_MODULE['<{sofortbanking}prestashop>payment_return_75fbf512d744977d62599cc3f0ae2bb4'] = 'is complete.';
 $_MODULE['<{sofortbanking}prestashop>payment_return_cfa0f5d192620d230ccbf3664d9d0610'] = 'The total amount of this order is';
 $_MODULE['<{sofortbanking}prestashop>payment_return_8de637e24570c1edb0357826a2ad5aea'] = 'We noticed a problem with your order. If you think this is an error, you can contact our';
 $_MODULE['<{sofortbanking}prestashop>payment_return_64430ad2835be8ad60c59e7d44e4b0b1'] = 'customer support';
-$_MODULE['<{sofortbanking}prestashop>payment_9cf51f6755e5294b00e246667b59261d'] = 'SOFORT - Online payments made easy. With SOFORT you can pay easily and securely with your usual online banking login data. No registration required. More info. (https://documents.sofort.com/sb/customer-information/)';
 $_MODULE['<{sofortbanking}prestashop>payment_b30c30f4388b0c9ab0fe47be29149a18'] = 'Shop safely with buyer protection by Deutsche Handelsbank';
-$_MODULE['<{sofortbanking}prestashop>payment_a0aeadb20782e6a291c33715a07c5839'] = 'SOFORT - Online payments made easy.';
+$_MODULE['<{sofortbanking}prestashop>payment_c8e094d82a21e17b2cebd075b465f392'] = 'Easy, comfortable and secure - without registration. Automatic data transfer and the real-time transaction notification enable a smooth payment process and a faster delivery.';
+$_MODULE['<{sofortbanking}prestashop>payment_d3da97e2d9aee5c8fbe03156ad051c99'] = 'More';
+$_MODULE['<{sofortbanking}prestashop>payment_54a8498c938b3a0569adafc680588b45'] = 'https://documents.sofort.com/sb/customer-information/';
