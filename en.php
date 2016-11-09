@@ -5,6 +5,7 @@ $_MODULE = array();
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_bc3c6c1609a01b1fa5d51068d4cb758d'] = 'SOFORT';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c9cc10fc7a843387c18a3951b649d3ab'] = 'SOFORT - online direct payment method. More than 35,000 merchants in Europe trust SOFORT.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_69a1a3ad8dd5da6db3c4da838a0cf9c7'] = 'Are you sure you want to delete your details?';
+$_MODULE['<{sofortbanking}prestashop>sofortbanking_39e1cbd5b952dc0809e7cf23c4b293e2'] = 'Module configuration is incomplete.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_75e74dadd42d76ea206adda30801f542'] = 'SOFORT \"user id\" is required.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_34c32843d334dd45babe605fa104f4fe'] = 'SOFORT \"project id\" is required.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_bfee5e0a8d6b5487e460dcf21712ff17'] = 'SOFORT \"API-Key\" is required.';
@@ -24,6 +25,7 @@ $_MODULE['<{sofortbanking}prestashop>display_form_acc316cbdee7e34a0ba391715b27c7
 $_MODULE['<{sofortbanking}prestashop>display_form_14dec8bb8ffa34a52b0c38a8bfefb3a3'] = 'Customer number:';
 $_MODULE['<{sofortbanking}prestashop>display_form_bc224951e472e3fc4ba97383633431b6'] = 'Leave it blank for disabling';
 $_MODULE['<{sofortbanking}prestashop>display_form_9d268b1bdcd708b1b1f5ae3a6c316813'] = 'Project ID:';
+$_MODULE['<{sofortbanking}prestashop>display_form_4908088f8029a07e5efc11c0e4112f80'] = 'API Key:';
 $_MODULE['<{sofortbanking}prestashop>display_form_c6f496cf3df8ec7f69dcc5bd3289c9b7'] = 'Status for successful listing of transfer:';
 $_MODULE['<{sofortbanking}prestashop>display_form_6598f1aa84e13a83ffba86024e4f18b0'] = 'No status update shall be made for this event.';
 $_MODULE['<{sofortbanking}prestashop>display_form_168aa9fd9741d71ef2aced606cd9302b'] = 'Please enter the status here, which your order is supposed to have after successful confirmation by SOFORT GmbH.';

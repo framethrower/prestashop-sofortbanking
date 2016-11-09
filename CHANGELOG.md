@@ -2,6 +2,7 @@
 
 * Version 3.0.0
 
+  * Update translations
   * Switched to PSR-2 coding style
   * Added sql slave support
   * Dropped support for PS 1.4 (Note payment.php was removed)
@@ -10,7 +11,7 @@
   * Updated transaction reason format
   * Cleanup payment controller
   * Fixed check if payment is available
-  * Reorder usbale order states in module configuration
+  * Reorder usable order states in module configuration
   * Removed unused config variables and link generator from module configuration
   * Replaced old validation.php with new notification.php
   * Added simple backend configuration warnings for invalid module configuration
