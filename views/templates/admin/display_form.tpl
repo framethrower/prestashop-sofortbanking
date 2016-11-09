@@ -113,21 +113,6 @@ fieldset a:hover {
             <p>{l s='Display logo and payment info block in left column' mod='sofortbanking'}</p>
         </div>
         <div class="clear"></div>
-        <label>{l s='Customer protection active:' mod='sofortbanking'}</label>
-        <div class="margin-form">
-            <select name="SOFORTBANKING_CPROTECT">
-                <option {if $sofort.config.SOFORTBANKING_CPROTECT == "Y"}selected{/if} value="Y">{l s='Yes' mod='sofortbanking'}</option>
-                <option {if $sofort.config.SOFORTBANKING_CPROTECT == "N"}selected{/if} value="N">{l s='No' mod='sofortbanking'}</option>
-            </select>
-            <p>
-                {l s='You need a bank account with' mod='sofortbanking'}
-                <a target="_blank" href="http://www.sofort-bank.com" target="_blank">Sofort Bank</a>
-                {l s='You need a bank account with and customer protection must be enabled in your project settings. Please check with' mod='sofortbanking'}
-                <a target="_blank" href="https://kaeuferschutz.sofort-bank.com/consumerProtections/index/{$sofort.config.SOFORTBANKING_PROJECT_ID|escape:'htmlall':'UTF-8'}">{l s='this link' mod='sofortbanking'}</a>
-                {l s='if customer protection is activated and enabled before enabling it here.' mod='sofortbanking'}
-            </p>
-        </div>
-        <div class="clear"></div>
         <div class="margin-form clear pspace"><input type="submit" name="submitUpdate" value="{l s='Save' mod='sofortbanking'}" class="button" /></div>
     </fieldset>
 </fieldset>

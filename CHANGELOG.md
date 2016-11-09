@@ -2,6 +2,7 @@
 
 * Version 3.0.0
 
+  * Dropped option customer protection
   * Update translations
   * Switched to PSR-2 coding style
   * Added sql slave support

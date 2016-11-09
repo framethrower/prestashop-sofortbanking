@@ -11,7 +11,6 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_34c32843d334dd45babe605fa104f
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_bfee5e0a8d6b5487e460dcf21712ff17'] = 'Occorre SOFORT \"API Key\"';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c888438d14855d7d96a2724ee9c306bd'] = 'Impostazioni attualizzate';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c6cd0cd44d24a1aef7bd993eed9131a2'] = 'SOFORT (Bonifico Bancario online)';
-$_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149a18'] = 'Fai acquisti sicuri grazie alla protezione acquirenti di Deutsche Handelsbank';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'Pagamenti online semplici e sicuri';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'Riguardo SOFORT';
 $_MODULE['<{sofortbanking}prestashop>display_form_915f879e097a04f65070e0c5c99ae113'] = 'SOFORT è il metodo di bonifico diretto di SOFORT GmbH. Con SOFORT, già durante l\'ordine, gli acquirenti impostano comodamente un bonifico per il rispettivo importo sul tuo conto di online banking. Tu, come commerciante, terminato il bonifico ricevi una conferma in tempo reale. In tal modo puoi inviare subito la merce in deposito e i prodotti digitali - e l\'acquirente riceve i suoi acquisti più velocemente. Per sapere di più su SOFORT e SOFORT GmbH:';
@@ -36,13 +35,6 @@ $_MODULE['<{sofortbanking}prestashop>display_form_dca1aebd802a73dbb0c3e36635b75e
 $_MODULE['<{sofortbanking}prestashop>display_form_f983b8bc797e7c35373293580ec761f1'] = 'Sì, visualizza il logo (racommandato)';
 $_MODULE['<{sofortbanking}prestashop>display_form_8250275bc9a53f9352037808e28a557e'] = 'No, non visualizzare il logo';
 $_MODULE['<{sofortbanking}prestashop>display_form_0a70e894e9d995c4435d6038734883d3'] = 'visualizza il logo di SOFORT nel blocco relativo alle informazioni di pagamento';
-$_MODULE['<{sofortbanking}prestashop>display_form_ea4cb4e53d08ecb249095ae25f33fabb'] = 'Attiva protezione acquirenti:';
-$_MODULE['<{sofortbanking}prestashop>display_form_93cba07454f06a4a960172bbd6e2a435'] = 'Sì';
-$_MODULE['<{sofortbanking}prestashop>display_form_bafd7322c6e97d25b6299b5d6fe8920b'] = 'No';
-$_MODULE['<{sofortbanking}prestashop>display_form_90b4582553f1b33365504d2808652395'] = 'Presupposto: conto presso';
-$_MODULE['<{sofortbanking}prestashop>display_form_eacbe2e55a155c59d79353f551e09b07'] = 'e attivazione nelle tue impostazioni progetto. Si prega di verificare con';
-$_MODULE['<{sofortbanking}prestashop>display_form_c2e2fce3a995f59900d7afbbe58683f5'] = 'questo link';
-$_MODULE['<{sofortbanking}prestashop>display_form_9ebf6132e7499eb380a52ade5ca9311c'] = 'Verifica prima e poi attiva qui solo se sono stati attivati anche il rispettivo progetto e le condizioni generali della protezione acquirenti per i commercianti.';
 $_MODULE['<{sofortbanking}prestashop>display_form_c9cc8cce247e49bae79f15173ce97354'] = 'Attualizza';
 $_MODULE['<{sofortbanking}prestashop>display_form_6a26f548831e6a8c26bfbbd9f6ec61e0'] = 'Aiuto e supporto';
 $_MODULE['<{sofortbanking}prestashop>display_form_0a54158ca691945ca91a3f53d43812f4'] = 'Puoi trovare istruzioni dettagliate nella nostra';
@@ -50,7 +42,6 @@ $_MODULE['<{sofortbanking}prestashop>display_form_15bbb9d0bbf25e8d2978de1168c749
 $_MODULE['<{sofortbanking}prestashop>display_form_c333c328f4167ee1f6d76dc1fef83dc4'] = 'Ti aiutiamo volentieri a eseguire l\'impostazione. Contatta semplicemente il nostro';
 $_MODULE['<{sofortbanking}prestashop>display_form_9fd61ca36b8ea5302464a32ef9a8aecc'] = 'supporto';
 $_MODULE['<{sofortbanking}prestashop>display_form_83dfa65d82d4e8ccf9eb4ff121aa6115'] = 'Autore e copyright';
-$_MODULE['<{sofortbanking}prestashop>payment_options_b30c30f4388b0c9ab0fe47be29149a18'] = 'Fai acquisti sicuri grazie alla protezione acquirenti di Deutsche Handelsbank';
 $_MODULE['<{sofortbanking}prestashop>payment_options_c8e094d82a21e17b2cebd075b465f392'] = 'SOFORT Banking é il sistema di pagamento facile, veloce e sicuro che funziona con i tuoi dati abituali di home banking. Senza registrazione. ';
 $_MODULE['<{sofortbanking}prestashop>payment_options_54a8498c938b3a0569adafc680588b45'] = 'https://documents.sofort.com/sb/informazioni-cliente/';
 $_MODULE['<{sofortbanking}prestashop>payment_options_d3da97e2d9aee5c8fbe03156ad051c99'] = 'Maggiori informazioni.';
@@ -59,7 +50,6 @@ $_MODULE['<{sofortbanking}prestashop>payment_return_75fbf512d744977d62599cc3f0ae
 $_MODULE['<{sofortbanking}prestashop>payment_return_cfa0f5d192620d230ccbf3664d9d0610'] = 'Il totale del tuo ordine ammonta a';
 $_MODULE['<{sofortbanking}prestashop>payment_return_8de637e24570c1edb0357826a2ad5aea'] = 'Si è verificato un errore nell\'ordine, rivolgiti al nostro';
 $_MODULE['<{sofortbanking}prestashop>payment_return_64430ad2835be8ad60c59e7d44e4b0b1'] = 'supporto clienti';
-$_MODULE['<{sofortbanking}prestashop>payment_b30c30f4388b0c9ab0fe47be29149a18'] = 'Fai acquisti sicuri grazie alla protezione acquirenti di Deutsche Handelsbank';
 $_MODULE['<{sofortbanking}prestashop>payment_c8e094d82a21e17b2cebd075b465f392'] = 'SOFORT Banking é il sistema di pagamento facile, veloce e sicuro che funziona con i tuoi dati abituali di home banking. Senza registrazione. ';
 $_MODULE['<{sofortbanking}prestashop>payment_d3da97e2d9aee5c8fbe03156ad051c99'] = 'Maggiori informazioni.';
 $_MODULE['<{sofortbanking}prestashop>payment_54a8498c938b3a0569adafc680588b45'] = 'https://documents.sofort.com/sb/informazioni-cliente/';

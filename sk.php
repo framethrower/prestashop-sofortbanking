@@ -11,7 +11,6 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_34c32843d334dd45babe605fa104f
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_bfee5e0a8d6b5487e460dcf21712ff17'] = 'Je potrebné \"API kľúč\" pre SOFORT.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c888438d14855d7d96a2724ee9c306bd'] = 'Nastavenia uložené';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c6cd0cd44d24a1aef7bd993eed9131a2'] = 'SOFORT (Online bankový prevod)';
-$_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149a18'] = 'Nakupujte s ochranou kupujúceho od Deutsche Handelsbank';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'Plaťte jednoducho a bezpečne cez SOFORT';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'Čo je SOFORT';
 $_MODULE['<{sofortbanking}prestashop>display_form_915f879e097a04f65070e0c5c99ae113'] = 'SOFORT je spôsob platby spoločnosti SOFORT GmbH realizovaný prostredníctvom priameho príkazu na úhradu. SOFORT umožňuje kupujúcim zadať pohodlne ešte počas objednávania príkaz na úhradu príslušnej čiastky do svojho účtu internet bankingu. Po ukončení platby cez SOFORT Banking dostane obchodník v reálnom čase potvrdenie o  uskutočnení platby. Tovar zo skladu i digitálny tovar tak môže obchodník odoslať okamžite a zákazník dostane svoj nákup rýchlejšie. Viac o SOFORT a spoločnosti SOFORT GmbH na';
@@ -36,13 +35,6 @@ $_MODULE['<{sofortbanking}prestashop>display_form_dca1aebd802a73dbb0c3e36635b75e
 $_MODULE['<{sofortbanking}prestashop>display_form_f983b8bc797e7c35373293580ec761f1'] = 'Áno, zobraz logo (odporúčané)';
 $_MODULE['<{sofortbanking}prestashop>display_form_8250275bc9a53f9352037808e28a557e'] = 'Nie, logo nezobrazovať';
 $_MODULE['<{sofortbanking}prestashop>display_form_0a70e894e9d995c4435d6038734883d3'] = 'V platobnom bloku zobraziť logo SOFORT';
-$_MODULE['<{sofortbanking}prestashop>display_form_ea4cb4e53d08ecb249095ae25f33fabb'] = 'Aktivovať ochranu kupujúceho:';
-$_MODULE['<{sofortbanking}prestashop>display_form_93cba07454f06a4a960172bbd6e2a435'] = 'Áno';
-$_MODULE['<{sofortbanking}prestashop>display_form_bafd7322c6e97d25b6299b5d6fe8920b'] = 'Nie';
-$_MODULE['<{sofortbanking}prestashop>display_form_90b4582553f1b33365504d2808652395'] = 'Predpoklad: účet u';
-$_MODULE['<{sofortbanking}prestashop>display_form_eacbe2e55a155c59d79353f551e09b07'] = 'Predpoklad: účet u a aktivácia vo Vašich nastaveniach projektu. Prosím, bezpodmienečne cez';
-$_MODULE['<{sofortbanking}prestashop>display_form_c2e2fce3a995f59900d7afbbe58683f5'] = 'tento odkaz';
-$_MODULE['<{sofortbanking}prestashop>display_form_9ebf6132e7499eb380a52ade5ca9311c'] = 'vopred preveriť a tu aktivovať, iba ak bol aktivovaný aj Váš projekt a v spojitosti s tým akceptované aj podmienky pre obchodníkov na ochranu kupujúceho.';
 $_MODULE['<{sofortbanking}prestashop>display_form_c9cc8cce247e49bae79f15173ce97354'] = 'Aktualizovať';
 $_MODULE['<{sofortbanking}prestashop>display_form_6a26f548831e6a8c26bfbbd9f6ec61e0'] = 'Pomoc a podpora';
 $_MODULE['<{sofortbanking}prestashop>display_form_0a54158ca691945ca91a3f53d43812f4'] = 'Podrobný návod nájdete na našej';
@@ -50,7 +42,6 @@ $_MODULE['<{sofortbanking}prestashop>display_form_15bbb9d0bbf25e8d2978de1168c749
 $_MODULE['<{sofortbanking}prestashop>display_form_c333c328f4167ee1f6d76dc1fef83dc4'] = 'Radi Vám pomôžeme pri zriadení. Obráťte sa prosím na našu';
 $_MODULE['<{sofortbanking}prestashop>display_form_9fd61ca36b8ea5302464a32ef9a8aecc'] = 'zákaznícku podporu';
 $_MODULE['<{sofortbanking}prestashop>display_form_83dfa65d82d4e8ccf9eb4ff121aa6115'] = 'autor a autorské práva';
-$_MODULE['<{sofortbanking}prestashop>payment_options_b30c30f4388b0c9ab0fe47be29149a18'] = 'Nakupujte s ochranou kupujúceho od Deutsche Handelsbank';
 $_MODULE['<{sofortbanking}prestashop>payment_options_c8e094d82a21e17b2cebd075b465f392'] = 'Plaťte pri nakupovaní na internete jednoducho ako zvyčajne - s Vašimi údajmi k internet bankingu a maximálne bezpečne prostredníctvom dôverných prihlasovacích údajov a autorizačných kódov. Vďaka potvrdeniu transakcie obchodníkovi v reálnom čase je možné okamžité odoslanie Vami objednaného tovaru.';
 $_MODULE['<{sofortbanking}prestashop>payment_options_54a8498c938b3a0569adafc680588b45'] = 'https://documents.sofort.com/documents/sb/informacie-pre-zakaznikov/';
 $_MODULE['<{sofortbanking}prestashop>payment_options_d3da97e2d9aee5c8fbe03156ad051c99'] = 'Dozvedieť sa viac';
@@ -59,7 +50,6 @@ $_MODULE['<{sofortbanking}prestashop>payment_return_75fbf512d744977d62599cc3f0ae
 $_MODULE['<{sofortbanking}prestashop>payment_return_cfa0f5d192620d230ccbf3664d9d0610'] = 'Celková suma Vašej objednávky predstavuje';
 $_MODULE['<{sofortbanking}prestashop>payment_return_8de637e24570c1edb0357826a2ad5aea'] = 'V rámci Vašej objednávky došlo k chybe, obráťte sa prosím na našu';
 $_MODULE['<{sofortbanking}prestashop>payment_return_64430ad2835be8ad60c59e7d44e4b0b1'] = 'zákaznícku podporu';
-$_MODULE['<{sofortbanking}prestashop>payment_b30c30f4388b0c9ab0fe47be29149a18'] = 'Nakupujte s ochranou kupujúceho od Deutsche Handelsbank';
 $_MODULE['<{sofortbanking}prestashop>payment_c8e094d82a21e17b2cebd075b465f392'] = 'Plaťte pri nakupovaní na internete jednoducho ako zvyčajne - s Vašimi údajmi k internet bankingu a maximálne bezpečne prostredníctvom dôverných prihlasovacích údajov a autorizačných kódov. Vďaka potvrdeniu transakcie obchodníkovi v reálnom čase je možné okamžité odoslanie Vami objednaného tovaru.';
 $_MODULE['<{sofortbanking}prestashop>payment_d3da97e2d9aee5c8fbe03156ad051c99'] = 'Dozvedieť sa viac';
 $_MODULE['<{sofortbanking}prestashop>payment_54a8498c938b3a0569adafc680588b45'] = 'https://documents.sofort.com/documents/sb/informacie-pre-zakaznikov/';

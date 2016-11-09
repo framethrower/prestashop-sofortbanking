@@ -11,7 +11,6 @@ $_MODULE['<{sofortbanking}prestashop>sofortbanking_34c32843d334dd45babe605fa104f
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_bfee5e0a8d6b5487e460dcf21712ff17'] = 'SOFORT \"API Key\" is nodig.';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c888438d14855d7d96a2724ee9c306bd'] = 'Bevestiging';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_c6cd0cd44d24a1aef7bd993eed9131a2'] = 'SOFORT (Online bankoverschrijving)';
-$_MODULE['<{sofortbanking}prestashop>sofortbanking_b30c30f4388b0c9ab0fe47be29149a18'] = 'Kopen met consumenten bescherming van Deutsche Handelsbank';
 $_MODULE['<{sofortbanking}prestashop>sofortbanking_a0aeadb20782e6a291c33715a07c5839'] = 'SOFORT – eenvoudig betalen via internetbankieren.';
 $_MODULE['<{sofortbanking}prestashop>display_form_0f514fb73bd53f40989bcb68e32d7afa'] = 'Over SOFORT ';
 $_MODULE['<{sofortbanking}prestashop>display_form_915f879e097a04f65070e0c5c99ae113'] = 'Een SOFORT transactie is een online bankoverschrijving. Uw klant kiest tijdens het online winkelen SOFORT als betaalmethode en komt automatisch terecht op het beveiligde SOFORT betaalschema. Hij betaalt rechtstreeks van zijn online bankrekening aan u. Vervolgens krijgt u een real-time bevestiging van de succesvolle transactie. De bestelling kan dus onmiddellijk worden verwerkt. Meer informatie over SOFORT GmbH';
@@ -36,13 +35,6 @@ $_MODULE['<{sofortbanking}prestashop>display_form_dca1aebd802a73dbb0c3e36635b75e
 $_MODULE['<{sofortbanking}prestashop>display_form_f983b8bc797e7c35373293580ec761f1'] = 'Ja, toon het logo (aanbevolen)';
 $_MODULE['<{sofortbanking}prestashop>display_form_8250275bc9a53f9352037808e28a557e'] = 'Nee, geen logo tonen';
 $_MODULE['<{sofortbanking}prestashop>display_form_0a70e894e9d995c4435d6038734883d3'] = 'Toon het SOFORT logo in het betalingsblok';
-$_MODULE['<{sofortbanking}prestashop>display_form_ea4cb4e53d08ecb249095ae25f33fabb'] = 'Activeer consumenten bescherming';
-$_MODULE['<{sofortbanking}prestashop>display_form_93cba07454f06a4a960172bbd6e2a435'] = 'Ja';
-$_MODULE['<{sofortbanking}prestashop>display_form_bafd7322c6e97d25b6299b5d6fe8920b'] = 'Nee';
-$_MODULE['<{sofortbanking}prestashop>display_form_90b4582553f1b33365504d2808652395'] = 'Vereist: een rekening bij de';
-$_MODULE['<{sofortbanking}prestashop>display_form_eacbe2e55a155c59d79353f551e09b07'] = 'en de activering van uw project instellingen moet via';
-$_MODULE['<{sofortbanking}prestashop>display_form_c2e2fce3a995f59900d7afbbe58683f5'] = 'deze link';
-$_MODULE['<{sofortbanking}prestashop>display_form_9ebf6132e7499eb380a52ade5ca9311c'] = 'eerst controleren en dan alleen hier activeren als uw project hiervoor werd vrijgegeven. Tevens moeten de voowaarden van de leverancier m.b.t. de consumenten bescherming geaccepteerd zijn';
 $_MODULE['<{sofortbanking}prestashop>display_form_c9cc8cce247e49bae79f15173ce97354'] = 'Actualiseren';
 $_MODULE['<{sofortbanking}prestashop>display_form_6a26f548831e6a8c26bfbbd9f6ec61e0'] = 'Hulp & support';
 $_MODULE['<{sofortbanking}prestashop>display_form_0a54158ca691945ca91a3f53d43812f4'] = 'Een uitgebreide handleiding vindt u op onze';
@@ -50,7 +42,6 @@ $_MODULE['<{sofortbanking}prestashop>display_form_15bbb9d0bbf25e8d2978de1168c749
 $_MODULE['<{sofortbanking}prestashop>display_form_c333c328f4167ee1f6d76dc1fef83dc4'] = 'Wij helpen u graag bij de installatie. Neem contact op met onze';
 $_MODULE['<{sofortbanking}prestashop>display_form_9fd61ca36b8ea5302464a32ef9a8aecc'] = 'support';
 $_MODULE['<{sofortbanking}prestashop>display_form_83dfa65d82d4e8ccf9eb4ff121aa6115'] = 'auteur en copyright';
-$_MODULE['<{sofortbanking}prestashop>payment_options_b30c30f4388b0c9ab0fe47be29149a18'] = 'Kopen met consumenten bescherming van Deutsche Handelsbank';
 $_MODULE['<{sofortbanking}prestashop>payment_options_c8e094d82a21e17b2cebd075b465f392'] = 'Betalen met SOFORT gebeurt eenvoudig, veilig, snel en in 3 stappen: kies uw bank, log in zoals gewoonlijk en bevestig vervolgens de online bankoverschrijving.';
 $_MODULE['<{sofortbanking}prestashop>payment_options_54a8498c938b3a0569adafc680588b45'] = 'https://documents.sofort.com/sb/klantinformatie/';
 $_MODULE['<{sofortbanking}prestashop>payment_options_d3da97e2d9aee5c8fbe03156ad051c99'] = 'Meer weten';
@@ -59,7 +50,6 @@ $_MODULE['<{sofortbanking}prestashop>payment_return_75fbf512d744977d62599cc3f0ae
 $_MODULE['<{sofortbanking}prestashop>payment_return_cfa0f5d192620d230ccbf3664d9d0610'] = 'Het totale bedrag van uw bestelling bedraagt';
 $_MODULE['<{sofortbanking}prestashop>payment_return_8de637e24570c1edb0357826a2ad5aea'] = 'Er is een fout opgetreden in uw bestelling, neem contact op met onze';
 $_MODULE['<{sofortbanking}prestashop>payment_return_64430ad2835be8ad60c59e7d44e4b0b1'] = 'klantenservice';
-$_MODULE['<{sofortbanking}prestashop>payment_b30c30f4388b0c9ab0fe47be29149a18'] = 'Kopen met consumenten bescherming van Deutsche Handelsbank';
 $_MODULE['<{sofortbanking}prestashop>payment_c8e094d82a21e17b2cebd075b465f392'] = 'Betalen met SOFORT gebeurt eenvoudig, veilig, snel en in 3 stappen: kies uw bank, log in zoals gewoonlijk en bevestig vervolgens de online bankoverschrijving.';
 $_MODULE['<{sofortbanking}prestashop>payment_d3da97e2d9aee5c8fbe03156ad051c99'] = 'Meer weten';
 $_MODULE['<{sofortbanking}prestashop>payment_54a8498c938b3a0569adafc680588b45'] = 'https://documents.sofort.com/sb/klantinformatie/';

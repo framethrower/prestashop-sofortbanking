@@ -108,7 +108,6 @@ class Sofortbanking extends PaymentModule
             || !Configuration::updateValue('SOFORTBANKING_PROJECT_ID', '')
             || !Configuration::updateValue('SOFORTBANKING_API_KEY', '')
             || !Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', 'Y')
-            || !Configuration::updateValue('SOFORTBANKING_CPROTECT', 'N')
             || !Configuration::updateValue('SOFORTBANKING_OS_ERROR', self::OS_ERROR)
             || !Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', self::OS_ACCEPTED)
             || !Configuration::updateValue('SOFORTBANKING_OS_ERROR_IGNORE', 'N')
@@ -145,7 +144,6 @@ class Sofortbanking extends PaymentModule
             || !Configuration::deleteByName('SOFORTBANKING_PROJECT_ID', '')
             || !Configuration::deleteByName('SOFORTBANKING_API_KEY', '')
             || !Configuration::deleteByName('SOFORTBANKING_BLOCK_LOGO', 'Y')
-            || !Configuration::deleteByName('SOFORTBANKING_CPROTECT', 'N')
             || !Configuration::deleteByName('SOFORTBANKING_OS_ERROR', 8)
             || !Configuration::deleteByName('SOFORTBANKING_OS_ACCEPTED', 5)
             || !Configuration::deleteByName('SOFORTBANKING_OS_ERROR_IGNORE', 'N')
@@ -192,7 +190,6 @@ class Sofortbanking extends PaymentModule
             Configuration::updateValue('SOFORTBANKING_PROJECT_ID', Tools::getValue('SOFORTBANKING_PROJECT_ID'));
             Configuration::updateValue('SOFORTBANKING_API_KEY', Tools::getValue('SOFORTBANKING_API_KEY'));
             Configuration::updateValue('SOFORTBANKING_BLOCK_LOGO', Tools::getValue('SOFORTBANKING_BLOCK_LOGO'));
-            Configuration::updateValue('SOFORTBANKING_CPROTECT', Tools::getValue('SOFORTBANKING_CPROTECT'));
             Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED', Tools::getValue('SOFORTBANKING_OS_ACCEPTED'));
             Configuration::updateValue('SOFORTBANKING_OS_ERROR', Tools::getValue('SOFORTBANKING_OS_ERROR'));
             Configuration::updateValue('SOFORTBANKING_OS_ACCEPTED_IGNORE', Tools::getValue('SOFORTBANKING_OS_ACCEPTED_IGNORE'));
@@ -286,7 +283,6 @@ class Sofortbanking extends PaymentModule
             'SOFORTBANKING_PROJECT_ID',
             'SOFORTBANKING_API_KEY',
             'SOFORTBANKING_BLOCK_LOGO',
-            'SOFORTBANKING_CPROTECT',
             'SOFORTBANKING_OS_ACCEPTED_IGNORE',
             'SOFORTBANKING_OS_ERROR_IGNORE'
         ));
@@ -338,7 +334,6 @@ class Sofortbanking extends PaymentModule
             return false;
         }
 
-        $this->context->smarty->assign('cprotect', Configuration::get('SOFORTBANKING_CPROTECT'));
         $this->context->smarty->assign('mod_lang', $this->isSupportedLang());
 
         $paymentOption = new \PrestaShop\PrestaShop\Core\Payment\PaymentOption();
@@ -365,7 +360,6 @@ class Sofortbanking extends PaymentModule
             return false;
         }
 
-        $this->context->smarty->assign('cprotect', Configuration::get('SOFORTBANKING_CPROTECT'));
         $this->context->smarty->assign('mod_lang', $this->isSupportedLang());
         $this->context->smarty->assign('static_token', Tools::getToken(false));
 
@@ -394,17 +388,10 @@ class Sofortbanking extends PaymentModule
             ), true)
         );
 
-        if (Tools::strtolower(Configuration::get('SOFORTBANKING_CPROTECT')) == 'y' && Tools::strtolower($lang) == 'de') {
-            $result = array_merge($result, array(
-                'logo' => $this->_path . 'img/' . $lang . '/banner_400x100_ks.png',
-                'cta_text' => $this->l('Buy secure with customer protection by sofortbanking')
-            ));
-        } else {
-            $result = array_merge($result, array(
-                'logo' => $this->_path . 'img/' . $lang . '/banner_300x100.png',
-                'cta_text' => $this->l('Pay easy and secure with SOFORT Banking.')
-            ));
-        }
+        $result = array_merge($result, array(
+            'logo' => $this->_path . 'img/' . $lang . '/banner_300x100.png',
+            'cta_text' => $this->l('Pay easy and secure with SOFORT Banking.')
+        ));
 
         return $result;
     }
