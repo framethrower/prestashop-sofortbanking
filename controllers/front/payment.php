@@ -89,9 +89,7 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
         $sofortueberweisung->setAbortUrl($url['cancellation']);
         $sofortueberweisung->setNotificationUrl($url['notification'], 'untraceable,pending,received,loss,refunded');
 
-        if (Configuration::get('SOFORTBANKING_CPROTECT') == 'Y') {
-            $sofortueberweisung->setCustomerprotection(true);
-        }
+        $sofortueberweisung->setVersion(sprintf('PrestaShop_%s/Module_%s', _PS_VERSION_, $this->module->version));
 
         $sofortueberweisung->sendRequest();
         if ($sofortueberweisung->isError()) {
