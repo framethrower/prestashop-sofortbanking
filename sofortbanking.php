@@ -44,17 +44,50 @@ class Sofortbanking extends PaymentModule
 
     /** @var string Supported languages */
     private $languages = array(
-        'en',
-        'de',
-        'es',
-        'fr',
-        'it',
-        'nl',
-        'pl',
-        'gb',
-        'hu',
-        'cs',
-        'sk'
+        'en' => array(
+            'iso' => 'en',
+            'logo' => 'https://images.sofort.com/uk/sb/200x75.png'
+        ),
+        'de' => array(
+            'iso' => 'de',
+            'logo' => 'https://images.sofort.com/de/su/200x75.png'
+        ),
+        'es' => array(
+            'iso' => 'es',
+            'logo' => 'https://images.sofort.com/es/sb/200x75.png'
+        ),
+        'fr' => array(
+            'iso' => 'fr',
+            'logo' => 'https://images.sofort.com/fr/sb/200x75.png'
+        ),
+        'it' => array(
+            'iso' => 'it',
+            'logo' => 'https://images.sofort.com/it/sb/200x75.png'
+        ),
+        'nl' => array(
+            'iso' => 'nl',
+            'logo' => 'https://images.sofort.com/nl/sb/200x75.png'
+        ),
+        'pl' => array(
+            'iso' => 'pl',
+            'logo' => 'https://images.sofort.com/pl/sb/200x75.png'
+        ),
+        'gb' => array(
+            'iso' => 'gb',
+            'logo' => 'https://images.sofort.com/uk/sb/200x75.png'
+        ),
+        'hu' => array(
+            'iso' => 'hu',
+            'logo' => 'https://images.sofort.com/hu/sb/200x75.png'
+        ),
+        'cs' => array(
+            'iso' => 'cs',
+            'logo' => 'https://images.sofort.com/cz/sb/200x75.png'
+        ),
+        'sk' => array(
+            'iso' => 'sk',
+            'logo' => 'https://images.sofort.com/sk/sb/200x75.png'
+        )
     );
 
     /**
@@ -274,7 +307,7 @@ class Sofortbanking extends PaymentModule
     {
         $dfl = array(
             'action' => $_SERVER['REQUEST_URI'],
-            'img_path' => $this->_path . 'views/img/' . $this->isSupportedLang($this->context->language->iso_code),
+            'img_path' => $this->_path . 'views/img/' . $this->isSupportedLang($this->context->language->iso_code)['iso'],
             'path' => $this->_path
         );
 
@@ -315,11 +348,11 @@ class Sofortbanking extends PaymentModule
             $iso = Language::getIsoById((int) $this->context->cart->id_lang);
         }
 
-        if (in_array($iso, $this->languages)) {
-            return $iso;
+        if (isset($this->languages[$iso])) {
+            return $this->languages[$iso];
         }
 
-        return 'en';
+        return $this->languages['en'];
     }
 
     /**
@@ -378,20 +411,14 @@ class Sofortbanking extends PaymentModule
             return false;
         }
 
-        $lang = $this->isSupportedLang();
         $result = array(
-            'cta_text' => null,
-            'logo' => null,
+            'cta_text' => $this->l('Pay easy and secure with SOFORT Banking.'),
+            'logo' => $this->isSupportedLang()['logo'],
             'action' => $this->context->link->getModuleLink($this->name, 'payment', array(
                 'token' => Tools::getToken(false),
                 'redirect' => true
             ), true)
         );
-
-        $result = array_merge($result, array(
-            'logo' => $this->_path . 'img/' . $lang . '/banner_300x100.png',
-            'cta_text' => $this->l('Pay easy and secure with SOFORT Banking.')
-        ));
 
         return $result;
     }

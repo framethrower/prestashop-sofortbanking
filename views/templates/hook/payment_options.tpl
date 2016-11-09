@@ -28,7 +28,7 @@
 
 <!-- sofortbanking module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
 <section id="sofortbanking-payment-options">
-    <img src="https://images.sofort.com/{$mod_lang|escape:'htmlall':'UTF-8'}/su/banner_300x100.png" alt="banner_300x100.png" width="300" height="100" />
+    <img src="{$mod_lang.logo|escape:'htmlall':'UTF-8'}" alt="200x75.png" width="200" height="75" />
     <p>{l s='Easy, comfortable and secure - without registration. Automatic data transfer and the real-time transaction notification enable a smooth payment process and a faster delivery.' mod='sofortbanking'} <a target="_blank" href="{l s='https://documents.sofort.com/sb/customer-information/' mod='sofortbanking'}">{l s='More' mod='sofortbanking'}</a></p>
 </section>
 <!-- sofortbanking module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->

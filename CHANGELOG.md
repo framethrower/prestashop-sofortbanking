@@ -2,8 +2,9 @@
 
 * Version 3.0.0
 
+  * Updated logos
   * Dropped option customer protection
-  * Update translations
+  * Updated translations
   * Switched to PSR-2 coding style
   * Added sql slave support
   * Dropped support for PS 1.4 (Note payment.php was removed)

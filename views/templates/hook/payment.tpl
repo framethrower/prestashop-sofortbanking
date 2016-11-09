@@ -29,7 +29,7 @@
 <!-- sofortbanking module | http://www.touchdesign.de/loesungen/prestashop/sofortueberweisung.htm -->
 <p class="payment_module">
     <a href="{$link->getModuleLink('sofortbanking', 'payment', ['token' => $static_token])}">
-        <img src="https://images.sofort.com/{$mod_lang|escape:'htmlall':'UTF-8'}/su/banner_300x100.png" title="{l s='Easy, comfortable and secure - without registration. Automatic data transfer and the real-time transaction notification enable a smooth payment process and a faster delivery.' mod='sofortbanking'} {l s='More' mod='sofortbanking'} {l s='https://documents.sofort.com/sb/customer-information/' mod='sofortbanking'}" alt="banner_300x100.png" width="300" height="100" /><br />
+        <img src="{$mod_lang.logo|escape:'htmlall':'UTF-8'}" title="{l s='Easy, comfortable and secure - without registration. Automatic data transfer and the real-time transaction notification enable a smooth payment process and a faster delivery.' mod='sofortbanking'} {l s='More' mod='sofortbanking'} {l s='https://documents.sofort.com/sb/customer-information/' mod='sofortbanking'}" alt="banner_300x100.png" width="300" height="100" /><br />
         {l s='Easy, comfortable and secure - without registration. Automatic data transfer and the real-time transaction notification enable a smooth payment process and a faster delivery.' mod='sofortbanking'}
 	    <br class="clear" />
     </a>
