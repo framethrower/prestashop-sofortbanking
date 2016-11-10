@@ -53,14 +53,14 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
         }
 
         $cart = $this->context->cart;
-        $address = new Address((int) $cart->id_address_invoice);
         $customer = new Customer((int) $cart->id_customer);
         $currency = $this->context->currency;
+        $language = $this->context->language;
 
-        if (!Validate::isLoadedObject($address)
-            || !Validate::isLoadedObject($customer)
-            || !Validate::isLoadedObject($currency)) {
-            throw new \Exception(sprintf('%s Error: (Invalid address or customer object)', $this->module->displayName));
+        if (!Validate::isLoadedObject($customer)
+            || !Validate::isLoadedObject($currency)
+            || !Validate::isLoadedObject($language)) {
+            throw new \Exception(sprintf('%s Error: (Invalid customer, language or currency object)', $this->module->displayName));
         }
 
         $sofortueberweisung = new Sofortueberweisung(sprintf('%s:%s:%s',
@@ -74,6 +74,7 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
         ));
         $sofortueberweisung->setAmount(number_format($cart->getOrderTotal(), 2, '.', ''));
         $sofortueberweisung->setCurrencyCode($currency->iso_code);
+        $sofortueberweisung->setLanguageCode($language->iso_code);
         $sofortueberweisung->setReason(sprintf('%09d - %s %s',
             $cart->id,
             $customer->firstname,
