@@ -307,6 +307,7 @@ class Sofortbanking extends PaymentModule
     {
         $dfl = array(
             'action' => $_SERVER['REQUEST_URI'],
+            'mod_lang' => $this->isSupportedLang($this->context->language->iso_code),
             'img_path' => $this->_path . 'views/img/' . $this->isSupportedLang($this->context->language->iso_code)['iso'],
             'path' => $this->_path
         );

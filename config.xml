@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <module>
-	<name>sofortbanking</name>
-	<displayName><![CDATA[SOFORT]]></displayName>
-	<version><![CDATA[3.0.0]]></version>
-	<description><![CDATA[SOFORT - online direct payment method. More than 35,000 merchants in Europe trust SOFORT.]]></description>
-	<author><![CDATA[touchdesign]]></author>
-	<tab><![CDATA[payments_gateways]]></tab>
+    <name>sofortbanking</name>
+    <displayName><![CDATA[SOFORT]]></displayName>
+    <version><![CDATA[3.0.0]]></version>
+    <description><![CDATA[SOFORT - online direct payment method. More than 35,000 merchants in Europe trust SOFORT.]]></description>
+    <author><![CDATA[touchdesign]]></author>
+    <tab><![CDATA[payments_gateways]]></tab>
 	<confirmUninstall><![CDATA[Are you sure you want to delete your details?]]></confirmUninstall>
-	<is_configurable>1</is_configurable>
-	<need_instance>1</need_instance>
+    <is_configurable>1</is_configurable>
+    <need_instance>1</need_instance>
 	<limited_countries></limited_countries>
 </module>

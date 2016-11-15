@@ -45,7 +45,7 @@ fieldset a:hover {
 </style>
 {/literal}
 
-<div><img src="{$sofort.dfl.img_path|escape:'htmlall':'UTF-8'}/sofortbanking.png" width="200" height="75" alt="sofortbanking.png" title="" /></div>
+<div><img src="{$sofort.dfl.mod_lang.logo|escape:'htmlall':'UTF-8'}" alt="200x75.png" width="200" height="75" title="" /></div>
 <form method="post" action="{$sofort.dfl.action|escape:'htmlall':'UTF-8'}">
 <br />
 
