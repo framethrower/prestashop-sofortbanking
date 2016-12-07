@@ -81,9 +81,9 @@ class SofortbankingPaymentModuleFrontController extends ModuleFrontController
             Tools::ucfirst(Tools::strtolower($customer->lastname))));
 
         $url = array(
-            'notification' => $this->context->shop->getBaseURL() . 'modules/' . $this->module->name . '/notification.php',
-            'success' => $this->context->shop->getBaseURL() . 'modules/' . $this->module->name . '/confirmation.php?transaction=-TRANSACTION-',
-            'cancellation' => $this->context->shop->getBaseURL() . 'index.php?controller=order&step=3'
+            'notification' => $this->context->shop->getBaseURL(true) . 'modules/' . $this->module->name . '/notification.php',
+            'success' => $this->context->shop->getBaseURL(true) . 'modules/' . $this->module->name . '/confirmation.php?transaction=-TRANSACTION-',
+            'cancellation' => $this->context->shop->getBaseURL(true) . 'index.php?controller=order&step=3'
         );
 
         $sofortueberweisung->setSuccessUrl($url['success']);
