@@ -471,7 +471,7 @@ class Sofortbanking extends PaymentModule
         );
 
         $this->context->smarty->assign('mod_lang', $this->isSupportedLang());
-        $this->context->smarty->assign('sofort_link', (isset($links[$this->isSupportedLang()])
+        $this->context->smarty->assign('sofort_link', (isset($links[$this->isSupportedLang()['iso']])
             ? $links[$this->isSupportedLang()] : $this->context->link->getCMSLink(5)));
 
         return $this->display(__FILE__, 'views/templates/hook/left_column.tpl');
