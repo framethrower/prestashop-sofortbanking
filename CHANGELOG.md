@@ -1,5 +1,11 @@
 # Sofortbanking module @touchdesign
 
+* Version 3.0.1
+
+  * Use ssl if ssl is configured
+  * Fix illegal offset warning for supported language
+  * Replace short with long array syntax for backward compatibility
+
 * Version 3.0.0
 
   * Updated logos

@@ -377,9 +377,9 @@ class Sofortbanking extends PaymentModule
             ), true))
             ->setAdditionalInformation($this->context->smarty->fetch('module:sofortbanking/views/templates/hook/payment_options.tpl'));
 
-        return [
+        return array(
             $paymentOption
-        ];
+        );
     }
 
     /**
